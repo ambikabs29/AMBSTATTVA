@@ -40,6 +40,8 @@ const AdminDashboard = () => {
         return <p>📦 Subscription Overview: View active, expired, and cancelled subscriptions.</p>;
       case "approvals":
         return <p>✅ Software Approval Queue: Review and approve tenant software before publishing.</p>;
+      case "mysoftwares":
+        return <p>📁 My Softwares: View and manage software uploaded by you (admin/tenant).</p>;
       case "marketplace":
         return <p>🛒 Marketplace Settings: Edit categories, promotions, and public listing order.</p>;
       default:
@@ -67,6 +69,7 @@ const AdminDashboard = () => {
           <li onClick={() => setActiveSection("tenants")} style={menuStyle}>🏢 Tenants</li>
           <li onClick={() => setActiveSection("subscriptions")} style={menuStyle}>📦 Subscriptions</li>
           <li onClick={() => setActiveSection("approvals")} style={menuStyle}>📂 All Softwares</li>
+          <li onClick={() => setActiveSection("mysoftwares")} style={menuStyle}>📁 My Softwares</li>
           <li onClick={() => setActiveSection("marketplace")} style={menuStyle}>🛒 Marketplace</li>
         </ul>
       </aside>
