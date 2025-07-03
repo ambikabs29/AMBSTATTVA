@@ -5,12 +5,12 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 import Blog from "./pages/Blog";
-import SaaS from "./pages/services/SaaS";
-import Tuition from "./pages/services/Tuition";
-import Courses from "./pages/services/Courses";
-import Ecommerce from "./pages/services/Ecommerce";
-import Astrology from "./pages/services/Astrology";
-import Wellness from "./pages/services/Wellness";
+import SaaS from "./pages/services/SaaS/SaaS";
+import Tuition from "./pages/services/Tuition/Tuition";
+import Courses from "./pages/services/Courses/Courses";
+import Ecommerce from "./pages/services/Ecommerce/Ecommerce";
+import Astrology from "./pages/services/Astrology/Astrology";
+import Wellness from "./pages/services/Wellness/Wellness";
 
 function App() {
   return (
