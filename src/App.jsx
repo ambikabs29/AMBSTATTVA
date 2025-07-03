@@ -11,6 +11,7 @@ import Courses from "./pages/services/Courses/Courses";
 import Ecommerce from "./pages/services/Ecommerce/Ecommerce";
 import Astrology from "./pages/services/Astrology/Astrology";
 import Wellness from "./pages/services/Wellness/Wellness";
+import AdminDashboard from "./pages/services/SaaS/AdminDashboard";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/services/saas" element={<SaaS />} />
+        <Route path="/services/saas/admin" element={<AdminDashboard />} />
         <Route path="/services/tuition" element={<Tuition />} />
         <Route path="/services/courses" element={<Courses />} />
         <Route path="/services/ecommerce" element={<Ecommerce />} />
