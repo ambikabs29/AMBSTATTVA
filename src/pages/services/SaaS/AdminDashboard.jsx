@@ -66,7 +66,7 @@ const AdminDashboard = () => {
           <li onClick={() => setActiveSection("customers")} style={menuStyle}>👤 Customers</li>
           <li onClick={() => setActiveSection("tenants")} style={menuStyle}>🏢 Tenants</li>
           <li onClick={() => setActiveSection("subscriptions")} style={menuStyle}>📦 Subscriptions</li>
-          <li onClick={() => setActiveSection("approvals")} style={menuStyle}>✅ Approvals</li>
+          <li onClick={() => setActiveSection("approvals")} style={menuStyle}>📂 All Softwares</li>
           <li onClick={() => setActiveSection("marketplace")} style={menuStyle}>🛒 Marketplace</li>
         </ul>
       </aside>
