@@ -1,9 +1,35 @@
-import './App.css'
 
-export default function App() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Portfolio from "./pages/Portfolio";
+import Blog from "./pages/Blog";
+import SaaS from "./pages/services/SaaS";
+import Tuition from "./pages/services/Tuition";
+import Courses from "./pages/services/Courses";
+import Ecommerce from "./pages/services/Ecommerce";
+import Astrology from "./pages/services/Astrology";
+import Wellness from "./pages/services/Wellness";
+
+function App() {
   return (
-    <main>
-      React ⚛️ + Vite ⚡ + Replit!
-    </main>
-  )
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/services/saas" element={<SaaS />} />
+        <Route path="/services/tuition" element={<Tuition />} />
+        <Route path="/services/courses" element={<Courses />} />
+        <Route path="/services/ecommerce" element={<Ecommerce />} />
+        <Route path="/services/astrology" element={<Astrology />} />
+        <Route path="/services/wellness" element={<Wellness />} />
+      </Routes>
+    </Router>
+  );
 }
+
+export default App;
