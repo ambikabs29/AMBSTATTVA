@@ -5,6 +5,7 @@ const AdminDashboard = () => {
   // ❗ Change this to false to simulate access denied
   const [isAdmin, setIsAdmin] = useState(true); // Will later be dynamic based on Firebase Auth
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [expandedMenus, setExpandedMenus] = useState({});
   const [user, setUser] = useState({
     name: "Admin User",
     email: "admin@saasible.com",
@@ -18,6 +19,14 @@ const AdminDashboard = () => {
       // TODO: Clear Firebase auth session
       // firebase.auth().signOut();
     }
+  };
+
+  // Toggle submenu function
+  const toggleSubmenu = (menuId) => {
+    setExpandedMenus(prev => ({
+      ...prev,
+      [menuId]: !prev[menuId]
+    }));
   };
 
   // Optional: simulate fetching admin flag from Firebase
@@ -341,6 +350,38 @@ const AdminDashboard = () => {
           </div>
         );
 
+      case "app-listings":
+        return (
+          <div>
+            <h3>📱 App Listings</h3>
+            <p>View and manage all app listings in the marketplace.</p>
+          </div>
+        );
+
+      case "add-new-app":
+        return (
+          <div>
+            <h3>➕ Add New App</h3>
+            <p>Add new applications to the marketplace.</p>
+          </div>
+        );
+
+      case "manage-categories":
+        return (
+          <div>
+            <h3>📂 Manage Categories</h3>
+            <p>Organize and manage app categories.</p>
+          </div>
+        );
+
+      case "app-requests":
+        return (
+          <div>
+            <h3>📋 App Requests</h3>
+            <p>Review and process app submission requests.</p>
+          </div>
+        );
+
       case "my-activity":
         return (
           <div>
@@ -386,7 +427,18 @@ const AdminDashboard = () => {
     { id: "tenants", label: "Tenants", icon: "🏢" },
     { id: "customers", label: "Customers", icon: "👥" },
     { id: "analytics", label: "Analytics", icon: "📊" },
-    { id: "marketplace-mgmt", label: "Marketplace Mgmt", icon: "🛒", hasSubmenu: true },
+    { 
+      id: "marketplace-mgmt", 
+      label: "Marketplace Mgmt", 
+      icon: "🛒", 
+      hasSubmenu: true,
+      submenu: [
+        { id: "app-listings", label: "App Listings", icon: "📱" },
+        { id: "add-new-app", label: "Add New App", icon: "➕" },
+        { id: "manage-categories", label: "Manage Categories", icon: "📂" },
+        { id: "app-requests", label: "App Requests", icon: "📋" }
+      ]
+    },
     { id: "my-activity", label: "My Activity (as Customer)", icon: "📱", hasSubmenu: true },
     { id: "marketplace", label: "Marketplace", icon: "🏪" },
     { id: "settings", label: "Settings", icon: "⚙️" },
@@ -444,14 +496,51 @@ const AdminDashboard = () => {
         {/* Menu Items */}
         <nav style={{ padding: "1rem", flex: 1 }}>
           {menuItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => setActiveSection(item.id)}
-              style={activeSection === item.id ? activeMenuStyle : menuStyle}
-            >
-              <span>{item.icon}</span>
-              <span style={{ flex: 1 }}>{item.label}</span>
-              {item.hasSubmenu && <span style={{ fontSize: "0.75rem" }}>▼</span>}
+            <div key={item.id}>
+              <div
+                onClick={() => {
+                  if (item.hasSubmenu) {
+                    toggleSubmenu(item.id);
+                  } else {
+                    setActiveSection(item.id);
+                  }
+                }}
+                style={activeSection === item.id ? activeMenuStyle : menuStyle}
+              >
+                <span>{item.icon}</span>
+                <span style={{ flex: 1 }}>{item.label}</span>
+                {item.hasSubmenu && (
+                  <span style={{ 
+                    fontSize: "0.75rem", 
+                    transition: "transform 0.2s",
+                    transform: expandedMenus[item.id] ? "rotate(180deg)" : "rotate(0deg)"
+                  }}>
+                    ▼
+                  </span>
+                )}
+              </div>
+              
+              {/* Submenu */}
+              {item.hasSubmenu && item.submenu && expandedMenus[item.id] && (
+                <div style={{ marginLeft: "1rem", marginTop: "0.25rem" }}>
+                  {item.submenu.map((subItem) => (
+                    <div
+                      key={subItem.id}
+                      onClick={() => setActiveSection(subItem.id)}
+                      style={{
+                        ...menuStyle,
+                        padding: "0.5rem 1rem",
+                        fontSize: "0.8rem",
+                        color: activeSection === subItem.id ? "#10b981" : "#9ca3af",
+                        background: activeSection === subItem.id ? "rgba(16, 185, 129, 0.1)" : "transparent"
+                      }}
+                    >
+                      <span>{subItem.icon}</span>
+                      <span style={{ flex: 1 }}>{subItem.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </nav>
