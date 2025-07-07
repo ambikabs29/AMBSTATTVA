@@ -12,19 +12,25 @@ const SaaS = () => {
       title: "Host, Sell & Subscribe to SaaS",
       subtitle: "in One Platform",
       description: "SaaSibly lets you launch your software or subscribe to powerful tools - all in one place.",
-      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+      background: "linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
     },
     {
       title: "Unlimited Possibilities",
       subtitle: "One Marketplace",
       description: "Explore a diverse range of applications, from productivity tools to enterprise-level software.",
-      background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+      background: "linear-gradient(rgba(240, 147, 251, 0.8), rgba(245, 87, 108, 0.8)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
     },
     {
       title: "Join the SaaS Revolution",
       subtitle: "Start Today",
       description: "Whether you're a vendor or customer, SaaSibly is your gateway to the future of software.",
-      background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+      background: "linear-gradient(rgba(79, 172, 254, 0.8), rgba(0, 242, 254, 0.8)), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
     }
   ];
 
@@ -59,6 +65,8 @@ const SaaS = () => {
                     width: "100%",
                     height: "100%",
                     background: slide.background,
+                    backgroundSize: slide.backgroundSize,
+                    backgroundPosition: slide.backgroundPosition,
                     color: "white",
                     padding: "4rem 2rem",
                     display: "flex",
