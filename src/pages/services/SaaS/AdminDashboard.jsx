@@ -489,7 +489,7 @@ const AdminDashboard = () => {
             }}>
               🏢
             </div>
-            <span style={{ fontWeight: "600", fontSize: "1.125rem" }}>SaaSible Admin</span>
+            <span style={{ fontWeight: "600", fontSize: "1.125rem" }}>SaaSibly Admin</span>
           </div>
         </div>
 
