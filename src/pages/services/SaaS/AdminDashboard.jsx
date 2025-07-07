@@ -31,65 +31,125 @@ const AdminDashboard = () => {
     switch (activeSection) {
       case "overview":
         return (
-          <p>
-            Welcome to the SaaS Admin Panel. Select a section to begin managing
-            your marketplace.
-          </p>
+          <div>
+            <h3>📊 Overview</h3>
+            <p>Welcome to the SaaS Admin Panel. Use the side menu to manage your marketplace.</p>
+          </div>
         );
+
       case "customers":
         return (
-          <p>
-            👤 Customer Management: View, edit, delete customers and their
-            subscriptions.
-          </p>
+          <div>
+            <h3>👤 Customers</h3>
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Email</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Ambika</td><td>ambs@example.com</td><td>Active</td><td><button>Edit</button></td></tr>
+                <tr><td>Binu</td><td>binu@example.com</td><td>Expired</td><td><button>Renew</button></td></tr>
+              </tbody>
+            </table>
+          </div>
         );
+
       case "tenants":
         return (
-          <p>
-            🏢 Tenant Management: Manage tenant uploads, billing plans, and
-            access rights.
-          </p>
+          <div>
+            <h3>🏢 Tenants</h3>
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Plan</th><th>Softwares</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>SoftTech</td><td>Pro</td><td>3</td><td><button>View</button></td></tr>
+                <tr><td>CloudServe</td><td>Basic</td><td>1</td><td><button>Upgrade</button></td></tr>
+              </tbody>
+            </table>
+          </div>
         );
+
       case "subscriptions":
         return (
-          <p>
-            📦 Subscription Overview: View active, expired, and cancelled
-            subscriptions.
-          </p>
+          <div>
+            <h3>📦 Subscriptions</h3>
+            <ul>
+              <li>Customer A - Active until Aug 2025</li>
+              <li>Tenant B - Trial expires in 3 days</li>
+              <li>Customer C - Cancelled</li>
+            </ul>
+          </div>
         );
+
       case "approvals":
         return (
-          <p>
-            ✅ Software Approval Queue: Review and approve tenant software
-            before publishing.
-          </p>
+          <div>
+            <h3>📂 All Softwares</h3>
+            <table>
+              <thead>
+                <tr><th>Software Name</th><th>Tenant</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>ClinicPro</td><td>SoftTech</td><td>Pending</td><td><button>Approve</button></td></tr>
+                <tr><td>InventoryGo</td><td>DataHub</td><td>Live</td><td><button>Archive</button></td></tr>
+              </tbody>
+            </table>
+          </div>
         );
+
       case "my softwares":
         return (
-          <p>
-            📁 My Softwares: View and manage software uploaded by you
-            (admin/tenant).
-          </p>
+          <div>
+            <h3>📁 My Softwares</h3>
+            <p>You have uploaded 2 software items.</p>
+            <ul>
+              <li>ClinicPlus <button>Edit</button> <button>Delete</button></li>
+              <li>StockEase <button>Edit</button> <button>Delete</button></li>
+            </ul>
+            <button>Add New Software</button>
+          </div>
         );
-      case "billing":
-        return (
-          <p>
-            💳 Billing: View and manage admin's own software purchases from marketplace.
-          </p>
-        );
-      case "payment":
-        return (
-          <p>
-            💰 Payment: Track incoming payments from tenants and subscribed customers.
-          </p>
-        );
+
       case "marketplace":
         return (
-          <p>
-            🛒 Marketplace Settings: Edit categories, promotions, and public
-            listing order.
-          </p>
+          <div>
+            <h3>🛒 Marketplace Settings</h3>
+            <p>Organize categories and featured software.</p>
+            <ul>
+              <li>Featured: ClinicPro <button>Remove</button></li>
+              <li>Category: Business Tools <button>Edit</button></li>
+            </ul>
+          </div>
         );
+
+      case "billing":
+        return (
+          <div>
+            <h3>💳 Admin Billing</h3>
+            <p>These are softwares purchased by admin from the marketplace:</p>
+            <ul>
+              <li>HRDesk – ₹499/month <button>Cancel</button></li>
+              <li>EduManager – ₹799/year <button>Renew</button></li>
+            </ul>
+          </div>
+        );
+
+      case "payment":
+        return (
+          <div>
+            <h3>💰 Payments Received</h3>
+            <table>
+              <thead>
+                <tr><th>From</th><th>Amount</th><th>Purpose</th><th>Date</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Tenant: DataSoft</td><td>₹1499</td><td>Monthly Plan</td><td>01 July 2025</td></tr>
+                <tr><td>Customer: Latha</td><td>₹299</td><td>Single Software</td><td>02 July 2025</td></tr>
+              </tbody>
+            </table>
+          </div>
+        );
+
       default:
         return <p>Select a section from the menu.</p>;
     }
