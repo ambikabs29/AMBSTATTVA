@@ -71,6 +71,18 @@ const AdminDashboard = () => {
             (admin/tenant).
           </p>
         );
+      case "billing":
+        return (
+          <p>
+            💳 Billing: View and manage admin's own software purchases from marketplace.
+          </p>
+        );
+      case "payment":
+        return (
+          <p>
+            💰 Payment: Track incoming payments from tenants and subscribed customers.
+          </p>
+        );
       case "marketplace":
         return (
           <p>
@@ -121,6 +133,12 @@ const AdminDashboard = () => {
             style={menuStyle}
           >
             📁 My Softwares
+          </li>
+          <li onClick={() => setActiveSection("billing")} style={menuStyle}>
+            💳 Billing
+          </li>
+          <li onClick={() => setActiveSection("payment")} style={menuStyle}>
+            💰 Payment
           </li>
           <li onClick={() => setActiveSection("marketplace")} style={menuStyle}>
             🛒 Marketplace
