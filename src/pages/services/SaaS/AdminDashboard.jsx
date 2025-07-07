@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 const AdminDashboard = () => {
@@ -31,19 +30,54 @@ const AdminDashboard = () => {
   const renderContent = () => {
     switch (activeSection) {
       case "overview":
-        return <p>Welcome to the SaaS Admin Panel. Select a section to begin managing your marketplace.</p>;
+        return (
+          <p>
+            Welcome to the SaaS Admin Panel. Select a section to begin managing
+            your marketplace.
+          </p>
+        );
       case "customers":
-        return <p>👤 Customer Management: View, edit, delete customers and their subscriptions.</p>;
+        return (
+          <p>
+            👤 Customer Management: View, edit, delete customers and their
+            subscriptions.
+          </p>
+        );
       case "tenants":
-        return <p>🏢 Tenant Management: Manage tenant uploads, billing plans, and access rights.</p>;
+        return (
+          <p>
+            🏢 Tenant Management: Manage tenant uploads, billing plans, and
+            access rights.
+          </p>
+        );
       case "subscriptions":
-        return <p>📦 Subscription Overview: View active, expired, and cancelled subscriptions.</p>;
+        return (
+          <p>
+            📦 Subscription Overview: View active, expired, and cancelled
+            subscriptions.
+          </p>
+        );
       case "approvals":
-        return <p>✅ Software Approval Queue: Review and approve tenant software before publishing.</p>;
-      case "mysoftwares":
-        return <p>📁 My Softwares: View and manage software uploaded by you (admin/tenant).</p>;
+        return (
+          <p>
+            ✅ Software Approval Queue: Review and approve tenant software
+            before publishing.
+          </p>
+        );
+      case "my softwares":
+        return (
+          <p>
+            📁 My Softwares: View and manage software uploaded by you
+            (admin/tenant).
+          </p>
+        );
       case "marketplace":
-        return <p>🛒 Marketplace Settings: Edit categories, promotions, and public listing order.</p>;
+        return (
+          <p>
+            🛒 Marketplace Settings: Edit categories, promotions, and public
+            listing order.
+          </p>
+        );
       default:
         return <p>Select a section from the menu.</p>;
     }
@@ -59,18 +93,38 @@ const AdminDashboard = () => {
           color: "#fff",
           padding: "1rem",
           height: "100vh",
-          boxShadow: "2px 0 5px rgba(0,0,0,0.2)"
+          boxShadow: "2px 0 5px rgba(0,0,0,0.2)",
         }}
       >
         <h3 style={{ color: "#FFD700" }}>SaaS Admin</h3>
         <ul style={{ listStyle: "none", padding: 0, marginTop: "2rem" }}>
-          <li onClick={() => setActiveSection("overview")} style={menuStyle}>📊 Overview</li>
-          <li onClick={() => setActiveSection("customers")} style={menuStyle}>👤 Customers</li>
-          <li onClick={() => setActiveSection("tenants")} style={menuStyle}>🏢 Tenants</li>
-          <li onClick={() => setActiveSection("subscriptions")} style={menuStyle}>📦 Subscriptions</li>
-          <li onClick={() => setActiveSection("approvals")} style={menuStyle}>📂 All Softwares</li>
-          <li onClick={() => setActiveSection("mysoftwares")} style={menuStyle}>📁 My Softwares</li>
-          <li onClick={() => setActiveSection("marketplace")} style={menuStyle}>🛒 Marketplace</li>
+          <li onClick={() => setActiveSection("overview")} style={menuStyle}>
+            📊 Overview
+          </li>
+          <li onClick={() => setActiveSection("customers")} style={menuStyle}>
+            👤 Customers
+          </li>
+          <li onClick={() => setActiveSection("tenants")} style={menuStyle}>
+            🏢 Tenants
+          </li>
+          <li
+            onClick={() => setActiveSection("subscriptions")}
+            style={menuStyle}
+          >
+            📦 Subscriptions
+          </li>
+          <li onClick={() => setActiveSection("approvals")} style={menuStyle}>
+            📂 All Softwares
+          </li>
+          <li
+            onClick={() => setActiveSection("my softwares")}
+            style={menuStyle}
+          >
+            📁 My Softwares
+          </li>
+          <li onClick={() => setActiveSection("marketplace")} style={menuStyle}>
+            🛒 Marketplace
+          </li>
         </ul>
       </aside>
 
@@ -86,7 +140,7 @@ const AdminDashboard = () => {
 const menuStyle = {
   cursor: "pointer",
   padding: "0.5rem 0",
-  borderBottom: "1px solid #444"
+  borderBottom: "1px solid #444",
 };
 
 export default AdminDashboard;
