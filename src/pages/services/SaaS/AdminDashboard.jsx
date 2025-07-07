@@ -5,6 +5,20 @@ const AdminDashboard = () => {
   // ❗ Change this to false to simulate access denied
   const [isAdmin, setIsAdmin] = useState(true); // Will later be dynamic based on Firebase Auth
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [user, setUser] = useState({
+    name: "Admin User",
+    email: "admin@saasible.com",
+    avatar: "AU"
+  });
+
+  // Logout function
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      setIsAdmin(false);
+      // TODO: Clear Firebase auth session
+      // firebase.auth().signOut();
+    }
+  };
 
   // Optional: simulate fetching admin flag from Firebase
   useEffect(() => {
@@ -81,8 +95,55 @@ const AdminDashboard = () => {
               <div style={{ background: "white", padding: "1.5rem", borderRadius: "8px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #e5e7eb" }}>
                 <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Revenue Over Time</h3>
                 <p style={{ color: "#6b7280", fontSize: "0.875rem", marginBottom: "1.5rem" }}>Monthly recurring revenue growth.</p>
-                <div style={{ height: "200px", background: "#f8fafc", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", color: "#6b7280" }}>
-                  📈 Revenue Chart Placeholder
+                <div style={{ height: "200px", position: "relative", padding: "1rem" }}>
+                  <svg width="100%" height="100%" viewBox="0 0 400 160">
+                    {/* Grid lines */}
+                    <defs>
+                      <pattern id="grid" width="40" height="32" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 32" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                    
+                    {/* Revenue line */}
+                    <path
+                      d="M 20 120 L 60 100 L 100 80 L 140 60 L 180 45 L 220 35 L 260 30 L 300 25 L 340 20 L 380 15"
+                      fill="none"
+                      stroke="#10b981"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                    />
+                    
+                    {/* Data points */}
+                    {[
+                      { x: 20, y: 120, value: "$500" },
+                      { x: 60, y: 100, value: "$800" },
+                      { x: 100, y: 80, value: "$1.2k" },
+                      { x: 140, y: 60, value: "$1.8k" },
+                      { x: 180, y: 45, value: "$2.5k" },
+                      { x: 220, y: 35, value: "$3.2k" },
+                      { x: 260, y: 30, value: "$4.1k" },
+                      { x: 300, y: 25, value: "$5.2k" },
+                      { x: 340, y: 20, value: "$6.8k" },
+                      { x: 380, y: 15, value: "$8.5k" }
+                    ].map((point, i) => (
+                      <g key={i}>
+                        <circle cx={point.x} cy={point.y} r="4" fill="#10b981" />
+                        <text x={point.x} y={point.y - 10} textAnchor="middle" fontSize="10" fill="#6b7280">
+                          {point.value}
+                        </text>
+                      </g>
+                    ))}
+                    
+                    {/* Months */}
+                    <g>
+                      {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"].map((month, i) => (
+                        <text key={i} x={20 + i * 40} y={150} textAnchor="middle" fontSize="10" fill="#6b7280">
+                          {month}
+                        </text>
+                      ))}
+                    </g>
+                  </svg>
                 </div>
               </div>
 
@@ -90,8 +151,66 @@ const AdminDashboard = () => {
               <div style={{ background: "white", padding: "1.5rem", borderRadius: "8px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #e5e7eb" }}>
                 <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Subscription Trends</h3>
                 <p style={{ color: "#6b7280", fontSize: "0.875rem", marginBottom: "1.5rem" }}>New vs. Churned Subscriptions</p>
-                <div style={{ height: "200px", background: "#f8fafc", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", color: "#6b7280" }}>
-                  📊 Bar Chart Placeholder
+                <div style={{ height: "200px", position: "relative", padding: "1rem" }}>
+                  <svg width="100%" height="100%" viewBox="0 0 400 160">
+                    {/* Grid lines */}
+                    <defs>
+                      <pattern id="barGrid" width="50" height="20" patternUnits="userSpaceOnUse">
+                        <path d="M 50 0 L 0 0 0 20" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#barGrid)" />
+                    
+                    {/* Bars */}
+                    {[
+                      { month: "Jan", new: 5, churned: 1 },
+                      { month: "Feb", new: 8, churned: 2 },
+                      { month: "Mar", new: 12, churned: 3 },
+                      { month: "Apr", new: 15, churned: 2 },
+                      { month: "May", new: 18, churned: 4 },
+                      { month: "Jun", new: 22, churned: 3 }
+                    ].map((data, i) => (
+                      <g key={i}>
+                        {/* New subscriptions bar */}
+                        <rect
+                          x={40 + i * 55}
+                          y={120 - data.new * 4}
+                          width="20"
+                          height={data.new * 4}
+                          fill="#10b981"
+                          rx="2"
+                        />
+                        {/* Churned subscriptions bar */}
+                        <rect
+                          x={65 + i * 55}
+                          y={120 - data.churned * 4}
+                          width="20"
+                          height={data.churned * 4}
+                          fill="#ef4444"
+                          rx="2"
+                        />
+                        {/* Month label */}
+                        <text x={52 + i * 55} y={140} textAnchor="middle" fontSize="10" fill="#6b7280">
+                          {data.month}
+                        </text>
+                        {/* Values */}
+                        <text x={50 + i * 55} y={110 - data.new * 4} textAnchor="middle" fontSize="8" fill="#10b981">
+                          +{data.new}
+                        </text>
+                        <text x={75 + i * 55} y={110 - data.churned * 4} textAnchor="middle" fontSize="8" fill="#ef4444">
+                          -{data.churned}
+                        </text>
+                      </g>
+                    ))}
+                    
+                    {/* Legend */}
+                    <g transform="translate(20, 15)">
+                      <rect x="0" y="0" width="12" height="12" fill="#10b981" rx="2" />
+                      <text x="18" y="10" fontSize="10" fill="#6b7280">New</text>
+                      <rect x="60" y="0" width="12" height="12" fill="#ef4444" rx="2" />
+                      <text x="78" y="10" fontSize="10" fill="#6b7280">Churned</text>
+                    </g>
+                  </svg>
                 </div>
               </div>
             </div>
@@ -100,8 +219,67 @@ const AdminDashboard = () => {
             <div style={{ background: "white", padding: "1.5rem", borderRadius: "8px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #e5e7eb" }}>
               <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Active Subscriptions by Plan</h3>
               <p style={{ color: "#6b7280", fontSize: "0.875rem", marginBottom: "1.5rem" }}>Distribution of active subscriptions across different plans.</p>
-              <div style={{ height: "300px", background: "#f8fafc", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", color: "#6b7280" }}>
-                🥧 Pie Chart Placeholder
+              <div style={{ height: "300px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+                  <svg width="200" height="200" viewBox="0 0 200 200">
+                    {/* Pie segments */}
+                    <g transform="translate(100, 100)">
+                      {/* Basic Plan - 45% */}
+                      <path
+                        d="M 0 -80 A 80 80 0 0 1 56.57 -56.57 L 0 0 Z"
+                        fill="#3b82f6"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
+                      {/* Pro Plan - 35% */}
+                      <path
+                        d="M 56.57 -56.57 A 80 80 0 0 1 25.71 75.43 L 0 0 Z"
+                        fill="#10b981"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
+                      {/* Enterprise Plan - 20% */}
+                      <path
+                        d="M 25.71 75.43 A 80 80 0 0 1 0 -80 L 0 0 Z"
+                        fill="#f59e0b"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
+                      
+                      {/* Labels */}
+                      <text x="30" y="-40" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">45%</text>
+                      <text x="40" y="20" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">35%</text>
+                      <text x="-15" y="40" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">20%</text>
+                    </g>
+                  </svg>
+                </div>
+                
+                {/* Legend */}
+                <div style={{ flex: 1, paddingLeft: "2rem" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <div style={{ width: "16px", height: "16px", backgroundColor: "#3b82f6", borderRadius: "3px" }}></div>
+                      <div>
+                        <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Basic Plan</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>45% (18 users)</div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <div style={{ width: "16px", height: "16px", backgroundColor: "#10b981", borderRadius: "3px" }}></div>
+                      <div>
+                        <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Pro Plan</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>35% (14 users)</div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <div style={{ width: "16px", height: "16px", backgroundColor: "#f59e0b", borderRadius: "3px" }}></div>
+                      <div>
+                        <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Enterprise Plan</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>20% (8 users)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -298,12 +476,30 @@ const AdminDashboard = () => {
               fontWeight: "bold",
               fontSize: "0.875rem"
             }}>
-              N
+              {user.avatar}
             </div>
-            <div>
-              <div style={{ fontWeight: "500" }}>admin@saasible.com</div>
-              <div style={{ color: "#94a3b8", fontSize: "0.75rem" }}>admin@saasible.com</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: "500" }}>{user.name}</div>
+              <div style={{ color: "#94a3b8", fontSize: "0.75rem" }}>{user.email}</div>
             </div>
+            <button
+              onClick={handleLogout}
+              style={{
+                background: "#ef4444",
+                color: "white",
+                border: "none",
+                padding: "0.5rem 0.75rem",
+                borderRadius: "4px",
+                fontSize: "0.75rem",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.25rem"
+              }}
+              title="Logout"
+            >
+              🚪 Logout
+            </button>
           </div>
         </div>
       </aside>
