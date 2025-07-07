@@ -420,7 +420,9 @@ const AdminDashboard = () => {
         background: "#1e293b",
         color: "#e5e7eb",
         height: "100vh",
-        overflowY: "auto"
+        overflowY: "auto",
+        display: "flex",
+        flexDirection: "column"
       }}>
         {/* Header */}
         <div style={{ padding: "1.5rem 1rem", borderBottom: "1px solid #334155" }}>
@@ -440,7 +442,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Menu Items */}
-        <nav style={{ padding: "1rem" }}>
+        <nav style={{ padding: "1rem", flex: 1 }}>
           {menuItems.map((item) => (
             <div
               key={item.id}
@@ -455,7 +457,7 @@ const AdminDashboard = () => {
         </nav>
 
         {/* Footer */}
-        <div style={{ position: "absolute", bottom: "1rem", left: "1rem", right: "1rem" }}>
+        <div style={{ marginTop: "auto", padding: "1rem" }}>
           <div style={{ 
             background: "#334155", 
             padding: "0.75rem", 
