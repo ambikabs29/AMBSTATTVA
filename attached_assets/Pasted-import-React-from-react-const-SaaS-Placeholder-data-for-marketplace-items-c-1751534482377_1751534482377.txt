@@ -1,0 +1,69 @@
+import React from "react";
+
+const SaaS = () => {
+  // Placeholder data for marketplace items
+  const softwareList = [
+    {
+      id: 1,
+      name: "Clinic Manager Pro",
+      description: "Cloud-based clinic management software for doctors and clinics.",
+      price: "₹299/month"
+    },
+    {
+      id: 2,
+      name: "EduSmart Tuition",
+      description: "Tuition and coaching class scheduler and fee manager.",
+      price: "₹199/month"
+    },
+    {
+      id: 3,
+      name: "CraftShop CMS",
+      description: "Sell handmade products online with your own mini-storefront.",
+      price: "₹149/month"
+    }
+  ];
+
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>SaaS Marketplace</h2>
+      <p>Explore software tools available as subscriptions. Click “Buy” to begin the subscription process.</p>
+
+      <div style={{ marginTop: "2rem" }}>
+        {softwareList.map((software) => (
+          <div
+            key={software.id}
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              padding: "1rem",
+              marginBottom: "1rem",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+            }}
+          >
+            <h3>{software.name}</h3>
+            <p>{software.description}</p>
+            <strong>{software.price}</strong>
+            <div style={{ marginTop: "1rem" }}>
+              <button disabled style={{ padding: "0.5rem 1rem" }}>
+                Buy (Coming Soon)
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <hr style={{ margin: "3rem 0" }} />
+
+      <h3>Coming Features:</h3>
+      <ul>
+        <li>🔑 Customer Login / Profile / Subscription management</li>
+        <li>🚀 Tenant Dashboard to upload & price software</li>
+        <li>🧾 Admin panel to approve uploads and manage marketplace</li>
+        <li>💳 Razorpay/Stripe integration for payments</li>
+      </ul>
+    </div>
+  );
+};
+
+export default SaaS;
+add this to ambstattva/src/pages/services/SaaS.js

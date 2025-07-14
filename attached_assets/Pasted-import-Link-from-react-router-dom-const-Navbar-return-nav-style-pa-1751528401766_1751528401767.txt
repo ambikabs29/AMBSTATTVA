@@ -1,0 +1,207 @@
+import { Link } from "react-router-dom";
+
+const Navbar = () => {
+  return (
+    <nav style={{ padding: "1rem", background: "#222", color: "#fff" }}>
+      <ul style={{ display: "flex", gap: "1rem", listStyle: "none", alignItems: "center" }}>
+        <li><Link to="/" style={{ color: "#fff" }}>AMBSTATVA</Link></li>
+        <li><Link to="/about" style={{ color: "#fff" }}>About</Link></li>
+        <li><Link to="/portfolio" style={{ color: "#fff" }}>Portfolio</Link></li>
+        <li><Link to="/blog" style={{ color: "#fff" }}>Blog</Link></li>
+        <li style={{ position: "relative" }}>
+          <span style={{ color: "#fff", cursor: "pointer" }}>Services ▼</span>
+          <ul style={{
+            position: "absolute",
+            top: "1.5rem",
+            left: 0,
+            background: "#333",
+            padding: "0.5rem",
+            listStyle: "none",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5rem"
+          }}>
+            <li><Link to="/services/saas" style={{ color: "#fff" }}>SaaS Marketplace</Link></li>
+            <li><Link to="/services/tuition" style={{ color: "#fff" }}>Tuition System</Link></li>
+            <li><Link to="/services/courses" style={{ color: "#fff" }}>Courses Platform</Link></li>
+            <li><Link to="/services/ecommerce" style={{ color: "#fff" }}>Handmade Shop</Link></li>
+            <li><Link to="/services/astrology" style={{ color: "#fff" }}>Astrology & Tarot</Link></li>
+            <li><Link to="/services/wellness" style={{ color: "#fff" }}>Life & Wellness Coaching</Link></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;
+add this to ambstattva/src/components/Navbar.js
+
+const Home = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h1>Welcome to AMBSTATVA</h1>
+      <p>
+        Explore a unified platform offering personalized software subscriptions, tuition & learning, handmade crafts, spiritual services, and wellness coaching — all in one place.
+      </p>
+    </div>
+  );
+};
+
+export default Home;
+add this to ambstattva/src/pages/Home.js
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Portfolio from "./pages/Portfolio";
+import Blog from "./pages/Blog";
+import SaaS from "./pages/services/SaaS";
+import Tuition from "./pages/services/Tuition";
+import Courses from "./pages/services/Courses";
+import Ecommerce from "./pages/services/Ecommerce";
+import Astrology from "./pages/services/Astrology";
+import Wellness from "./pages/services/Wellness";
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/services/saas" element={<SaaS />} />
+        <Route path="/services/tuition" element={<Tuition />} />
+        <Route path="/services/courses" element={<Courses />} />
+        <Route path="/services/ecommerce" element={<Ecommerce />} />
+        <Route path="/services/astrology" element={<Astrology />} />
+        <Route path="/services/wellness" element={<Wellness />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+add this to ambstattva/src/App.js
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+add this to ambstattva/src/index.js
+
+const About = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>About Me</h2>
+      <p>
+        Welcome to AMBSTATVA — a space created by AMBS to bring together my passions for software, education, handmade arts, spirituality, and personal growth.
+      </p>
+    </div>
+  );
+};
+
+export default About;
+add this to ambstattva/src/pages/About.js
+
+const Portfolio = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>My Portfolio</h2>
+      <p>Explore projects and creative works including SaaS apps, embroidery designs, and more.</p>
+    </div>
+  );
+};
+
+export default Portfolio;
+add this to ambstattva/src/pages/Portfolio.js
+
+const Blog = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>Blog</h2>
+      <p>Stay updated with thoughts, experiences, and tutorials from AMBS.</p>
+    </div>
+  );
+};
+
+export default Blog;
+add this to ambstattva/src/pages/Blog.js
+
+const SaaS = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>SaaS Marketplace</h2>
+      <p>Browse software products with subscription options from verified creators.</p>
+    </div>
+  );
+};
+
+export default SaaS;
+add this to ambstattva/src/pages/services/SaaS.js
+
+const Tuition = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>Tuition Management</h2>
+      <p>Online tuition classes for CBSE/Kerala syllabus with Google Classroom integration and parent access.</p>
+    </div>
+  );
+};
+
+export default Tuition;
+add this to ambstattva/src/pages/services/Tuition.js
+
+const Courses = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>Online Courses</h2>
+      <p>Buy self-paced online courses in various subjects — arts, programming, spirituality, and more.</p>
+    </div>
+  );
+};
+
+export default Courses;
+add this to ambstattva/src/pages/services/Courses.js
+
+const Ecommerce = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>Handmade Product Shop</h2>
+      <p>Purchase unique, hand-stitched and crafted items directly from the creator. Safe, personal, and soulful.</p>
+    </div>
+  );
+};
+
+export default Ecommerce;
+add this to ambstattva/src/pages/services/Ecommerce.js
+
+const Astrology = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>Astrology, Palmistry & Tarot</h2>
+      <p>Explore guidance sessions and reports based on Vedic astrology, palm reading, numerology, and tarot.</p>
+    </div>
+  );
+};
+
+export default Astrology;
+add this to ambstattva/src/pages/services/Astrology.js
+
+const Wellness = () => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h2>Life & Wellness Coaching</h2>
+      <p>Transform your life with holistic wellness coaching including Reiki, affirmation training, and life purpose sessions.</p>
+    </div>
+  );
+};
+
+export default Wellness;
+add this to ambstattva/src/pages/services/Wellness.js
+
