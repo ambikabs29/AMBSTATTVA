@@ -1696,6 +1696,530 @@ const AdminDashboard = () => {
             </div>
           </div>
         );
+      case "Support":
+        return (
+          <div style={settingsStyles.tabContentContainer}>
+            <div style={settingsStyles.contentHeader}>
+              <h3 style={settingsStyles.contentHeading}>Support & Help Center</h3>
+              <p style={settingsStyles.contentSubheading}>
+                Get help, access documentation, and manage support tickets.
+              </p>
+            </div>
+            <div style={settingsStyles.contentBody}>
+              {/* Quick Actions Section */}
+              <div style={{ marginBottom: "2.5rem" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🚀</span>
+                  Quick Actions
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "1.5rem", background: "#fafafa", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = "#f0f9ff";
+                      e.target.style.borderColor = "#3b82f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = "#fafafa";
+                      e.target.style.borderColor = "#e5e7eb";
+                    }}
+                    onClick={() => alert("Create new support ticket")}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem", background: "#dbeafe", padding: "0.5rem", borderRadius: "8px", color: "#1e40af" }}>🎫</div>
+                      <div>
+                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Create Support Ticket</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Get personalized help</div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Submit a detailed support request and get help from our technical team.
+                    </p>
+                    <button style={{
+                      background: "#3b82f6",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      width: "100%"
+                    }}>
+                      Create Ticket
+                    </button>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "1.5rem", background: "#fafafa", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = "#f0fdf4";
+                      e.target.style.borderColor = "#10b981";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = "#fafafa";
+                      e.target.style.borderColor = "#e5e7eb";
+                    }}
+                    onClick={() => alert("Open live chat")}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem", background: "#dcfce7", padding: "0.5rem", borderRadius: "8px", color: "#059669" }}>💬</div>
+                      <div>
+                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Live Chat Support</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Get instant help</div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Chat with our support team in real-time for immediate assistance.
+                    </p>
+                    <button style={{
+                      background: "#10b981",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      width: "100%"
+                    }}>
+                      Start Chat
+                    </button>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "1.5rem", background: "#fafafa", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = "#fefce8";
+                      e.target.style.borderColor = "#f59e0b";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = "#fafafa";
+                      e.target.style.borderColor = "#e5e7eb";
+                    }}
+                    onClick={() => alert("Open video call")}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem", background: "#fef3c7", padding: "0.5rem", borderRadius: "8px", color: "#92400e" }}>📹</div>
+                      <div>
+                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Video Call Support</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Enterprise only</div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Schedule a video call with our technical specialists for complex issues.
+                    </p>
+                    <button style={{
+                      background: "#f59e0b",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      width: "100%"
+                    }}>
+                      Schedule Call
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* My Support Tickets Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📋</span>
+                  My Support Tickets
+                </h4>
+                
+                <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden", background: "white" }}>
+                  {/* Table Header */}
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gap: "1rem",
+                    padding: "0.75rem 1rem",
+                    background: "#f9fafb",
+                    borderBottom: "1px solid #e5e7eb",
+                    fontSize: "0.875rem",
+                    fontWeight: "600",
+                    color: "#374151"
+                  }}>
+                    <div>Ticket ID</div>
+                    <div>Subject</div>
+                    <div>Priority</div>
+                    <div>Status</div>
+                    <div>Actions</div>
+                  </div>
+
+                  {/* Sample Tickets */}
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gap: "1rem",
+                    padding: "0.75rem 1rem",
+                    borderBottom: "1px solid #f3f4f6",
+                    alignItems: "center"
+                  }}>
+                    <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>#12345</div>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Integration API Rate Limits</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Created 2 hours ago</div>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.75rem",
+                        background: "#fee2e2",
+                        color: "#991b1b",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500"
+                      }}>
+                        High
+                      </span>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.75rem",
+                        background: "#fef3c7",
+                        color: "#92400e",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500"
+                      }}>
+                        In Progress
+                      </span>
+                    </div>
+                    <div>
+                      <button style={{
+                        background: "transparent",
+                        border: "1px solid #d1d5db",
+                        color: "#6b7280",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => alert("View ticket #12345")}
+                      >
+                        View
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gap: "1rem",
+                    padding: "0.75rem 1rem",
+                    borderBottom: "1px solid #f3f4f6",
+                    alignItems: "center"
+                  }}>
+                    <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>#12344</div>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Payment Gateway Configuration</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Created 1 day ago</div>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.75rem",
+                        background: "#dbeafe",
+                        color: "#1e40af",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500"
+                      }}>
+                        Medium
+                      </span>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.75rem",
+                        background: "#dcfce7",
+                        color: "#166534",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500"
+                      }}>
+                        Resolved
+                      </span>
+                    </div>
+                    <div>
+                      <button style={{
+                        background: "transparent",
+                        border: "1px solid #d1d5db",
+                        color: "#6b7280",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => alert("View ticket #12344")}
+                      >
+                        View
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gap: "1rem",
+                    padding: "0.75rem 1rem",
+                    alignItems: "center"
+                  }}>
+                    <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>#12343</div>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>User Dashboard Performance</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Created 3 days ago</div>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.75rem",
+                        background: "#f3f4f6",
+                        color: "#4b5563",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500"
+                      }}>
+                        Low
+                      </span>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.75rem",
+                        background: "#dcfce7",
+                        color: "#166534",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500"
+                      }}>
+                        Closed
+                      </span>
+                    </div>
+                    <div>
+                      <button style={{
+                        background: "transparent",
+                        border: "1px solid #d1d5db",
+                        color: "#6b7280",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => alert("View ticket #12343")}
+                      >
+                        View
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: "1rem", textAlign: "center" }}>
+                  <button style={{
+                    background: "transparent",
+                    border: "1px solid #d1d5db",
+                    color: "#6b7280",
+                    padding: "0.5rem 1rem",
+                    borderRadius: "6px",
+                    fontSize: "0.875rem",
+                    cursor: "pointer"
+                  }}
+                  onClick={() => alert("View all tickets")}
+                  >
+                    View All Tickets
+                  </button>
+                </div>
+              </div>
+
+              {/* Knowledge Base Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📚</span>
+                  Knowledge Base & Documentation
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                      <span style={{ fontSize: "1.5rem" }}>🚀</span>
+                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Getting Started</h5>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Learn the basics of setting up and configuring your SaaS platform.
+                    </p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening setup guide")}>• Platform Setup Guide</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening admin tutorial")}>• Admin Dashboard Tutorial</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening first app guide")}>• Creating Your First App</a>
+                    </div>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                      <span style={{ fontSize: "1.5rem" }}>⚙️</span>
+                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Technical Documentation</h5>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Deep dive into APIs, integrations, and advanced platform features.
+                    </p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening API docs")}>• API Documentation</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening webhooks guide")}>• Webhooks & Integration</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening security guide")}>• Security Best Practices</a>
+                    </div>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                      <span style={{ fontSize: "1.5rem" }}>❓</span>
+                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Troubleshooting</h5>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Common issues and their solutions to help you resolve problems quickly.
+                    </p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening troubleshooting guide")}>• Common Issues & Solutions</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening error codes")}>• Error Codes Reference</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening performance guide")}>• Performance Optimization</a>
+                    </div>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                      <span style={{ fontSize: "1.5rem" }}>🎥</span>
+                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Video Tutorials</h5>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Watch step-by-step video guides for platform features and workflows.
+                    </p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening video library")}>• Platform Overview Videos</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening webinar recordings")}>• Webinar Recordings</a>
+                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening feature demos")}>• Feature Demonstrations</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Community & Resources Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>👥</span>
+                  Community & Resources
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem" }}>
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={(e) => {
+                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                      e.target.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.boxShadow = "none";
+                      e.target.style.transform = "translateY(0px)";
+                    }}
+                    onClick={() => alert("Opening community forum")}>
+                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>💬</div>
+                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Community Forum</h6>
+                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Connect with other users and share experiences</p>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={(e) => {
+                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                      e.target.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.boxShadow = "none";
+                      e.target.style.transform = "translateY(0px)";
+                    }}
+                    onClick={() => alert("Opening Discord server")}>
+                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🎮</div>
+                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Discord Server</h6>
+                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Real-time chat with developers and support</p>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={(e) => {
+                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                      e.target.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.boxShadow = "none";
+                      e.target.style.transform = "translateY(0px)";
+                    }}
+                    onClick={() => alert("Opening blog")}>
+                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>📝</div>
+                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Blog & Updates</h6>
+                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Latest news, tips, and platform updates</p>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                    onMouseEnter={(e) => {
+                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                      e.target.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.boxShadow = "none";
+                      e.target.style.transform = "translateY(0px)";
+                    }}
+                    onClick={() => alert("Opening GitHub repository")}>
+                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🔗</div>
+                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>GitHub Repository</h6>
+                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Access source code and contribute</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Information Section */}
+              <div style={{ marginBottom: "2rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📞</span>
+                  Contact Information
+                </h4>
+                
+                <div style={{ background: "#f9fafb", borderRadius: "8px", padding: "1.5rem", border: "1px solid #e5e7eb" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
+                    <div>
+                      <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <span>📧</span>
+                        Email Support
+                      </h6>
+                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.5rem" }}>support@saasible.com</p>
+                      <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Response within 24 hours</p>
+                    </div>
+
+                    <div>
+                      <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <span>⏰</span>
+                        Support Hours
+                      </h6>
+                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Monday - Friday: 9 AM - 8 PM EST</p>
+                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Saturday: 10 AM - 6 PM EST</p>
+                      <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Sunday: Emergency support only</p>
+                    </div>
+
+                    <div>
+                      <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <span>🌍</span>
+                        Regional Support
+                      </h6>
+                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>North America: English</p>
+                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Europe: English, German, French</p>
+                      <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Asia-Pacific: English, Japanese</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={settingsStyles.footerActions}>
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Support preferences saved!")}
+                >
+                  Save Support Preferences
+                </button>
+              </div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
@@ -1709,6 +2233,7 @@ const AdminDashboard = () => {
       "Billing",
       "Integrations",
       "Appearance",
+      "Support",
     ];
 
     return (
