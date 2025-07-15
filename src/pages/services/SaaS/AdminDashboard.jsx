@@ -1702,120 +1702,272 @@ const AdminDashboard = () => {
             <div style={settingsStyles.contentHeader}>
               <h3 style={settingsStyles.contentHeading}>Support & Help Center</h3>
               <p style={settingsStyles.contentSubheading}>
-                Get help, access documentation, and manage support tickets.
+                Get help, access documentation, and manage support tickets for your SaaS platform.
               </p>
             </div>
             <div style={settingsStyles.contentBody}>
+              {/* Support Status Bar */}
+              <div style={{ 
+                background: "linear-gradient(135deg, #10b981 0%, #059669 100%)", 
+                color: "white", 
+                padding: "1rem 1.5rem", 
+                borderRadius: "12px", 
+                marginBottom: "2rem",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center"
+              }}>
+                <div>
+                  <div style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "0.25rem" }}>
+                    🟢 All Support Systems Online
+                  </div>
+                  <div style={{ fontSize: "0.875rem", opacity: 0.9 }}>
+                    Average response time: 2.5 hours | 99.8% uptime this month
+                  </div>
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <div style={{ fontSize: "0.875rem", opacity: 0.9 }}>Your Plan</div>
+                  <div style={{ fontSize: "1rem", fontWeight: "600" }}>Professional</div>
+                </div>
+              </div>
+
               {/* Quick Actions Section */}
               <div style={{ marginBottom: "2.5rem" }}>
-                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <h4 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span>🚀</span>
-                  Quick Actions
+                  Quick Support Actions
                 </h4>
                 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "1.5rem", background: "#fafafa", cursor: "pointer", transition: "all 0.2s" }}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "16px", 
+                    padding: "1.5rem", 
+                    background: "white", 
+                    cursor: "pointer", 
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
                     onMouseEnter={(e) => {
-                      e.target.style.background = "#f0f9ff";
+                      e.target.style.transform = "translateY(-4px)";
+                      e.target.style.boxShadow = "0 8px 25px rgba(59, 130, 246, 0.15)";
                       e.target.style.borderColor = "#3b82f6";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.background = "#fafafa";
+                      e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
                       e.target.style.borderColor = "#e5e7eb";
                     }}
-                    onClick={() => alert("Create new support ticket")}>
+                    onClick={() => alert("Opening support ticket form...")}>
+                    <div style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      background: "linear-gradient(90deg, #3b82f6, #1e40af)"
+                    }}></div>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
-                      <div style={{ fontSize: "2rem", background: "#dbeafe", padding: "0.5rem", borderRadius: "8px", color: "#1e40af" }}>🎫</div>
+                      <div style={{ 
+                        fontSize: "2.5rem", 
+                        background: "linear-gradient(135deg, #dbeafe, #bfdbfe)", 
+                        padding: "0.75rem", 
+                        borderRadius: "12px", 
+                        color: "#1e40af",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}>🎫</div>
                       <div>
-                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Create Support Ticket</div>
-                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Get personalized help</div>
+                        <div style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937" }}>Create Support Ticket</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Get personalized technical assistance</div>
                       </div>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
-                      Submit a detailed support request and get help from our technical team.
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1.5rem", lineHeight: "1.6" }}>
+                      Submit a detailed support request with priority routing based on your plan level. Our technical team will respond within 4 hours.
                     </p>
                     <button style={{
-                      background: "#3b82f6",
+                      background: "linear-gradient(135deg, #3b82f6, #1e40af)",
                       color: "white",
                       border: "none",
-                      padding: "0.5rem 1rem",
-                      borderRadius: "6px",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
                       fontSize: "0.875rem",
-                      fontWeight: "500",
+                      fontWeight: "600",
                       cursor: "pointer",
-                      width: "100%"
-                    }}>
-                      Create Ticket
+                      width: "100%",
+                      transition: "all 0.2s"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateY(-1px)";
+                      e.target.style.boxShadow = "0 4px 12px rgba(59, 130, 246, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
+                    }}
+                    >
+                      Create New Ticket
                     </button>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "1.5rem", background: "#fafafa", cursor: "pointer", transition: "all 0.2s" }}
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "16px", 
+                    padding: "1.5rem", 
+                    background: "white", 
+                    cursor: "pointer", 
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
                     onMouseEnter={(e) => {
-                      e.target.style.background = "#f0fdf4";
+                      e.target.style.transform = "translateY(-4px)";
+                      e.target.style.boxShadow = "0 8px 25px rgba(16, 185, 129, 0.15)";
                       e.target.style.borderColor = "#10b981";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.background = "#fafafa";
+                      e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
                       e.target.style.borderColor = "#e5e7eb";
                     }}
-                    onClick={() => alert("Open live chat")}>
+                    onClick={() => alert("Opening live chat interface...")}>
+                    <div style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      background: "linear-gradient(90deg, #10b981, #059669)"
+                    }}></div>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
-                      <div style={{ fontSize: "2rem", background: "#dcfce7", padding: "0.5rem", borderRadius: "8px", color: "#059669" }}>💬</div>
+                      <div style={{ 
+                        fontSize: "2.5rem", 
+                        background: "linear-gradient(135deg, #dcfce7, #bbf7d0)", 
+                        padding: "0.75rem", 
+                        borderRadius: "12px", 
+                        color: "#059669",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        position: "relative"
+                      }}>
+                        💬
+                        <div style={{
+                          position: "absolute",
+                          top: "2px",
+                          right: "2px",
+                          width: "8px",
+                          height: "8px",
+                          background: "#10b981",
+                          borderRadius: "50%",
+                          animation: "pulse 2s infinite"
+                        }}></div>
+                      </div>
                       <div>
-                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Live Chat Support</div>
-                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Get instant help</div>
+                        <div style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937" }}>Live Chat Support</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>✅ 3 agents online now</div>
                       </div>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
-                      Chat with our support team in real-time for immediate assistance.
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1.5rem", lineHeight: "1.6" }}>
+                      Connect instantly with our support team for real-time assistance. Perfect for quick questions and immediate troubleshooting.
                     </p>
                     <button style={{
-                      background: "#10b981",
+                      background: "linear-gradient(135deg, #10b981, #059669)",
                       color: "white",
                       border: "none",
-                      padding: "0.5rem 1rem",
-                      borderRadius: "6px",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
                       fontSize: "0.875rem",
-                      fontWeight: "500",
+                      fontWeight: "600",
                       cursor: "pointer",
-                      width: "100%"
-                    }}>
-                      Start Chat
+                      width: "100%",
+                      transition: "all 0.2s"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateY(-1px)";
+                      e.target.style.boxShadow = "0 4px 12px rgba(16, 185, 129, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
+                    }}
+                    >
+                      Start Live Chat
                     </button>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "1.5rem", background: "#fafafa", cursor: "pointer", transition: "all 0.2s" }}
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "16px", 
+                    padding: "1.5rem", 
+                    background: "white", 
+                    cursor: "pointer", 
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
                     onMouseEnter={(e) => {
-                      e.target.style.background = "#fefce8";
+                      e.target.style.transform = "translateY(-4px)";
+                      e.target.style.boxShadow = "0 8px 25px rgba(245, 158, 11, 0.15)";
                       e.target.style.borderColor = "#f59e0b";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.background = "#fafafa";
+                      e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
                       e.target.style.borderColor = "#e5e7eb";
                     }}
-                    onClick={() => alert("Open video call")}>
+                    onClick={() => alert("Opening video call scheduler...")}>
+                    <div style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      background: "linear-gradient(90deg, #f59e0b, #d97706)"
+                    }}></div>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
-                      <div style={{ fontSize: "2rem", background: "#fef3c7", padding: "0.5rem", borderRadius: "8px", color: "#92400e" }}>📹</div>
+                      <div style={{ 
+                        fontSize: "2.5rem", 
+                        background: "linear-gradient(135deg, #fef3c7, #fed7aa)", 
+                        padding: "0.75rem", 
+                        borderRadius: "12px", 
+                        color: "#d97706",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}>📹</div>
                       <div>
-                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Video Call Support</div>
-                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Enterprise only</div>
+                        <div style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937" }}>Video Call Support</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>🎯 Enterprise & Pro plans</div>
                       </div>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
-                      Schedule a video call with our technical specialists for complex issues.
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1.5rem", lineHeight: "1.6" }}>
+                      Schedule a one-on-one video call with our technical specialists for complex integrations and advanced troubleshooting.
                     </p>
                     <button style={{
-                      background: "#f59e0b",
+                      background: "linear-gradient(135deg, #f59e0b, #d97706)",
                       color: "white",
                       border: "none",
-                      padding: "0.5rem 1rem",
-                      borderRadius: "6px",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
                       fontSize: "0.875rem",
-                      fontWeight: "500",
+                      fontWeight: "600",
                       cursor: "pointer",
-                      width: "100%"
-                    }}>
-                      Schedule Call
+                      width: "100%",
+                      transition: "all 0.2s"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateY(-1px)";
+                      e.target.style.boxShadow = "0 4px 12px rgba(245, 158, 11, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
+                    }}
+                    >
+                      Schedule Video Call
                     </button>
                   </div>
                 </div>
@@ -1823,55 +1975,118 @@ const AdminDashboard = () => {
 
               {/* My Support Tickets Section */}
               <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
-                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span>📋</span>
-                  My Support Tickets
-                </h4>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
+                  <h4 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>📋</span>
+                    My Support Tickets
+                  </h4>
+                  <div style={{ display: "flex", gap: "0.5rem" }}>
+                    <button style={{
+                      background: "transparent",
+                      border: "1px solid #d1d5db",
+                      color: "#6b7280",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = "#f3f4f6";
+                      e.target.style.borderColor = "#9ca3af";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = "transparent";
+                      e.target.style.borderColor = "#d1d5db";
+                    }}
+                    onClick={() => alert("Refreshing tickets...")}>
+                      🔄 Refresh
+                    </button>
+                    <select style={{
+                      padding: "0.5rem 1rem",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      background: "white",
+                      color: "#6b7280",
+                      cursor: "pointer"
+                    }}>
+                      <option>All Tickets</option>
+                      <option>Open</option>
+                      <option>In Progress</option>
+                      <option>Resolved</option>
+                      <option>Closed</option>
+                    </select>
+                  </div>
+                </div>
                 
-                <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden", background: "white" }}>
-                  {/* Table Header */}
+                <div style={{ 
+                  border: "1px solid #e5e7eb", 
+                  borderRadius: "12px", 
+                  overflow: "hidden", 
+                  background: "white",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.1)"
+                }}>
+                  {/* Enhanced Table Header */}
                   <div style={{
                     display: "grid",
-                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gridTemplateColumns: "120px 1fr 100px 120px 120px 100px",
                     gap: "1rem",
-                    padding: "0.75rem 1rem",
-                    background: "#f9fafb",
+                    padding: "1rem 1.5rem",
+                    background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
                     borderBottom: "1px solid #e5e7eb",
                     fontSize: "0.875rem",
                     fontWeight: "600",
                     color: "#374151"
                   }}>
                     <div>Ticket ID</div>
-                    <div>Subject</div>
+                    <div>Subject & Description</div>
                     <div>Priority</div>
                     <div>Status</div>
+                    <div>Last Updated</div>
                     <div>Actions</div>
                   </div>
 
-                  {/* Sample Tickets */}
+                  {/* Enhanced Sample Tickets */}
                   <div style={{
                     display: "grid",
-                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gridTemplateColumns: "120px 1fr 100px 120px 120px 100px",
                     gap: "1rem",
-                    padding: "0.75rem 1rem",
+                    padding: "1rem 1.5rem",
                     borderBottom: "1px solid #f3f4f6",
-                    alignItems: "center"
-                  }}>
-                    <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>#12345</div>
+                    alignItems: "center",
+                    transition: "background-color 0.2s"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#f9fafb";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "transparent";
+                  }}
+                  >
+                    <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#3b82f6" }}>#SPT-2025-001</div>
                     <div>
-                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Integration API Rate Limits</div>
-                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Created 2 hours ago</div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937", marginBottom: "0.25rem" }}>API Integration Rate Limits</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280", lineHeight: "1.4" }}>
+                        Experiencing 429 errors when calling the user management API endpoints during peak hours...
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.25rem" }}>
+                        Created 2 hours ago by john.doe@company.com
+                      </div>
                     </div>
                     <div>
                       <span style={{
                         padding: "0.25rem 0.75rem",
                         background: "#fee2e2",
                         color: "#991b1b",
-                        borderRadius: "12px",
+                        borderRadius: "20px",
                         fontSize: "0.75rem",
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.25rem"
                       }}>
-                        High
+                        🔥 High
                       </span>
                     </div>
                     <div>
@@ -1879,14 +2094,44 @@ const AdminDashboard = () => {
                         padding: "0.25rem 0.75rem",
                         background: "#fef3c7",
                         color: "#92400e",
-                        borderRadius: "12px",
+                        borderRadius: "20px",
                         fontSize: "0.75rem",
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.25rem"
                       }}>
-                        In Progress
+                        ⏳ In Progress
                       </span>
                     </div>
-                    <div>
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                      <div>45 mins ago</div>
+                      <div style={{ fontSize: "0.675rem", color: "#9ca3af" }}>by Sarah (Tech Support)</div>
+                    </div>
+                    <div style={{ display: "flex", gap: "0.25rem" }}>
+                      <button style={{
+                        background: "#3b82f6",
+                        color: "white",
+                        border: "none",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#2563eb";
+                        e.target.style.transform = "translateY(-1px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "#3b82f6";
+                        e.target.style.transform = "translateY(0px)";
+                      }}
+                      onClick={() => alert("Opening ticket #SPT-2025-001")}
+                      title="View Details"
+                      >
+                        👁️
+                      </button>
                       <button style={{
                         background: "transparent",
                         border: "1px solid #d1d5db",
@@ -1896,36 +2141,53 @@ const AdminDashboard = () => {
                         fontSize: "0.75rem",
                         cursor: "pointer"
                       }}
-                      onClick={() => alert("View ticket #12345")}
+                      onClick={() => alert("More options for ticket #SPT-2025-001")}
+                      title="More Options"
                       >
-                        View
+                        ⋯
                       </button>
                     </div>
                   </div>
 
                   <div style={{
                     display: "grid",
-                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gridTemplateColumns: "120px 1fr 100px 120px 120px 100px",
                     gap: "1rem",
-                    padding: "0.75rem 1rem",
+                    padding: "1rem 1.5rem",
                     borderBottom: "1px solid #f3f4f6",
-                    alignItems: "center"
-                  }}>
-                    <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>#12344</div>
+                    alignItems: "center",
+                    transition: "background-color 0.2s"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#f9fafb";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "transparent";
+                  }}
+                  >
+                    <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#3b82f6" }}>#SPT-2025-002</div>
                     <div>
-                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Payment Gateway Configuration</div>
-                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Created 1 day ago</div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937", marginBottom: "0.25rem" }}>Payment Gateway Configuration</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280", lineHeight: "1.4" }}>
+                        Need help setting up Stripe webhooks for subscription renewal notifications...
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.25rem" }}>
+                        Created 1 day ago by mary.smith@startup.io
+                      </div>
                     </div>
                     <div>
                       <span style={{
                         padding: "0.25rem 0.75rem",
                         background: "#dbeafe",
                         color: "#1e40af",
-                        borderRadius: "12px",
+                        borderRadius: "20px",
                         fontSize: "0.75rem",
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.25rem"
                       }}>
-                        Medium
+                        📊 Medium
                       </span>
                     </div>
                     <div>
@@ -1933,14 +2195,44 @@ const AdminDashboard = () => {
                         padding: "0.25rem 0.75rem",
                         background: "#dcfce7",
                         color: "#166534",
-                        borderRadius: "12px",
+                        borderRadius: "20px",
                         fontSize: "0.75rem",
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.25rem"
                       }}>
-                        Resolved
+                        ✅ Resolved
                       </span>
                     </div>
-                    <div>
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                      <div>3 hours ago</div>
+                      <div style={{ fontSize: "0.675rem", color: "#9ca3af" }}>by Mike (Senior Dev)</div>
+                    </div>
+                    <div style={{ display: "flex", gap: "0.25rem" }}>
+                      <button style={{
+                        background: "#3b82f6",
+                        color: "white",
+                        border: "none",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#2563eb";
+                        e.target.style.transform = "translateY(-1px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "#3b82f6";
+                        e.target.style.transform = "translateY(0px)";
+                      }}
+                      onClick={() => alert("Opening ticket #SPT-2025-002")}
+                      title="View Details"
+                      >
+                        👁️
+                      </button>
                       <button style={{
                         background: "transparent",
                         border: "1px solid #d1d5db",
@@ -1950,50 +2242,97 @@ const AdminDashboard = () => {
                         fontSize: "0.75rem",
                         cursor: "pointer"
                       }}
-                      onClick={() => alert("View ticket #12344")}
+                      onClick={() => alert("More options for ticket #SPT-2025-002")}
+                      title="More Options"
                       >
-                        View
+                        ⋯
                       </button>
                     </div>
                   </div>
 
                   <div style={{
                     display: "grid",
-                    gridTemplateColumns: "120px 1fr 120px 120px 100px",
+                    gridTemplateColumns: "120px 1fr 100px 120px 120px 100px",
                     gap: "1rem",
-                    padding: "0.75rem 1rem",
-                    alignItems: "center"
-                  }}>
-                    <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>#12343</div>
+                    padding: "1rem 1.5rem",
+                    alignItems: "center",
+                    transition: "background-color 0.2s"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#f9fafb";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "transparent";
+                  }}
+                  >
+                    <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#3b82f6" }}>#SPT-2025-003</div>
                     <div>
-                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>User Dashboard Performance</div>
-                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Created 3 days ago</div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937", marginBottom: "0.25rem" }}>Dashboard Performance Issues</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280", lineHeight: "1.4" }}>
+                        Admin dashboard is loading slowly, especially the analytics section with large datasets...
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.25rem" }}>
+                        Created 3 days ago by admin@enterprise.com
+                      </div>
                     </div>
                     <div>
                       <span style={{
                         padding: "0.25rem 0.75rem",
                         background: "#f3f4f6",
                         color: "#4b5563",
-                        borderRadius: "12px",
+                        borderRadius: "20px",
                         fontSize: "0.75rem",
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.25rem"
                       }}>
-                        Low
+                        📝 Low
                       </span>
                     </div>
                     <div>
                       <span style={{
                         padding: "0.25rem 0.75rem",
-                        background: "#dcfce7",
-                        color: "#166534",
-                        borderRadius: "12px",
+                        background: "#f3f4f6",
+                        color: "#4b5563",
+                        borderRadius: "20px",
                         fontSize: "0.75rem",
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.25rem"
                       }}>
-                        Closed
+                        🔒 Closed
                       </span>
                     </div>
-                    <div>
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                      <div>2 days ago</div>
+                      <div style={{ fontSize: "0.675rem", color: "#9ca3af" }}>by Alex (Performance Team)</div>
+                    </div>
+                    <div style={{ display: "flex", gap: "0.25rem" }}>
+                      <button style={{
+                        background: "#3b82f6",
+                        color: "white",
+                        border: "none",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#2563eb";
+                        e.target.style.transform = "translateY(-1px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "#3b82f6";
+                        e.target.style.transform = "translateY(0px)";
+                      }}
+                      onClick={() => alert("Opening ticket #SPT-2025-003")}
+                      title="View Details"
+                      >
+                        👁️
+                      </button>
                       <button style={{
                         background: "transparent",
                         border: "1px solid #d1d5db",
@@ -2003,96 +2342,529 @@ const AdminDashboard = () => {
                         fontSize: "0.75rem",
                         cursor: "pointer"
                       }}
-                      onClick={() => alert("View ticket #12343")}
+                      onClick={() => alert("More options for ticket #SPT-2025-003")}
+                      title="More Options"
                       >
-                        View
+                        ⋯
                       </button>
                     </div>
                   </div>
                 </div>
 
-                <div style={{ marginTop: "1rem", textAlign: "center" }}>
-                  <button style={{
-                    background: "transparent",
-                    border: "1px solid #d1d5db",
-                    color: "#6b7280",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "6px",
-                    fontSize: "0.875rem",
-                    cursor: "pointer"
-                  }}
-                  onClick={() => alert("View all tickets")}
-                  >
-                    View All Tickets
-                  </button>
+                <div style={{ marginTop: "1rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>
+                    Showing 3 of 8 tickets
+                  </div>
+                  <div style={{ display: "flex", gap: "0.5rem" }}>
+                    <button style={{
+                      background: "transparent",
+                      border: "1px solid #d1d5db",
+                      color: "#6b7280",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = "#f3f4f6";
+                      e.target.style.borderColor = "#9ca3af";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = "transparent";
+                      e.target.style.borderColor = "#d1d5db";
+                    }}
+                    onClick={() => alert("Viewing all tickets...")}>
+                      View All Tickets
+                    </button>
+                    <button style={{
+                      background: "#3b82f6",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = "#2563eb";
+                      e.target.style.transform = "translateY(-1px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = "#3b82f6";
+                      e.target.style.transform = "translateY(0px)";
+                    }}
+                    onClick={() => alert("Exporting ticket data...")}>
+                      📊 Export
+                    </button>
+                  </div>
                 </div>
               </div>
 
               {/* Knowledge Base Section */}
               <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
-                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span>📚</span>
-                  Knowledge Base & Documentation
-                </h4>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
+                  <h4 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>📚</span>
+                    Knowledge Base & Documentation
+                  </h4>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      type="text"
+                      placeholder="Search documentation..."
+                      style={{
+                        padding: "0.5rem 1rem 0.5rem 2rem",
+                        border: "1px solid #d1d5db",
+                        borderRadius: "20px",
+                        fontSize: "0.875rem",
+                        background: "#f9fafb",
+                        outline: "none",
+                        width: "200px",
+                        transition: "all 0.2s"
+                      }}
+                      onFocus={(e) => {
+                        e.target.style.borderColor = "#3b82f6";
+                        e.target.style.background = "white";
+                        e.target.style.width = "250px";
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.borderColor = "#d1d5db";
+                        e.target.style.background = "#f9fafb";
+                        e.target.style.width = "200px";
+                      }}
+                    />
+                    <div style={{
+                      position: "absolute",
+                      left: "0.75rem",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#9ca3af",
+                      fontSize: "0.875rem"
+                    }}>
+                      🔍
+                    </div>
+                  </div>
+                </div>
                 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "1.5rem" }}>
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "12px", 
+                    padding: "1.5rem", 
+                    background: "white",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = "translateY(-2px)";
+                    e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                    e.target.style.borderColor = "#3b82f6";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = "translateY(0px)";
+                    e.target.style.boxShadow = "none";
+                    e.target.style.borderColor = "#e5e7eb";
+                  }}
+                  onClick={() => alert("Opening getting started section...")}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                      <span style={{ fontSize: "1.5rem" }}>🚀</span>
-                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Getting Started</h5>
+                      <div style={{ 
+                        fontSize: "2rem", 
+                        background: "linear-gradient(135deg, #fef3c7, #fde68a)", 
+                        padding: "0.75rem", 
+                        borderRadius: "12px", 
+                        color: "#d97706" 
+                      }}>🚀</div>
+                      <div>
+                        <h5 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Getting Started</h5>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>15 articles • Updated 2 days ago</div>
+                      </div>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
-                      Learn the basics of setting up and configuring your SaaS platform.
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.6" }}>
+                      Learn the basics of setting up and configuring your SaaS platform with step-by-step guides.
                     </p>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening setup guide")}>• Platform Setup Guide</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening admin tutorial")}>• Admin Dashboard Tutorial</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening first app guide")}>• Creating Your First App</a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#3b82f6", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#f0f9ff";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening platform setup guide")}>
+                        📖 Platform Setup Guide
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#3b82f6", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#f0f9ff";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening admin dashboard tutorial")}>
+                        🎛️ Admin Dashboard Tutorial
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#3b82f6", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#f0f9ff";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening first app guide")}>
+                        📱 Creating Your First App
+                      </a>
                     </div>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "12px", 
+                    padding: "1.5rem", 
+                    background: "white",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = "translateY(-2px)";
+                    e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                    e.target.style.borderColor = "#10b981";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = "translateY(0px)";
+                    e.target.style.boxShadow = "none";
+                    e.target.style.borderColor = "#e5e7eb";
+                  }}
+                  onClick={() => alert("Opening technical documentation...")}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                      <span style={{ fontSize: "1.5rem" }}>⚙️</span>
-                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Technical Documentation</h5>
+                      <div style={{ 
+                        fontSize: "2rem", 
+                        background: "linear-gradient(135deg, #dcfce7, #bbf7d0)", 
+                        padding: "0.75rem", 
+                        borderRadius: "12px", 
+                        color: "#059669" 
+                      }}>⚙️</div>
+                      <div>
+                        <h5 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Technical Documentation</h5>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>32 articles • Updated 1 day ago</div>
+                      </div>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
-                      Deep dive into APIs, integrations, and advanced platform features.
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.6" }}>
+                      Deep dive into APIs, integrations, and advanced platform features for developers.
                     </p>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening API docs")}>• API Documentation</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening webhooks guide")}>• Webhooks & Integration</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening security guide")}>• Security Best Practices</a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#10b981", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#f0fdf4";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening API documentation")}>
+                        🔧 API Documentation
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#10b981", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#f0fdf4";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening webhooks guide")}>
+                        🪝 Webhooks & Integration
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#10b981", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#f0fdf4";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening security guide")}>
+                        🔐 Security Best Practices
+                      </a>
                     </div>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "12px", 
+                    padding: "1.5rem", 
+                    background: "white",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = "translateY(-2px)";
+                    e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                    e.target.style.borderColor = "#f59e0b";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = "translateY(0px)";
+                    e.target.style.boxShadow = "none";
+                    e.target.style.borderColor = "#e5e7eb";
+                  }}
+                  onClick={() => alert("Opening troubleshooting section...")}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                      <span style={{ fontSize: "1.5rem" }}>❓</span>
-                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Troubleshooting</h5>
+                      <div style={{ 
+                        fontSize: "2rem", 
+                        background: "linear-gradient(135deg, #fef3c7, #fed7aa)", 
+                        padding: "0.75rem", 
+                        borderRadius: "12px", 
+                        color: "#d97706" 
+                      }}>❓</div>
+                      <div>
+                        <h5 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Troubleshooting</h5>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>28 articles • Updated 3 hours ago</div>
+                      </div>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.6" }}>
                       Common issues and their solutions to help you resolve problems quickly.
                     </p>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening troubleshooting guide")}>• Common Issues & Solutions</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening error codes")}>• Error Codes Reference</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening performance guide")}>• Performance Optimization</a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#f59e0b", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#fefbf3";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening troubleshooting guide")}>
+                        🔧 Common Issues & Solutions
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#f59e0b", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#fefbf3";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening error codes reference")}>
+                        📋 Error Codes Reference
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#f59e0b", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#fefbf3";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening performance optimization guide")}>
+                        ⚡ Performance Optimization
+                      </a>
                     </div>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "white" }}>
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "12px", 
+                    padding: "1.5rem", 
+                    background: "white",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = "translateY(-2px)";
+                    e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                    e.target.style.borderColor = "#8b5cf6";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = "translateY(0px)";
+                    e.target.style.boxShadow = "none";
+                    e.target.style.borderColor = "#e5e7eb";
+                  }}
+                  onClick={() => alert("Opening video tutorials...")}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                      <span style={{ fontSize: "1.5rem" }}>🎥</span>
-                      <h5 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Video Tutorials</h5>
+                      <div style={{ 
+                        fontSize: "2rem", 
+                        background: "linear-gradient(135deg, #f3e8ff, #e9d5ff)", 
+                        padding: "0.75rem", 
+                        borderRadius: "12px", 
+                        color: "#7c3aed" 
+                      }}>🎥</div>
+                      <div>
+                        <h5 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>Video Tutorials</h5>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>12 videos • 4.2 hours total</div>
+                      </div>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.6" }}>
                       Watch step-by-step video guides for platform features and workflows.
                     </p>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening video library")}>• Platform Overview Videos</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening webinar recordings")}>• Webinar Recordings</a>
-                      <a href="#" style={{ fontSize: "0.875rem", color: "#3b82f6", textDecoration: "none" }} onClick={() => alert("Opening feature demos")}>• Feature Demonstrations</a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#8b5cf6", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#faf5ff";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening video library")}>
+                        📺 Platform Overview Videos
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#8b5cf6", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#faf5ff";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening webinar recordings")}>
+                        🎙️ Webinar Recordings
+                      </a>
+                      <a href="#" style={{ 
+                        fontSize: "0.875rem", 
+                        color: "#8b5cf6", 
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.25rem 0",
+                        borderRadius: "4px",
+                        transition: "all 0.2s"
+                      }} 
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#faf5ff";
+                        e.target.style.paddingLeft = "0.5rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.paddingLeft = "0";
+                      }}
+                      onClick={() => alert("Opening feature demonstrations")}>
+                        🎬 Feature Demonstrations
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -2100,110 +2872,453 @@ const AdminDashboard = () => {
 
               {/* Community & Resources Section */}
               <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
-                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <h4 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span>👥</span>
                   Community & Resources
                 </h4>
                 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem" }}>
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "16px", 
+                    padding: "1.5rem", 
+                    background: "white", 
+                    textAlign: "center", 
+                    cursor: "pointer", 
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
                     onMouseEnter={(e) => {
-                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
-                      e.target.style.transform = "translateY(-2px)";
+                      e.target.style.transform = "translateY(-4px)";
+                      e.target.style.boxShadow = "0 8px 25px rgba(59, 130, 246, 0.15)";
+                      e.target.style.borderColor = "#3b82f6";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.boxShadow = "none";
                       e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
+                      e.target.style.borderColor = "#e5e7eb";
                     }}
                     onClick={() => alert("Opening community forum")}>
-                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>💬</div>
-                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Community Forum</h6>
-                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Connect with other users and share experiences</p>
+                    <div style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      background: "linear-gradient(90deg, #3b82f6, #1e40af)"
+                    }}></div>
+                    <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>💬</div>
+                    <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Community Forum</h6>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.5" }}>
+                      Connect with other users, share experiences, and get help from the community
+                    </p>
+                    <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#3b82f6" }}>2.4k</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Members</div>
+                      </div>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#3b82f6" }}>156</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Online</div>
+                      </div>
+                    </div>
+                    <button style={{
+                      background: "linear-gradient(135deg, #3b82f6, #1e40af)",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      width: "100%"
+                    }}>
+                      Join Forum
+                    </button>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "16px", 
+                    padding: "1.5rem", 
+                    background: "white", 
+                    textAlign: "center", 
+                    cursor: "pointer", 
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
                     onMouseEnter={(e) => {
-                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
-                      e.target.style.transform = "translateY(-2px)";
+                      e.target.style.transform = "translateY(-4px)";
+                      e.target.style.boxShadow = "0 8px 25px rgba(139, 92, 246, 0.15)";
+                      e.target.style.borderColor = "#8b5cf6";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.boxShadow = "none";
                       e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
+                      e.target.style.borderColor = "#e5e7eb";
                     }}
                     onClick={() => alert("Opening Discord server")}>
-                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🎮</div>
-                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Discord Server</h6>
-                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Real-time chat with developers and support</p>
+                    <div style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      background: "linear-gradient(90deg, #8b5cf6, #7c3aed)"
+                    }}></div>
+                    <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🎮</div>
+                    <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Discord Server</h6>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.5" }}>
+                      Real-time chat with developers, support team, and fellow users
+                    </p>
+                    <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#8b5cf6" }}>1.8k</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Members</div>
+                      </div>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#8b5cf6" }}>89</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Online</div>
+                      </div>
+                    </div>
+                    <button style={{
+                      background: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      width: "100%"
+                    }}>
+                      Join Discord
+                    </button>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "16px", 
+                    padding: "1.5rem", 
+                    background: "white", 
+                    textAlign: "center", 
+                    cursor: "pointer", 
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
                     onMouseEnter={(e) => {
-                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
-                      e.target.style.transform = "translateY(-2px)";
+                      e.target.style.transform = "translateY(-4px)";
+                      e.target.style.boxShadow = "0 8px 25px rgba(16, 185, 129, 0.15)";
+                      e.target.style.borderColor = "#10b981";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.boxShadow = "none";
                       e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
+                      e.target.style.borderColor = "#e5e7eb";
                     }}
                     onClick={() => alert("Opening blog")}>
-                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>📝</div>
-                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Blog & Updates</h6>
-                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Latest news, tips, and platform updates</p>
+                    <div style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      background: "linear-gradient(90deg, #10b981, #059669)"
+                    }}></div>
+                    <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>📝</div>
+                    <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Blog & Updates</h6>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.5" }}>
+                      Latest news, tips, tutorials, and platform updates
+                    </p>
+                    <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#10b981" }}>52</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Articles</div>
+                      </div>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#10b981" }}>New</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>This Week</div>
+                      </div>
+                    </div>
+                    <button style={{
+                      background: "linear-gradient(135deg, #10b981, #059669)",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      width: "100%"
+                    }}>
+                      Read Blog
+                    </button>
                   </div>
 
-                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "white", textAlign: "center", cursor: "pointer", transition: "all 0.2s" }}
+                  <div style={{ 
+                    border: "1px solid #e5e7eb", 
+                    borderRadius: "16px", 
+                    padding: "1.5rem", 
+                    background: "white", 
+                    textAlign: "center", 
+                    cursor: "pointer", 
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
                     onMouseEnter={(e) => {
-                      e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
-                      e.target.style.transform = "translateY(-2px)";
+                      e.target.style.transform = "translateY(-4px)";
+                      e.target.style.boxShadow = "0 8px 25px rgba(75, 85, 99, 0.15)";
+                      e.target.style.borderColor = "#6b7280";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.boxShadow = "none";
                       e.target.style.transform = "translateY(0px)";
+                      e.target.style.boxShadow = "none";
+                      e.target.style.borderColor = "#e5e7eb";
                     }}
                     onClick={() => alert("Opening GitHub repository")}>
-                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🔗</div>
-                    <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>GitHub Repository</h6>
-                    <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Access source code and contribute</p>
+                    <div style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      background: "linear-gradient(90deg, #6b7280, #4b5563)"
+                    }}></div>
+                    <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🔗</div>
+                    <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>GitHub Repository</h6>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.5" }}>
+                      Access source code, report issues, and contribute to the project
+                    </p>
+                    <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#6b7280" }}>347</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Stars</div>
+                      </div>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#6b7280" }}>42</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Forks</div>
+                      </div>
+                    </div>
+                    <button style={{
+                      background: "linear-gradient(135deg, #6b7280, #4b5563)",
+                      color: "white",
+                      border: "none",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      width: "100%"
+                    }}>
+                      View Repository
+                    </button>
                   </div>
                 </div>
               </div>
 
               {/* Contact Information Section */}
               <div style={{ marginBottom: "2rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
-                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <h4 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span>📞</span>
-                  Contact Information
+                  Contact Information & Support Hours
                 </h4>
                 
-                <div style={{ background: "#f9fafb", borderRadius: "8px", padding: "1.5rem", border: "1px solid #e5e7eb" }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
-                    <div>
-                      <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span>📧</span>
+                <div style={{ 
+                  background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)", 
+                  borderRadius: "16px", 
+                  padding: "2rem", 
+                  border: "1px solid #e2e8f0" 
+                }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
+                    <div style={{ 
+                      background: "white", 
+                      padding: "1.5rem", 
+                      borderRadius: "12px", 
+                      border: "1px solid #e5e7eb",
+                      boxShadow: "0 2px 4px rgba(0,0,0,0.05)"
+                    }}>
+                      <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <span style={{ fontSize: "1.25rem" }}>📧</span>
                         Email Support
                       </h6>
-                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.5rem" }}>support@saasible.com</p>
-                      <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Response within 24 hours</p>
+                      <div style={{ marginBottom: "0.75rem" }}>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>General Support</div>
+                        <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>support@saasible.com</div>
+                      </div>
+                      <div style={{ marginBottom: "0.75rem" }}>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Technical Issues</div>
+                        <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>tech@saasible.com</div>
+                      </div>
+                      <div style={{ marginBottom: "0.75rem" }}>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Billing Inquiries</div>
+                        <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#3b82f6" }}>billing@saasible.com</div>
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#10b981", fontWeight: "500" }}>
+                        ⚡ Average response time: 2-4 hours
+                      </div>
                     </div>
 
-                    <div>
-                      <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span>⏰</span>
+                    <div style={{ 
+                      background: "white", 
+                      padding: "1.5rem", 
+                      borderRadius: "12px", 
+                      border: "1px solid #e5e7eb",
+                      boxShadow: "0 2px 4px rgba(0,0,0,0.05)"
+                    }}>
+                      <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <span style={{ fontSize: "1.25rem" }}>⏰</span>
                         Support Hours
                       </h6>
-                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Monday - Friday: 9 AM - 8 PM EST</p>
-                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Saturday: 10 AM - 6 PM EST</p>
-                      <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Sunday: Emergency support only</p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: "0.875rem", color: "#6b7280" }}>Monday - Friday</span>
+                          <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>9 AM - 8 PM EST</span>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: "0.875rem", color: "#6b7280" }}>Saturday</span>
+                          <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>10 AM - 6 PM EST</span>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: "0.875rem", color: "#6b7280" }}>Sunday</span>
+                          <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#f59e0b" }}>Emergency Only</span>
+                        </div>
+                      </div>
+                      <div style={{ marginTop: "1rem", padding: "0.75rem", background: "#f0f9ff", borderRadius: "6px", border: "1px solid #bfdbfe" }}>
+                        <div style={{ fontSize: "0.75rem", color: "#1e40af", fontWeight: "500" }}>
+                          🌐 We have support teams in multiple time zones for faster response times
+                        </div>
+                      </div>
                     </div>
 
-                    <div>
-                      <h6 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span>🌍</span>
+                    <div style={{ 
+                      background: "white", 
+                      padding: "1.5rem", 
+                      borderRadius: "12px", 
+                      border: "1px solid #e5e7eb",
+                      boxShadow: "0 2px 4px rgba(0,0,0,0.05)"
+                    }}>
+                      <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <span style={{ fontSize: "1.25rem" }}>🌍</span>
                         Regional Support
                       </h6>
-                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>North America: English</p>
-                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "0.25rem" }}>Europe: English, German, French</p>
-                      <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>Asia-Pacific: English, Japanese</p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                        <div>
+                          <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>North America</div>
+                          <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>English • 24/7 Live Chat</div>
+                        </div>
+                        <div>
+                          <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Europe</div>
+                          <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>English, German, French</div>
+                        </div>
+                        <div>
+                          <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Asia-Pacific</div>
+                          <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>English, Japanese</div>
+                        </div>
+                      </div>
+                      <div style={{ marginTop: "1rem", padding: "0.75rem", background: "#f0fdf4", borderRadius: "6px", border: "1px solid #bbf7d0" }}>
+                        <div style={{ fontSize: "0.75rem", color: "#059669", fontWeight: "500" }}>
+                          🎯 Priority support available for Pro & Enterprise plans
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Support Satisfaction & Feedback */}
+              <div style={{ paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>💝</span>
+                  Support Satisfaction & Feedback
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+                  <div style={{ 
+                    background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)", 
+                    padding: "1.5rem", 
+                    borderRadius: "12px", 
+                    border: "1px solid #bae6fd" 
+                  }}>
+                    <div style={{ textAlign: "center", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>⭐⭐⭐⭐⭐</div>
+                      <div style={{ fontSize: "1.5rem", fontWeight: "600", color: "#1f2937" }}>4.8/5.0</div>
+                      <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Average Support Rating</div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center", gap: "2rem" }}>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.125rem", fontWeight: "600", color: "#3b82f6" }}>98%</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Satisfaction Rate</div>
+                      </div>
+                      <div style={{ textAlign: "center" }}>
+                        <div style={{ fontSize: "1.125rem", fontWeight: "600", color: "#3b82f6" }}>2.5h</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Avg Response</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ 
+                    background: "white", 
+                    padding: "1.5rem", 
+                    borderRadius: "12px", 
+                    border: "1px solid #e5e7eb",
+                    boxShadow: "0 2px 4px rgba(0,0,0,0.05)"
+                  }}>
+                    <h6 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem" }}>
+                      Help us improve our support
+                    </h6>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem", lineHeight: "1.5" }}>
+                      Your feedback helps us provide better support experiences for everyone.
+                    </p>
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                      <button style={{
+                        background: "#3b82f6",
+                        color: "white",
+                        border: "none",
+                        padding: "0.5rem 1rem",
+                        borderRadius: "6px",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        cursor: "pointer",
+                        flex: 1,
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#2563eb";
+                        e.target.style.transform = "translateY(-1px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "#3b82f6";
+                        e.target.style.transform = "translateY(0px)";
+                      }}
+                      onClick={() => alert("Opening feedback form...")}>
+                        Give Feedback
+                      </button>
+                      <button style={{
+                        background: "transparent",
+                        color: "#6b7280",
+                        border: "1px solid #d1d5db",
+                        padding: "0.5rem 1rem",
+                        borderRadius: "6px",
+                        fontSize: "0.875rem",
+                        fontWeight: "500",
+                        cursor: "pointer",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#f3f4f6";
+                        e.target.style.borderColor = "#9ca3af";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.borderColor = "#d1d5db";
+                      }}
+                      onClick={() => alert("Opening survey...")}>
+                        Take Survey
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -2211,10 +3326,23 @@ const AdminDashboard = () => {
 
               <div style={settingsStyles.footerActions}>
                 <button
-                  style={settingsStyles.button}
-                  onClick={() => alert("Support preferences saved!")}
+                  style={{
+                    ...settingsStyles.button,
+                    background: "linear-gradient(135deg, #3b82f6, #1e40af)",
+                    boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)",
+                    transition: "all 0.2s"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = "translateY(-1px)";
+                    e.target.style.boxShadow = "0 6px 16px rgba(59, 130, 246, 0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = "translateY(0px)";
+                    e.target.style.boxShadow = "0 4px 12px rgba(59, 130, 246, 0.3)";
+                  }}
+                  onClick={() => alert("Support preferences saved successfully!")}
                 >
-                  Save Support Preferences
+                  💾 Save Support Preferences
                 </button>
               </div>
             </div>
