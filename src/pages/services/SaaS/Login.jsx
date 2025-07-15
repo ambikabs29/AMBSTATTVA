@@ -33,13 +33,123 @@ const Login = () => {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "2rem",
+      background: "#f8fafc",
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
     }}>
+      {/* SaaS Navigation Menu */}
+      <nav style={{
+        background: "white",
+        borderBottom: "1px solid #e5e7eb",
+        padding: "1rem 2rem",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.1)"
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                gap: "0.5rem", 
+                textDecoration: "none" 
+              }}
+            >
+              <div style={{ background: "#3b82f6", color: "white", padding: "6px 12px", borderRadius: "6px", fontWeight: "bold" }}>
+                📦 SaaSibly
+              </div>
+            </Link>
+          </div>
+          
+          <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Features
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Marketplace
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Pricing
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              FAQs
+            </Link>
+          </div>
+
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <Link 
+              to="/services/saas/login"
+              style={{ 
+                textDecoration: "none",
+                color: "#3b82f6", 
+                fontWeight: "bold"
+              }}
+            >
+              Login
+            </Link>
+            <Link 
+              to="/services/saas/admin"
+              style={{
+                background: "#3b82f6",
+                color: "white",
+                padding: "8px 16px",
+                borderRadius: "6px",
+                textDecoration: "none",
+                fontSize: "0.9rem"
+              }}
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Login Form Container */}
+      <div style={{
+        minHeight: "calc(100vh - 80px)",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "2rem"
+      }}></old_str>
       <div style={{
         background: "white",
         borderRadius: "12px",
@@ -325,6 +435,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+    </div>
 
       {/* CSS Animation for loading spinner */}
       <style jsx>{`
