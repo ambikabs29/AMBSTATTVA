@@ -197,73 +197,662 @@ const AdminDashboard = () => {
     switch (activeSettingsTab) {
       case "General":
         return (
-          <div style={settingsStyles.tabContentContainer}>
-            <div style={settingsStyles.contentHeader}>
-              <h3 style={settingsStyles.contentHeading}>
-                Platform Information
-              </h3>
-              <p style={settingsStyles.contentSubheading}>
-                Basic information about your SaaS platform.
-              </p>
-            </div>
-            <div style={settingsStyles.contentBody}>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "1.5rem",
-                }}
-              >
-                <div style={settingsStyles.formGroup}>
-                  <label style={settingsStyles.label} htmlFor="platformName">
-                    Platform Name
-                  </label>
-                  <input
-                    style={settingsStyles.input}
-                    type="text"
-                    id="platformName"
-                    defaultValue="SaaSible Platform"
-                  />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2rem" }}>
+
+              {/* Platform Information */}
+              <div style={{
+                background: "white",
+                borderRadius: "12px",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                border: "1px solid #e5e7eb",
+                overflow: "hidden"
+              }}>
+                <div style={{
+                  background: "#f9fafb",
+                  padding: "1.5rem",
+                  borderBottom: "1px solid #e5e7eb"
+                }}>
+                  <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Platform Information</h3>
+                  <p style={{ color: "#6b7280", fontSize: "0.875rem" }}>Basic information about your SaaS platform.</p>
                 </div>
-                <div style={settingsStyles.formGroup}>
-                  <label style={settingsStyles.label} htmlFor="platformUrl">
-                    Platform URL
-                  </label>
-                  <input
-                    style={settingsStyles.input}
-                    type="url"
-                    id="platformUrl"
-                    defaultValue="https://saasible.platform.com"
-                  />
+
+                <div style={{ padding: "1.5rem" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        Platform Name
+                      </label>
+                      <input
+                        type="text"
+                        defaultValue="SaaSible Platform"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          fontSize: "0.875rem",
+                          background: "white",
+                          outline: "none"
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        Platform URL
+                      </label>
+                      <input
+                        type="url"
+                        defaultValue="https://saasible.platform.com"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          fontSize: "0.875rem",
+                          background: "white",
+                          outline: "none"
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: "1.5rem" }}>
+                    <label style={{ 
+                      display: "block", 
+                      fontSize: "0.875rem", 
+                      fontWeight: "600", 
+                      color: "#374151", 
+                      marginBottom: "0.5rem" 
+                    }}>
+                      Platform Description
+                    </label>
+                    <textarea
+                      rows="3"
+                      defaultValue="A comprehensive SaaS platform for software vendors and customers."
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "1px solid #d1d5db",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        background: "white",
+                        outline: "none",
+                        resize: "vertical"
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "flex-end" }}>
+                    <button style={{
+                      background: "#3b82f6",
+                      color: "white",
+                      border: "none",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => alert("Platform information updated!")}
+                    >
+                      Save Changes
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div style={settingsStyles.formGroup}>
-                <label
-                  style={settingsStyles.label}
-                  htmlFor="platformDescription"
-                >
-                  Platform Description
-                </label>
-                <textarea
-                  style={{
-                    ...settingsStyles.input,
-                    ...settingsStyles.textarea,
-                  }}
-                  id="platformDescription"
-                  rows={4}
-                  defaultValue="A comprehensive SaaS platform for building and launching your own software service."
-                ></textarea>
+
+              {/* Email Settings */}
+              <div style={{
+                background: "white",
+                borderRadius: "12px",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                border: "1px solid #e5e7eb",
+                overflow: "hidden"
+              }}>
+                <div style={{
+                  background: "#f9fafb",
+                  padding: "1.5rem",
+                  borderBottom: "1px solid #e5e7eb"
+                }}>
+                  <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>Email Configuration</h3>
+                  <p style={{ color: "#6b7280", fontSize: "0.875rem" }}>Configure email settings for notifications and communications.</p>
+                </div>
+
+                <div style={{ padding: "1.5rem" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        SMTP Server
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="smtp.gmail.com"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          fontSize: "0.875rem",
+                          background: "white",
+                          outline: "none"
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        SMTP Port
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="587"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          fontSize: "0.875rem",
+                          background: "white",
+                          outline: "none"
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginTop: "1.5rem" }}>
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        Email Username
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="noreply@saasible.com"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          fontSize: "0.875rem",
+                          background: "white",
+                          outline: "none"
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        Email Password
+                      </label>
+                      <input
+                        type="password"
+                        placeholder="••••••••••••"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          fontSize: "0.875rem",
+                          background: "white",
+                          outline: "none"
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: "1.5rem" }}>
+                    <label style={{ 
+                      display: "flex", 
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      cursor: "pointer"
+                    }}>
+                      <input type="checkbox" defaultChecked />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enable SSL/TLS encryption</span>
+                    </label>
+                  </div>
+
+                  <div style={{ marginTop: "1.5rem", display: "flex", gap: "1rem", justifyContent: "flex-end" }}>
+                    <button style={{
+                      background: "#f59e0b",
+                      color: "white",
+                      border: "none",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => alert("Test email sent!")}
+                    >
+                      Test Email
+                    </button>
+                    <button style={{
+                      background: "#3b82f6",
+                      color: "white",
+                      border: "none",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => alert("Email settings saved!")}
+                    >
+                      Save Settings
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div style={settingsStyles.footerActions}>
-                <button
-                  style={settingsStyles.button}
-                  onClick={() => alert("Platform information saved!")}
-                >
-                  Save Changes
-                </button>
+
+              {/* System Preferences */}
+              <div style={{
+                background: "white",
+                borderRadius: "12px",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                border: "1px solid #e5e7eb",
+                overflow: "hidden"
+              }}>
+                <div style={{
+                  background: "#f9fafb",
+                  padding: "1.5rem",
+                  borderBottom: "1px solid #e5e7eb"
+                }}>
+                  <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>System Preferences</h3>
+                  <p style={{ color: "#6b7280", fontSize: "0.875rem" }}>Configure system-wide preferences and defaults.</p>
+                </div>
+
+                <div style={{ padding: "1.5rem" }}>
+                  <div style={{ display: "grid", gap: "1.5rem" }}>
+
+                    {/* Timezone */}
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        Default Timezone
+                      </label>
+                      <select style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "1px solid #d1d5db",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        background: "white",
+                        outline: "none"
+                      }}>
+                        <option>UTC</option>
+                        <option selected>America/New_York</option>
+                        <option>America/Los_Angeles</option>
+                        <option>Europe/London</option>
+                        <option>Asia/Tokyo</option>
+                        <option>Asia/Kolkata</option>
+                      </select>
+                    </div>
+
+                    {/* Currency */}
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "0.5rem" 
+                      }}>
+                        Default Currency
+                      </label>
+                      <select style={{
+                        width: "100%",
+                        padding: "0.75rem 1rem",
+                        border: "1px solid #d1d5db",
+                        borderRadius: "8px",
+                        fontSize: "0.875rem",
+                        background: "white",
+                        outline: "none"
+                      }}>
+                        <option selected>USD ($)</option>
+                        <option>EUR (€)</option>
+                        <option>GBP (£)</option>
+                        <option>INR (₹)</option>
+                        <option>JPY (¥)</option>
+                      </select>
+                    </div>
+
+                    {/* Feature Toggles */}
+                    <div>
+                      <label style={{ 
+                        display: "block", 
+                        fontSize: "0.875rem", 
+                        fontWeight: "600", 
+                        color: "#374151", 
+                        marginBottom: "1rem" 
+                      }}>
+                        Feature Settings
+                      </label>
+
+                      <div style={{ display: "grid", gap: "0.75rem" }}>
+                        <label style={{ 
+                          display: "flex", 
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          cursor: "pointer"
+                        }}>
+                          <input type="checkbox" defaultChecked />
+                          <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enable user registration</span>
+                        </label>
+
+                        <label style={{ 
+                          display: "flex", 
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          cursor: "pointer"
+                        }}>
+                          <input type="checkbox" defaultChecked />
+                          <span style={{ fontSize: "0.875rem", color: "#374151" }}>Allow trial subscriptions</span>
+                        </label>
+
+                        <label style={{ 
+                          display: "flex", 
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          cursor: "pointer"
+                        }}>
+                          <input type="checkbox" />
+                          <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enable marketplace reviews</span>
+                        </label>
+
+                        <label style={{ 
+                          display: "flex", 
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          cursor: "pointer"
+                        }}>
+                          <input type="checkbox" defaultChecked />
+                          <span style={{ fontSize: "0.875rem", color: "#374151" }}>Auto-approve vendor applications</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "flex-end" }}>
+                    <button style={{
+                      background: "#3b82f6",
+                      color: "white",
+                      border: "none",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => alert("System preferences saved!")}
+                    >
+                      Save Preferences
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* API Configuration */}
+              <div style={{
+                background: "white",
+                borderRadius: "12px",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                border: "1px solid #e5e7eb",
+                overflow: "hidden"
+              }}>
+                <div style={{
+                  background: "#f9fafb",
+                  padding: "1.5rem",
+                  borderBottom: "1px solid #e5e7eb"
+                }}>
+                  <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937", marginBottom: "0.5rem" }}>API Configuration</h3>
+                  <p style={{ color: "#6b7280", fontSize: "0.875rem" }}>Manage API keys and external service integrations.</p>
+                </div>
+
+                <div style={{ padding: "1.5rem" }}>
+                  <div style={{ display: "grid", gap: "1.5rem" }}>
+
+                    {/* Razorpay Settings */}
+                    <div>
+                      <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem" }}>Payment Gateway (Razorpay)</h4>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                        <div>
+                          <label style={{ 
+                            display: "block", 
+                            fontSize: "0.875rem", 
+                            fontWeight: "600", 
+                            color: "#374151", 
+                            marginBottom: "0.5rem" 
+                          }}>
+                            Razorpay Key ID
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="rzp_test_xxxxxxxxxx"
+                            style={{
+                              width: "100%",
+                              padding: "0.75rem 1rem",
+                              border: "1px solid #d1d5db",
+                              borderRadius: "8px",
+                              fontSize: "0.875rem",
+                              background: "white",
+                              outline: "none"
+                            }}
+                          />
+                        </div>
+
+                        <div>
+                          <label style={{ 
+                            display: "block", 
+                            fontSize: "0.875rem", 
+                            fontWeight: "600", 
+                            color: "#374151", 
+                            marginBottom: "0.5rem" 
+                          }}>
+                            Razorpay Secret Key
+                          </label>
+                          <input
+                            type="password"
+                            placeholder="••••••••••••••••••••"
+                            style={{
+                              width: "100%",
+                              padding: "0.75rem 1rem",
+                              border: "1px solid #d1d5db",
+                              borderRadius: "8px",
+                              fontSize: "0.875rem",
+                              background: "white",
+                              outline: "none"
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Storage Settings */}
+                    <div>
+                      <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem" }}>File Storage</h4>
+                      <div>
+                        <label style={{ 
+                          display: "block", 
+                          fontSize: "0.875rem", 
+                          fontWeight: "600", 
+                          color: "#374151", 
+                          marginBottom: "0.5rem" 
+                        }}>
+                          Storage Provider
+                        </label>
+                        <select style={{
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          fontSize: "0.875rem",
+                          background: "white",
+                          outline: "none"
+                        }}>
+                          <option>Local Storage</option>
+                          <option selected>AWS S3</option>
+                          <option>Google Cloud Storage</option>
+                          <option>Azure Blob Storage</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: "1.5rem", display: "flex", gap: "1rem", justifyContent: "flex-end" }}>
+                    <button style={{
+                      background: "#f59e0b",
+                      color: "white",
+                      border: "none",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => alert("API connection tested!")}
+                    >
+                      Test Connection
+                    </button>
+                    <button style={{
+                      background: "#3b82f6",
+                      color: "white",
+                      border: "none",
+                      padding: "0.75rem 1.5rem",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      fontWeight: "500",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => alert("API configuration saved!")}
+                    >
+                      Save Configuration
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Danger Zone */}
+              <div style={{
+                background: "white",
+                borderRadius: "12px",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                border: "1px solid #ef4444",
+                overflow: "hidden"
+              }}>
+                <div style={{
+                  background: "#fef2f2",
+                  padding: "1.5rem",
+                  borderBottom: "1px solid #fecaca"
+                }}>
+                  <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#dc2626", marginBottom: "0.5rem" }}>Danger Zone</h3>
+                  <p style={{ color: "#7f1d1d", fontSize: "0.875rem" }}>Irreversible and destructive actions.</p>
+                </div>
+
+                <div style={{ padding: "1.5rem" }}>
+                  <div style={{ display: "grid", gap: "1rem" }}>
+                    <div style={{ 
+                      display: "flex", 
+                      justifyContent: "space-between", 
+                      alignItems: "center",
+                      padding: "1rem",
+                      border: "1px solid #fecaca",
+                      borderRadius: "8px",
+                      background: "#fef2f2"
+                    }}>
+                      <div>
+                        <h4 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#dc2626", marginBottom: "0.25rem" }}>Clear All Analytics Data</h4>
+                        <p style={{ fontSize: "0.75rem", color: "#7f1d1d" }}>Permanently delete all analytics and usage data.</p>
+                      </div>
+                      <button style={{
+                        background: "#ef4444",
+                        color: "white",
+                        border: "none",
+                        padding: "0.5rem 1rem",
+                        borderRadius: "6px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => confirm("Are you sure you want to clear all analytics data? This cannot be undone.") && alert("Analytics data cleared!")}
+                      >
+                        Clear Data
+                      </button>
+                    </div>
+
+                    <div style={{ 
+                      display: "flex", 
+                      justifyContent: "space-between", 
+                      alignItems: "center",
+                      padding: "1rem",
+                      border: "1px solid #fecaca",
+                      borderRadius: "8px",
+                      background: "#fef2f2"
+                    }}>
+                      <div>
+                        <h4 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#dc2626", marginBottom: "0.25rem" }}>Reset Platform Settings</h4>
+                        <p style={{ fontSize: "0.75rem", color: "#7f1d1d" }}>Reset all platform settings to default values.</p>
+                      </div>
+                      <button style={{
+                        background: "#ef4444",
+                        color: "white",
+                        border: "none",
+                        padding: "0.5rem 1rem",
+                        borderRadius: "6px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => confirm("Are you sure you want to reset all settings? This cannot be undone.") && alert("Platform settings reset!")}
+                      >
+                        Reset Settings
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
         );
       case "Security":
         return (
