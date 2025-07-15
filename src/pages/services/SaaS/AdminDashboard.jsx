@@ -271,11 +271,557 @@ const AdminDashboard = () => {
             <div style={settingsStyles.contentHeader}>
               <h3 style={settingsStyles.contentHeading}>Security Settings</h3>
               <p style={settingsStyles.contentSubheading}>
-                Manage your account security and API keys.
+                Manage your account security, authentication, and API access controls.
               </p>
             </div>
             <div style={settingsStyles.contentBody}>
-              <p>Security settings content goes here.</p>
+              {/* Password & Authentication Section */}
+              <div style={{ marginBottom: "2.5rem" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🔒</span>
+                  Password & Authentication
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "1.5rem" }}>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label} htmlFor="currentPassword">Current Password</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="password"
+                      id="currentPassword"
+                      placeholder="Enter current password"
+                    />
+                  </div>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label} htmlFor="newPassword">New Password</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="password"
+                      id="newPassword"
+                      placeholder="Enter new password"
+                    />
+                  </div>
+                </div>
+
+                <div style={settingsStyles.formGroup}>
+                  <label style={settingsStyles.label} htmlFor="confirmPassword">Confirm New Password</label>
+                  <input
+                    style={settingsStyles.input}
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm new password"
+                  />
+                </div>
+
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <h5 style={{ fontSize: "0.875rem", fontWeight: "600", color: "#374151", marginBottom: "0.5rem" }}>Password Requirements:</h5>
+                  <ul style={{ fontSize: "0.75rem", color: "#6b7280", paddingLeft: "1rem", lineHeight: "1.5" }}>
+                    <li>At least 8 characters long</li>
+                    <li>Contains uppercase and lowercase letters</li>
+                    <li>Contains at least one number</li>
+                    <li>Contains at least one special character</li>
+                  </ul>
+                </div>
+
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Password updated successfully!")}
+                >
+                  Update Password
+                </button>
+              </div>
+
+              {/* Two-Factor Authentication Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📱</span>
+                  Two-Factor Authentication (2FA)
+                </h4>
+                
+                <div style={{ background: "#f9fafb", padding: "1rem", borderRadius: "8px", marginBottom: "1.5rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>2FA Status</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Add an extra layer of security to your account</div>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.75rem",
+                        background: "#fee2e2",
+                        color: "#991b1b",
+                        borderRadius: "20px",
+                        fontSize: "0.75rem",
+                        fontWeight: "500"
+                      }}>
+                        Disabled
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                  <button
+                    style={{
+                      ...settingsStyles.button,
+                      background: "#10b981"
+                    }}
+                    onClick={() => alert("Setting up 2FA with authenticator app...")}
+                  >
+                    Enable 2FA
+                  </button>
+                  <button
+                    style={{
+                      ...settingsStyles.button,
+                      background: "transparent",
+                      color: "#6b7280",
+                      border: "1px solid #d1d5db"
+                    }}
+                    onClick={() => alert("Backup codes will be generated...")}
+                  >
+                    Generate Backup Codes
+                  </button>
+                </div>
+              </div>
+
+              {/* API Keys & Access Tokens Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🔑</span>
+                  API Keys & Access Tokens
+                </h4>
+                
+                <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1.5rem" }}>
+                  Manage API keys for platform integrations and third-party access.
+                </p>
+
+                <div style={{
+                  background: "white",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  marginBottom: "1.5rem"
+                }}>
+                  {/* API Keys Table Header */}
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "200px 150px 120px 100px 100px",
+                    gap: "1rem",
+                    padding: "0.75rem 1rem",
+                    background: "#f9fafb",
+                    borderBottom: "1px solid #e5e7eb",
+                    fontSize: "0.75rem",
+                    fontWeight: "600",
+                    color: "#374151"
+                  }}>
+                    <div>Key Name</div>
+                    <div>Permissions</div>
+                    <div>Created</div>
+                    <div>Status</div>
+                    <div>Actions</div>
+                  </div>
+
+                  {/* Sample API Key Row */}
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "200px 150px 120px 100px 100px",
+                    gap: "1rem",
+                    padding: "0.75rem 1rem",
+                    borderBottom: "1px solid #f3f4f6",
+                    alignItems: "center",
+                    fontSize: "0.875rem"
+                  }}>
+                    <div>
+                      <div style={{ fontWeight: "500", color: "#1f2937" }}>Platform Integration</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>pk_test_****7890</div>
+                    </div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.5rem",
+                        background: "#dbeafe",
+                        color: "#1e40af",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem"
+                      }}>
+                        Read/Write
+                      </span>
+                    </div>
+                    <div style={{ color: "#6b7280" }}>Jan 15, 2025</div>
+                    <div>
+                      <span style={{
+                        padding: "0.25rem 0.5rem",
+                        background: "#dcfce7",
+                        color: "#166534",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem"
+                      }}>
+                        Active
+                      </span>
+                    </div>
+                    <div>
+                      <button style={{
+                        background: "transparent",
+                        border: "none",
+                        color: "#ef4444",
+                        cursor: "pointer",
+                        fontSize: "0.75rem",
+                        padding: "0.25rem"
+                      }}
+                      onClick={() => alert("Revoke API key?")}
+                      >
+                        Revoke
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Empty state for more keys */}
+                  <div style={{
+                    padding: "2rem",
+                    textAlign: "center",
+                    color: "#6b7280",
+                    fontSize: "0.875rem"
+                  }}>
+                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🔑</div>
+                    <p>No additional API keys configured</p>
+                  </div>
+                </div>
+
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Create new API key dialog would open")}
+                >
+                  Generate New API Key
+                </button>
+              </div>
+
+              {/* Session Management Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🖥️</span>
+                  Active Sessions
+                </h4>
+                
+                <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1.5rem" }}>
+                  Monitor and manage your active login sessions across different devices.
+                </p>
+
+                <div style={{
+                  background: "white",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  marginBottom: "1.5rem"
+                }}>
+                  {/* Current Session */}
+                  <div style={{
+                    padding: "1rem",
+                    borderBottom: "1px solid #f3f4f6",
+                    background: "#f0fdf4"
+                  }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                          <span style={{ fontSize: "1rem" }}>💻</span>
+                          <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Current Session</span>
+                          <span style={{
+                            padding: "0.125rem 0.5rem",
+                            background: "#dcfce7",
+                            color: "#166534",
+                            borderRadius: "12px",
+                            fontSize: "0.75rem"
+                          }}>
+                            Active
+                          </span>
+                        </div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                          Chrome on Windows • IP: 192.168.1.100 • Last activity: Now
+                        </div>
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                        This device
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Other Sessions */}
+                  <div style={{ padding: "1rem", borderBottom: "1px solid #f3f4f6" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                          <span style={{ fontSize: "1rem" }}>📱</span>
+                          <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Mobile Session</span>
+                        </div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                          Safari on iPhone • IP: 192.168.1.105 • Last activity: 2 hours ago
+                        </div>
+                      </div>
+                      <button style={{
+                        background: "#ef4444",
+                        color: "white",
+                        border: "none",
+                        padding: "0.25rem 0.75rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => alert("Terminate session?")}
+                      >
+                        Terminate
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style={{ padding: "1rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                          <span style={{ fontSize: "1rem" }}>🖥️</span>
+                          <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Office Computer</span>
+                        </div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                          Firefox on Mac • IP: 10.0.1.50 • Last activity: 1 day ago
+                        </div>
+                      </div>
+                      <button style={{
+                        background: "#ef4444",
+                        color: "white",
+                        border: "none",
+                        padding: "0.25rem 0.75rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => alert("Terminate session?")}
+                      >
+                        Terminate
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  style={{
+                    ...settingsStyles.button,
+                    background: "#ef4444"
+                  }}
+                  onClick={() => alert("Terminate all other sessions?")}
+                >
+                  Terminate All Other Sessions
+                </button>
+              </div>
+
+              {/* Login & Access Logs Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📋</span>
+                  Security Logs
+                </h4>
+                
+                <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1.5rem" }}>
+                  Review recent login attempts and security events for your account.
+                </p>
+
+                <div style={{
+                  background: "white",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  marginBottom: "1.5rem"
+                }}>
+                  {/* Log Entry 1 - Successful Login */}
+                  <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                        <span style={{
+                          padding: "0.25rem",
+                          background: "#dcfce7",
+                          color: "#166534",
+                          borderRadius: "50%",
+                          fontSize: "0.75rem",
+                          width: "24px",
+                          height: "24px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}>
+                          ✓
+                        </span>
+                        <div>
+                          <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Successful Login</div>
+                          <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Chrome on Windows • IP: 192.168.1.100</div>
+                        </div>
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>2 minutes ago</div>
+                    </div>
+                  </div>
+
+                  {/* Log Entry 2 - Failed Login Attempt */}
+                  <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                        <span style={{
+                          padding: "0.25rem",
+                          background: "#fee2e2",
+                          color: "#991b1b",
+                          borderRadius: "50%",
+                          fontSize: "0.75rem",
+                          width: "24px",
+                          height: "24px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}>
+                          ✗
+                        </span>
+                        <div>
+                          <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Failed Login Attempt</div>
+                          <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Unknown device • IP: 203.0.113.45</div>
+                        </div>
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>3 hours ago</div>
+                    </div>
+                  </div>
+
+                  {/* Log Entry 3 - Password Change */}
+                  <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                        <span style={{
+                          padding: "0.25rem",
+                          background: "#dbeafe",
+                          color: "#1e40af",
+                          borderRadius: "50%",
+                          fontSize: "0.75rem",
+                          width: "24px",
+                          height: "24px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}>
+                          🔒
+                        </span>
+                        <div>
+                          <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Password Changed</div>
+                          <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Chrome on Windows • IP: 192.168.1.100</div>
+                        </div>
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>2 days ago</div>
+                    </div>
+                  </div>
+
+                  {/* Log Entry 4 - API Key Created */}
+                  <div style={{ padding: "0.75rem 1rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                        <span style={{
+                          padding: "0.25rem",
+                          background: "#f3e8ff",
+                          color: "#7c3aed",
+                          borderRadius: "50%",
+                          fontSize: "0.75rem",
+                          width: "24px",
+                          height: "24px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}>
+                          🔑
+                        </span>
+                        <div>
+                          <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>API Key Created</div>
+                          <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Platform Integration key generated</div>
+                        </div>
+                      </div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>5 days ago</div>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  style={{
+                    ...settingsStyles.button,
+                    background: "transparent",
+                    color: "#6b7280",
+                    border: "1px solid #d1d5db"
+                  }}
+                  onClick={() => alert("Download security logs...")}
+                >
+                  Download Full Security Log
+                </button>
+              </div>
+
+              {/* Security Preferences Section */}
+              <div style={{ marginBottom: "2rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>⚙️</span>
+                  Security Preferences
+                </h4>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  {/* Email Notifications */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Security Email Notifications</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Get notified about login attempts and security changes</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  {/* Auto Logout */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Auto Logout</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Automatically log out after period of inactivity</div>
+                    </div>
+                    <select style={{
+                      padding: "0.5rem",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "4px",
+                      fontSize: "0.875rem",
+                      background: "white"
+                    }}>
+                      <option>Never</option>
+                      <option>15 minutes</option>
+                      <option selected>30 minutes</option>
+                      <option>1 hour</option>
+                      <option>4 hours</option>
+                    </select>
+                  </div>
+
+                  {/* IP Restrictions */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>IP Address Restrictions</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Restrict access to specific IP addresses or ranges</div>
+                    </div>
+                    <button
+                      style={{
+                        background: "#3b82f6",
+                        color: "white",
+                        border: "none",
+                        padding: "0.5rem 1rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => alert("Configure IP restrictions...")}
+                    >
+                      Configure
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div style={settingsStyles.footerActions}>
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Security settings saved!")}
+                >
+                  Save Security Settings
+                </button>
+              </div>
             </div>
           </div>
         );
