@@ -833,11 +833,180 @@ const AdminDashboard = () => {
                 Notification Preferences
               </h3>
               <p style={settingsStyles.contentSubheading}>
-                Choose what you receive notifications about.
+                Choose what you receive notifications about and how you want to be notified.
               </p>
             </div>
             <div style={settingsStyles.contentBody}>
-              <p>Notifications settings content goes here.</p>
+              {/* Email Notifications Section */}
+              <div style={{ marginBottom: "2.5rem" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📧</span>
+                  Email Notifications
+                </h4>
+                
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>New User Registrations</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Get notified when new users sign up</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Payment Confirmations</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Get notified about successful payments</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Failed Payment Attempts</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Get notified about failed payments</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>New App Submissions</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Get notified when apps are submitted for review</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>System Updates</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Get notified about platform updates and maintenance</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Push Notifications Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🔔</span>
+                  Push Notifications
+                </h4>
+                
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Browser Push Notifications</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Receive notifications directly in your browser</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Mobile App Notifications</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Get notifications on your mobile device</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Notification Frequency Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>⏰</span>
+                  Notification Frequency
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Email Digest Frequency</label>
+                    <select style={settingsStyles.input}>
+                      <option>Real-time</option>
+                      <option>Daily</option>
+                      <option selected>Weekly</option>
+                      <option>Monthly</option>
+                      <option>Never</option>
+                    </select>
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Report Frequency</label>
+                    <select style={settingsStyles.input}>
+                      <option>Daily</option>
+                      <option selected>Weekly</option>
+                      <option>Monthly</option>
+                      <option>Quarterly</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Notification Channels Section */}
+              <div style={{ marginBottom: "2rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📱</span>
+                  Notification Channels
+                </h4>
+                
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Slack Webhook URL</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="url"
+                      placeholder="https://hooks.slack.com/services/..."
+                    />
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: "0.5rem" }}>
+                      Send notifications to your Slack workspace
+                    </div>
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Discord Webhook URL</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="url"
+                      placeholder="https://discord.com/api/webhooks/..."
+                    />
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: "0.5rem" }}>
+                      Send notifications to your Discord server
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={settingsStyles.footerActions}>
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Notification settings saved!")}
+                >
+                  Save Notification Settings
+                </button>
+              </div>
             </div>
           </div>
         );
@@ -847,11 +1016,252 @@ const AdminDashboard = () => {
             <div style={settingsStyles.contentHeader}>
               <h3 style={settingsStyles.contentHeading}>Billing Details</h3>
               <p style={settingsStyles.contentSubheading}>
-                Manage platform-wide billing information.
+                Manage platform-wide billing information and payment methods.
               </p>
             </div>
             <div style={settingsStyles.contentBody}>
-              <p>Billing settings content goes here.</p>
+              {/* Current Plan Section */}
+              <div style={{ marginBottom: "2.5rem" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>📋</span>
+                  Current Plan
+                </h4>
+                
+                <div style={{ background: "#f9fafb", padding: "1.5rem", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+                    <div>
+                      <div style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1f2937" }}>Professional Plan</div>
+                      <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>For growing businesses</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: "1.5rem", fontWeight: "600", color: "#1f2937" }}>{formatCurrency(99)}/month</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Billed monthly</div>
+                    </div>
+                  </div>
+                  
+                  <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                    <button
+                      style={{
+                        ...settingsStyles.button,
+                        background: "#10b981"
+                      }}
+                      onClick={() => alert("Upgrade plan clicked!")}
+                    >
+                      Upgrade Plan
+                    </button>
+                    <button
+                      style={{
+                        ...settingsStyles.button,
+                        background: "transparent",
+                        color: "#6b7280",
+                        border: "1px solid #d1d5db"
+                      }}
+                      onClick={() => alert("View all plans clicked!")}
+                    >
+                      View All Plans
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Methods Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>💳</span>
+                  Payment Methods
+                </h4>
+                
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <div style={{ fontSize: "1.5rem" }}>💳</div>
+                      <div>
+                        <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>•••• •••• •••• 4242</div>
+                        <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Visa ending in 4242 • Expires 12/25</div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                      <span style={{
+                        padding: "0.25rem 0.5rem",
+                        background: "#dcfce7",
+                        color: "#166534",
+                        borderRadius: "12px",
+                        fontSize: "0.75rem"
+                      }}>
+                        Primary
+                      </span>
+                      <button style={{
+                        background: "transparent",
+                        border: "1px solid #d1d5db",
+                        color: "#6b7280",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}>
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    style={{
+                      background: "transparent",
+                      border: "2px dashed #d1d5db",
+                      color: "#6b7280",
+                      padding: "1rem",
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.5rem"
+                    }}
+                    onClick={() => alert("Add payment method clicked!")}
+                  >
+                    <span>➕</span>
+                    Add Payment Method
+                  </button>
+                </div>
+              </div>
+
+              {/* Billing Information Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🏢</span>
+                  Billing Information
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Company Name</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="text"
+                      defaultValue="SaaSible Inc."
+                    />
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Tax ID / VAT Number</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="text"
+                      placeholder="Enter tax ID"
+                    />
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Billing Email</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="email"
+                      defaultValue="billing@saasible.com"
+                    />
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Country</label>
+                    <select style={settingsStyles.input}>
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>United Kingdom</option>
+                      <option>Germany</option>
+                      <option>France</option>
+                      <option>Australia</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div style={settingsStyles.formGroup}>
+                  <label style={settingsStyles.label}>Billing Address</label>
+                  <textarea
+                    style={{
+                      ...settingsStyles.input,
+                      ...settingsStyles.textarea,
+                      minHeight: "80px"
+                    }}
+                    placeholder="Enter your billing address"
+                  />
+                </div>
+              </div>
+
+              {/* Invoices Section */}
+              <div style={{ marginBottom: "2rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🧾</span>
+                  Recent Invoices
+                </h4>
+                
+                <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden" }}>
+                  <div style={{ background: "#f9fafb", padding: "0.75rem 1rem", borderBottom: "1px solid #e5e7eb", display: "grid", gridTemplateColumns: "150px 1fr 120px 100px", gap: "1rem", fontSize: "0.875rem", fontWeight: "600", color: "#374151" }}>
+                    <div>Invoice #</div>
+                    <div>Date</div>
+                    <div>Amount</div>
+                    <div>Status</div>
+                  </div>
+                  
+                  <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", display: "grid", gridTemplateColumns: "150px 1fr 120px 100px", gap: "1rem", fontSize: "0.875rem", alignItems: "center" }}>
+                    <div style={{ color: "#3b82f6", fontWeight: "500" }}>INV-2025-001</div>
+                    <div style={{ color: "#6b7280" }}>January 15, 2025</div>
+                    <div style={{ color: "#1f2937" }}>{formatCurrency(99.00)}</div>
+                    <div>
+                      <span style={{ padding: "0.25rem 0.5rem", background: "#dcfce7", color: "#166534", borderRadius: "12px", fontSize: "0.75rem" }}>
+                        Paid
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", display: "grid", gridTemplateColumns: "150px 1fr 120px 100px", gap: "1rem", fontSize: "0.875rem", alignItems: "center" }}>
+                    <div style={{ color: "#3b82f6", fontWeight: "500" }}>INV-2024-012</div>
+                    <div style={{ color: "#6b7280" }}>December 15, 2024</div>
+                    <div style={{ color: "#1f2937" }}>{formatCurrency(99.00)}</div>
+                    <div>
+                      <span style={{ padding: "0.25rem 0.5rem", background: "#dcfce7", color: "#166534", borderRadius: "12px", fontSize: "0.75rem" }}>
+                        Paid
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div style={{ padding: "0.75rem 1rem", display: "grid", gridTemplateColumns: "150px 1fr 120px 100px", gap: "1rem", fontSize: "0.875rem", alignItems: "center" }}>
+                    <div style={{ color: "#3b82f6", fontWeight: "500" }}>INV-2024-011</div>
+                    <div style={{ color: "#6b7280" }}>November 15, 2024</div>
+                    <div style={{ color: "#1f2937" }}>{formatCurrency(99.00)}</div>
+                    <div>
+                      <span style={{ padding: "0.25rem 0.5rem", background: "#dcfce7", color: "#166534", borderRadius: "12px", fontSize: "0.75rem" }}>
+                        Paid
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: "1rem", textAlign: "center" }}>
+                  <button
+                    style={{
+                      background: "transparent",
+                      border: "1px solid #d1d5db",
+                      color: "#6b7280",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "6px",
+                      fontSize: "0.875rem",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => alert("View all invoices clicked!")}
+                  >
+                    View All Invoices
+                  </button>
+                </div>
+              </div>
+
+              <div style={settingsStyles.footerActions}>
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Billing settings saved!")}
+                >
+                  Save Billing Settings
+                </button>
+              </div>
             </div>
           </div>
         );
@@ -861,11 +1271,236 @@ const AdminDashboard = () => {
             <div style={settingsStyles.contentHeader}>
               <h3 style={settingsStyles.contentHeading}>Integrations</h3>
               <p style={settingsStyles.contentSubheading}>
-                Connect with third-party services.
+                Connect with third-party services to enhance your platform functionality.
               </p>
             </div>
             <div style={settingsStyles.contentBody}>
-              <p>Integrations settings content goes here.</p>
+              {/* Popular Integrations Section */}
+              <div style={{ marginBottom: "2.5rem" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>⭐</span>
+                  Popular Integrations
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "#f9fafb" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem" }}>📧</div>
+                      <div>
+                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>SendGrid</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Email delivery service</div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Send transactional emails, newsletters, and notifications to your users.
+                    </p>
+                    <button
+                      style={{
+                        ...settingsStyles.button,
+                        background: "#10b981",
+                        width: "100%"
+                      }}
+                      onClick={() => alert("Connect SendGrid clicked!")}
+                    >
+                      Connect
+                    </button>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "#f9fafb" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem" }}>💳</div>
+                      <div>
+                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Stripe</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Payment processing</div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Accept credit card payments and manage subscriptions for your platform.
+                    </p>
+                    <button
+                      style={{
+                        ...settingsStyles.button,
+                        background: "#dcfce7",
+                        color: "#166534",
+                        width: "100%"
+                      }}
+                      onClick={() => alert("Stripe already connected!")}
+                    >
+                      ✓ Connected
+                    </button>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "#f9fafb" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem" }}>💬</div>
+                      <div>
+                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Slack</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Team communication</div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Send notifications and updates directly to your Slack workspace.
+                    </p>
+                    <button
+                      style={{
+                        ...settingsStyles.button,
+                        background: "#10b981",
+                        width: "100%"
+                      }}
+                      onClick={() => alert("Connect Slack clicked!")}
+                    >
+                      Connect
+                    </button>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1.5rem", background: "#f9fafb" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                      <div style={{ fontSize: "2rem" }}>📊</div>
+                      <div>
+                        <div style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937" }}>Google Analytics</div>
+                        <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Web analytics</div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1rem" }}>
+                      Track user behavior and get insights about your platform usage.
+                    </p>
+                    <button
+                      style={{
+                        ...settingsStyles.button,
+                        background: "#10b981",
+                        width: "100%"
+                      }}
+                      onClick={() => alert("Connect Google Analytics clicked!")}
+                    >
+                      Connect
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Connected Integrations Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🔗</span>
+                  Connected Integrations
+                </h4>
+                
+                <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden" }}>
+                  <div style={{ background: "#f9fafb", padding: "0.75rem 1rem", borderBottom: "1px solid #e5e7eb", display: "grid", gridTemplateColumns: "50px 1fr 150px 120px 100px", gap: "1rem", fontSize: "0.875rem", fontWeight: "600", color: "#374151" }}>
+                    <div>Icon</div>
+                    <div>Service</div>
+                    <div>Connected</div>
+                    <div>Status</div>
+                    <div>Actions</div>
+                  </div>
+                  
+                  <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", display: "grid", gridTemplateColumns: "50px 1fr 150px 120px 100px", gap: "1rem", fontSize: "0.875rem", alignItems: "center" }}>
+                    <div style={{ fontSize: "1.5rem" }}>💳</div>
+                    <div>
+                      <div style={{ fontWeight: "500", color: "#1f2937" }}>Stripe</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Payment processing</div>
+                    </div>
+                    <div style={{ color: "#6b7280" }}>Jan 15, 2025</div>
+                    <div>
+                      <span style={{ padding: "0.25rem 0.5rem", background: "#dcfce7", color: "#166534", borderRadius: "12px", fontSize: "0.75rem" }}>
+                        Active
+                      </span>
+                    </div>
+                    <div>
+                      <button style={{
+                        background: "#ef4444",
+                        color: "white",
+                        border: "none",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        fontSize: "0.75rem",
+                        cursor: "pointer"
+                      }}>
+                        Disconnect
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div style={{ padding: "2rem", textAlign: "center", color: "#6b7280", fontSize: "0.875rem" }}>
+                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🔌</div>
+                    <p>No other integrations connected</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* API Configuration Section */}
+              <div style={{ marginBottom: "2rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🔧</span>
+                  API Configuration
+                </h4>
+                
+                <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Platform API Endpoint</label>
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                      <input
+                        style={{ ...settingsStyles.input, flex: 1 }}
+                        type="text"
+                        value="https://api.saasible.com/v1"
+                        readOnly
+                      />
+                      <button
+                        style={{
+                          ...settingsStyles.button,
+                          background: "#6b7280",
+                          padding: "0.75rem 1rem"
+                        }}
+                        onClick={() => alert("API endpoint copied to clipboard!")}
+                      >
+                        Copy
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Webhook URL</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="url"
+                      placeholder="https://your-domain.com/webhook"
+                    />
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: "0.5rem" }}>
+                      URL where platform events will be sent
+                    </div>
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Webhook Secret</label>
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                      <input
+                        style={{ ...settingsStyles.input, flex: 1 }}
+                        type="password"
+                        placeholder="Enter webhook secret"
+                      />
+                      <button
+                        style={{
+                          ...settingsStyles.button,
+                          background: "#10b981",
+                          padding: "0.75rem 1rem"
+                        }}
+                        onClick={() => alert("New webhook secret generated!")}
+                      >
+                        Generate
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={settingsStyles.footerActions}>
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Integration settings saved!")}
+                >
+                  Save Integration Settings
+                </button>
+              </div>
             </div>
           </div>
         );
@@ -875,11 +1510,189 @@ const AdminDashboard = () => {
             <div style={settingsStyles.contentHeader}>
               <h3 style={settingsStyles.contentHeading}>Appearance</h3>
               <p style={settingsStyles.contentSubheading}>
-                Customize the look and feel of your dashboard.
+                Customize the look and feel of your admin dashboard and platform.
               </p>
             </div>
             <div style={settingsStyles.contentBody}>
-              <p>Appearance settings content goes here.</p>
+              {/* Theme Settings Section */}
+              <div style={{ marginBottom: "2.5rem" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🎨</span>
+                  Theme Settings
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
+                  <div style={{ border: "2px solid #3b82f6", borderRadius: "8px", padding: "1rem", background: "#f8faff", cursor: "pointer" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                      <div style={{ width: "20px", height: "20px", background: "#3b82f6", borderRadius: "50%" }}></div>
+                      <span style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937" }}>Default Blue</span>
+                    </div>
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Professional blue theme</div>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "#f9fafb", cursor: "pointer" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                      <div style={{ width: "20px", height: "20px", background: "#10b981", borderRadius: "50%" }}></div>
+                      <span style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937" }}>Green</span>
+                    </div>
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Fresh green theme</div>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "#f9fafb", cursor: "pointer" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                      <div style={{ width: "20px", height: "20px", background: "#8b5cf6", borderRadius: "50%" }}></div>
+                      <span style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937" }}>Purple</span>
+                    </div>
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Creative purple theme</div>
+                  </div>
+
+                  <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", background: "#f9fafb", cursor: "pointer" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                      <div style={{ width: "20px", height: "20px", background: "#1f2937", borderRadius: "50%" }}></div>
+                      <span style={{ fontSize: "0.875rem", fontWeight: "600", color: "#1f2937" }}>Dark Mode</span>
+                    </div>
+                    <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Dark theme for night use</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Branding Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🏢</span>
+                  Platform Branding
+                </h4>
+                
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Platform Logo</label>
+                    <div style={{
+                      border: "2px dashed #d1d5db",
+                      borderRadius: "8px",
+                      padding: "2rem",
+                      textAlign: "center",
+                      background: "#fafafa",
+                      cursor: "pointer"
+                    }}>
+                      <div style={{ fontSize: "2rem", marginBottom: "0.5rem", color: "#9ca3af" }}>🖼️</div>
+                      <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Upload logo (PNG, SVG)</div>
+                      <div style={{ fontSize: "0.75rem", color: "#9ca3af" }}>Max size: 2MB</div>
+                    </div>
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Favicon</label>
+                    <div style={{
+                      border: "2px dashed #d1d5db",
+                      borderRadius: "8px",
+                      padding: "2rem",
+                      textAlign: "center",
+                      background: "#fafafa",
+                      cursor: "pointer"
+                    }}>
+                      <div style={{ fontSize: "2rem", marginBottom: "0.5rem", color: "#9ca3af" }}>⭐</div>
+                      <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>Upload favicon (ICO)</div>
+                      <div style={{ fontSize: "0.75rem", color: "#9ca3af" }}>32x32 pixels</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginTop: "1.5rem" }}>
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Platform Name</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="text"
+                      defaultValue="SaaSible Platform"
+                    />
+                  </div>
+
+                  <div style={settingsStyles.formGroup}>
+                    <label style={settingsStyles.label}>Tagline</label>
+                    <input
+                      style={settingsStyles.input}
+                      type="text"
+                      placeholder="Your platform tagline"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Settings Section */}
+              <div style={{ marginBottom: "2.5rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🧭</span>
+                  Navigation Settings
+                </h4>
+                
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Sidebar Collapse</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Allow users to collapse the sidebar</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Breadcrumb Navigation</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Show breadcrumb navigation on pages</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem", background: "#f9fafb", borderRadius: "8px", border: "1px solid #e5e7eb" }}>
+                    <div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: "500", color: "#1f2937" }}>Quick Search</div>
+                      <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>Enable quick search in navigation</div>
+                    </div>
+                    <label style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+                      <input type="checkbox" style={{ marginRight: "0.5rem" }} />
+                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>Enabled</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Custom CSS Section */}
+              <div style={{ marginBottom: "2rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
+                <h4 style={{ fontSize: "1rem", fontWeight: "600", color: "#1f2937", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>💻</span>
+                  Custom CSS
+                </h4>
+                
+                <div style={settingsStyles.formGroup}>
+                  <label style={settingsStyles.label}>Additional CSS</label>
+                  <textarea
+                    style={{
+                      ...settingsStyles.input,
+                      minHeight: "120px",
+                      fontFamily: "monospace",
+                      fontSize: "0.875rem"
+                    }}
+                    placeholder="/* Add your custom CSS here */&#10;.custom-header {&#10;  background: #f0f9ff;&#10;}"
+                  />
+                  <div style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: "0.5rem" }}>
+                    Custom CSS will be applied to your admin dashboard
+                  </div>
+                </div>
+              </div>
+
+              <div style={settingsStyles.footerActions}>
+                <button
+                  style={settingsStyles.button}
+                  onClick={() => alert("Appearance settings saved!")}
+                >
+                  Save Appearance Settings
+                </button>
+              </div>
             </div>
           </div>
         );
