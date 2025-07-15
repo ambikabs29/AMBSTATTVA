@@ -49,7 +49,7 @@ const SaaS = () => {
               Login
             </Link>
             <Link 
-              to="/services/saas/register"
+              to="/services/saas/admin"
               style={{
                 background: "#3b82f6",
                 color: "white",
@@ -81,7 +81,7 @@ const SaaS = () => {
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <Link 
-              to="/services/saas/register"
+              to="/services/saas/admin"
               style={{
                 background: "white",
                 color: "#3b82f6",
@@ -421,7 +421,7 @@ const SaaS = () => {
             Join thousands of developers who are already building the future with SaaSibly.
           </p>
           <Link 
-            to="/services/saas/register"
+            to="/services/saas/admin"
             style={{
               background: "white",
               color: "#3b82f6",
