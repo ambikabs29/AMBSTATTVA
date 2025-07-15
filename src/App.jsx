@@ -15,7 +15,6 @@ import Wellness from './pages/services/Wellness/Wellness';
 
 // SaaS specific pages
 import Login from './pages/services/SaaS/Login';
-import Register from './pages/services/SaaS/Register';
 import AdminDashboard from './pages/services/SaaS/AdminDashboard';
 import SupportMenu from './pages/services/SaaS/SupportMenu';
 
@@ -30,7 +29,6 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/services/saas" element={<SaaS />} />
         <Route path="/services/saas/login" element={<Login />} />
-        <Route path="/services/saas/register" element={<Register />} />
         <Route path="/services/saas/admin" element={<AdminDashboard />} />
         <Route path="/services/saas/support" element={<SupportMenu />} />
         <Route path="/services/tuition" element={<Tuition />} />

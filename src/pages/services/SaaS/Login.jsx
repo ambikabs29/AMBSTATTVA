@@ -344,7 +344,7 @@ const Login = () => {
             }}>
               Don't have an account?{" "}
               <Link 
-                to="/services/saas/register"
+                to="/services/saas/signup"
                 style={{
                   color: "#3b82f6",
                   textDecoration: "none",
