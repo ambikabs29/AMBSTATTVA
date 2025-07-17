@@ -1,0 +1,104 @@
+  {/* SaaS Navigation Menu */}
+      <nav style={{
+        background: "white",
+        borderBottom: "1px solid #e5e7eb",
+        padding: "1rem 2rem",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.1)"
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                gap: "0.5rem", 
+                textDecoration: "none" 
+              }}
+            >
+              <div style={{ background: "#3b82f6", color: "white", padding: "6px 12px", borderRadius: "6px", fontWeight: "bold" }}>
+                📦 SaaSibly
+              </div>
+            </Link>
+          </div>
+          
+          <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Features
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Marketplace
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              Pricing
+            </Link>
+            <Link 
+              to="/services/saas"
+              style={{ 
+                textDecoration: "none",
+                color: "#6b7280",
+                fontWeight: "normal"
+              }}
+            >
+              FAQs
+            </Link>
+          </div>
+
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <Link 
+              to="/services/saas/login"
+              style={{ 
+                textDecoration: "none",
+                color: "#3b82f6", 
+                fontWeight: "bold"
+              }}
+            >
+              Login
+            </Link>
+            <Link 
+              to="/services/saas/admin"
+              style={{
+                background: "#3b82f6",
+                color: "white",
+                padding: "8px 16px",
+                borderRadius: "6px",
+                textDecoration: "none",
+                fontSize: "0.9rem"
+              }}
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </nav>
