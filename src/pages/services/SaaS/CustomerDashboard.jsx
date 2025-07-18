@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Assuming you are using react-router-dom
+import { Link } from "react-router-dom";
 
 const CustomerDashboard = () => {
   // --- STATE MANAGEMENT ---
   const [activeSection, setActiveSection] = useState("dashboard");
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // --- ADD THIS LINE ---
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({
     name: "Alex Doe",
     email: "alex.doe@example.com",
     avatar: "A",
-    memberSince: "March 15, 2024",
   });
   const [userCurrency, setUserCurrency] = useState({
     code: "USD",
@@ -47,7 +46,6 @@ const CustomerDashboard = () => {
       icon: "🎨",
     },
   ];
-
   const billingHistory = [
     {
       id: "CM-INV-0725",
@@ -68,84 +66,80 @@ const CustomerDashboard = () => {
       amount: 29.99,
     },
   ];
+  const marketplaceSoftware = [
+    {
+      id: "sw1",
+      name: "CMS Pro",
+      author: "AmbaApps",
+      icon: "📝",
+      price: 20.0,
+      rating: 4.8,
+      description:
+        "Advanced content management system with drag-and-drop editor and powerful SEO tools.",
+      tags: ["Featured", "Content"],
+    },
+    {
+      id: "sw2",
+      name: "TaskMaster Pro",
+      author: "TechCorp",
+      icon: "✅",
+      price: 29.99,
+      rating: 4.6,
+      description:
+        "AI-powered task management with team collaboration and comprehensive analytics.",
+      tags: ["Productivity", "AI"],
+    },
+  ];
 
-  // --- UTILITY FUNCTIONS ---
-  const formatCurrency = (usdPrice) => {
-    const convertedPrice = (usdPrice * userCurrency.rate).toFixed(2);
-    return `${userCurrency.symbol}${convertedPrice}`;
-  };
-
-  // --- ADD THIS FUNCTION ---
+  // --- HANDLERS AND UTILS ---
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to log out?")) {
       setIsLoggedIn(false);
     }
   };
+  const formatCurrency = (usdPrice) => {
+    const convertedPrice = (usdPrice * userCurrency.rate).toFixed(2);
+    return `${userCurrency.symbol}${convertedPrice}`;
+  };
 
-  // --- EFFECTS ---
   useEffect(() => {
-    // Simulate fetching user's location to set currency
-    const detectUserCurrency = async () => {
-      try {
-        const response = await fetch("https://ipapi.co/json/");
-        const locationData = await response.json();
-        const currencyMap = {
-          US: { code: "USD", symbol: "$", rate: 1 },
-          GB: { code: "GBP", symbol: "£", rate: 0.79 },
-          CA: { code: "CAD", symbol: "C$", rate: 1.35 },
-          AU: { code: "AUD", symbol: "A$", rate: 1.45 },
-          DE: { code: "EUR", symbol: "€", rate: 0.92 },
-          IN: { code: "INR", symbol: "₹", rate: 83.5 },
-        };
-        setUserCurrency(
-          currencyMap[locationData.country_code] || {
-            code: "USD",
-            symbol: "$",
-            rate: 1,
-          },
-        );
-      } catch (error) {
-        console.error("Could not detect location, using USD as default.");
-      }
-    };
-    detectUserCurrency();
+    // This is a placeholder for fetching user currency based on location
   }, []);
 
-  // --- STYLES ---
+  // --- STYLES (Based on the Tenant Dashboard Model) ---
   const styles = {
     pageContainer: {
       display: "flex",
-      minHeight: "100vh",
+      height: "100vh",
+      backgroundColor: "#f9fafb",
       fontFamily:
         '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-      backgroundColor: "#f8f9fa",
     },
-
     sidebar: {
-      width: "250px",
-      backgroundColor: "#ffffff",
-      borderRight: "1px solid #dee2e6",
-      position: "fixed",
-      height: "100%",
-      display: "grid", // Use Grid layout
-      gridTempmplateRows: "auto 1fraututo", // Header | Scroinng Conten | Footer
+      width: "260px",
+      backgroundColor: "#1e293b", // Dark theme
+      color: "#e5e7eb",
+      display: "flex",
+      flexDirection: "column",
+      height: "100vh",
     },
     sidebarHeader: {
       padding: "1.5rem",
       display: "flex",
       alignItems: "center",
       gap: "0.75rem",
-      borderBottom: "1px solid #e9ecef",
-      flexShrink: 0, // --- ADD THIS
+      borderBottom: "1px solid #334155",
+      flexShrink: 0,
     },
     logoText: {
       fontSize: "1.25rem",
       fontWeight: "600",
-      color: "#212529",
+      color: "#ffffff",
     },
     nav: {
-      overflowY: "auto", // Creates scrollbar only when needed
+      flex: 1,
       padding: "1rem",
+      overflowY: "auto",
     },
     menuItem: {
       display: "flex",
@@ -155,18 +149,18 @@ const CustomerDashboard = () => {
       borderRadius: "8px",
       cursor: "pointer",
       fontSize: "0.9rem",
-      color: "#495057",
+      color: "#cbd5e1",
       transition: "background-color 0.2s, color 0.2s",
       marginBottom: "0.25rem",
     },
     activeMenuItem: {
-      backgroundColor: "#0d6efd",
+      backgroundColor: "#0d6efd", // Using customer blue for active item
       color: "#ffffff",
       fontWeight: "500",
     },
     sidebarFooter: {
       padding: "1rem",
-      borderTop: "1px solid #e9ecef",
+      borderTop: "1px solid #334155",
       flexShrink: 0,
     },
     userProfile: {
@@ -175,12 +169,13 @@ const CustomerDashboard = () => {
       gap: "0.75rem",
       padding: "0.5rem",
       borderRadius: "8px",
+      backgroundColor: "#334155",
     },
     avatar: {
       width: "40px",
       height: "40px",
       borderRadius: "50%",
-      backgroundColor: "#6c757d",
+      backgroundColor: "#0d6efd", // Customer blue
       color: "white",
       display: "flex",
       alignItems: "center",
@@ -188,29 +183,24 @@ const CustomerDashboard = () => {
       fontWeight: "bold",
       fontSize: "1.2rem",
     },
-    mainContent: {
-      flex: 1,
-      padding: "2.5rem",
-      marginLeft: "250px",
+    logoutButton: {
+      marginLeft: "auto",
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      fontSize: "1.5rem",
+      color: "#9ca3af",
     },
-    pageHeader: {
-      marginBottom: "2.5rem",
-    },
-    pageTitle: {
-      fontSize: "2rem",
-      fontWeight: "bold",
-      color: "#212529",
-    },
-    pageSubtitle: {
-      color: "#6c757d",
-      marginTop: "0.25rem",
-    },
+    mainContent: { flex: 1, padding: "2.5rem", overflowY: "auto" },
+    pageHeader: { marginBottom: "2rem" },
+    pageTitle: { fontSize: "2rem", fontWeight: "bold", color: "#1f2937" },
+    pageSubtitle: { color: "#6b7280", marginTop: "0.25rem" },
     card: {
       backgroundColor: "#ffffff",
       borderRadius: "12px",
       padding: "1.5rem",
-      border: "1px solid #dee2e6",
-      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
+      border: "1px solid #e5e7eb",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
       marginBottom: "1.5rem",
     },
     cardHeader: {
@@ -221,32 +211,17 @@ const CustomerDashboard = () => {
       paddingBottom: "1rem",
       borderBottom: "1px solid #e9ecef",
     },
-    statCard: {
-      textAlign: "center",
-      padding: "2rem",
-    },
-    statValue: {
-      fontSize: "2.5rem",
-      fontWeight: "bold",
-      color: "#0d6efd",
-    },
-    statLabel: {
-      fontSize: "1rem",
-      color: "#6c757d",
-      marginTop: "0.5rem",
-    },
-    table: {
-      width: "100%",
-      borderCollapse: "collapse",
-    },
+    statCard: { textAlign: "center", padding: "2rem" },
+    statValue: { fontSize: "2.5rem", fontWeight: "bold", color: "#0d6efd" },
+    statLabel: { fontSize: "1rem", color: "#6c757d", marginTop: "0.5rem" },
+    table: { width: "100%", borderCollapse: "collapse" },
     th: {
       textAlign: "left",
       padding: "0.75rem 1rem",
-      borderBottom: "2px solid #dee2e6",
-      color: "#6c757d",
+      borderBottom: "2px solid #e9ecef",
+      color: "#6b7280",
       fontSize: "0.75rem",
       textTransform: "uppercase",
-      letterSpacing: "0.05em",
     },
     td: {
       textAlign: "left",
@@ -281,7 +256,6 @@ const CustomerDashboard = () => {
       fontWeight: "500",
       cursor: "pointer",
       fontSize: "0.9rem",
-      transition: "background-color 0.2s",
     },
     buttonOutline: {
       backgroundColor: "transparent",
@@ -297,12 +271,16 @@ const CustomerDashboard = () => {
       boxSizing: "border-box",
       marginTop: "0.5rem",
     },
-    formLabel: {
-      fontWeight: "500",
-      color: "#495057",
-    },
-    formGroup: {
-      marginBottom: "1.5rem",
+    formLabel: { fontWeight: "500", color: "#495057" },
+    formGroup: { marginBottom: "1.5rem" },
+    tag: {
+      fontSize: "0.7rem",
+      fontWeight: 600,
+      color: "#6c757d",
+      backgroundColor: "#e9ecef",
+      padding: "0.25rem 0.5rem",
+      borderRadius: "4px",
+      textTransform: "uppercase",
     },
   };
 
@@ -314,7 +292,7 @@ const CustomerDashboard = () => {
     { id: "profile", label: "Profile", icon: "👤" },
   ];
 
-  // --- RENDER FUNCTIONS FOR EACH PAGE ---
+  // --- RENDER FUNCTIONS FOR EACH PAGE (Content from original CustomerDashboard) ---
   const renderDashboard = () => (
     <>
       <div style={styles.pageHeader}>
@@ -323,7 +301,6 @@ const CustomerDashboard = () => {
           Welcome back, {user.name}! Here's a summary of your account.
         </p>
       </div>
-
       <div
         style={{
           display: "grid",
@@ -352,7 +329,6 @@ const CustomerDashboard = () => {
           <div style={styles.statLabel}>Total Invoices</div>
         </div>
       </div>
-
       <div style={{ ...styles.card, marginTop: "2.5rem" }}>
         <h2 style={styles.cardHeader}>Recent Activity</h2>
         <p style={{ color: "#6c757d" }}>
@@ -381,7 +357,6 @@ const CustomerDashboard = () => {
       </div>
     </>
   );
-
   const renderSubscriptions = () => (
     <>
       <div style={styles.pageHeader}>
@@ -446,77 +421,6 @@ const CustomerDashboard = () => {
       </div>
     </>
   );
-
-  const marketplaceSoftware = [
-    {
-      id: "sw1",
-      name: "CMS Pro",
-      author: "AmbaApps",
-      icon: "📝",
-      price: 20.0,
-      rating: 4.8,
-      description:
-        "Advanced content management system with drag-and-drop editor and powerful SEO tools.",
-      tags: ["Featured", "Content"],
-    },
-    {
-      id: "sw2",
-      name: "TaskMaster Pro",
-      author: "TechCorp",
-      icon: "✅",
-      price: 29.99,
-      rating: 4.6,
-      description:
-        "AI-powered task management with team collaboration and comprehensive analytics.",
-      tags: ["Productivity", "AI"],
-    },
-    {
-      id: "sw3",
-      name: "Analytics Pro",
-      author: "DataCorp",
-      icon: "📊",
-      price: 45.0,
-      rating: 4.9,
-      description:
-        "Business intelligence platform with real-time dashboards and predictive analytics.",
-      tags: ["Analytics", "Real-time"],
-    },
-    {
-      id: "sw4",
-      name: "MailCraft Pro",
-      author: "EmailWorks",
-      icon: "📧",
-      price: 25.0,
-      rating: 4.7,
-      description:
-        "Professional email marketing with automation, A/B testing, and campaign analytics.",
-      tags: ["Marketing", "Automation"],
-    },
-    {
-      id: "sw5",
-      name: "ShopBuilder",
-      author: "TechCorp",
-      icon: "🛒",
-      price: 35.0,
-      rating: 4.5,
-      description:
-        "Complete e-commerce store builder with payment processing and inventory management.",
-      tags: ["E-commerce", "Payments"],
-    },
-    {
-      id: "sw6",
-      name: "TeamChat Plus",
-      author: "ConnectSoft",
-      icon: "💬",
-      price: 18.0,
-      rating: 4.8,
-      description:
-        "Secure team communication with video calls, file sharing, and project integrations.",
-      tags: ["Communication", "Video"],
-    },
-  ];
-
-  // --- HELPER COMPONENT (Add this right before the render functions) ---
   const SoftwareCard = ({ software }) => (
     <div
       style={{
@@ -632,8 +536,6 @@ const CustomerDashboard = () => {
       </div>
     </div>
   );
-
-  // --- MARKETPLACE RENDER FUNCTION (Replace the existing renderMarketplace function with this) ---
   const renderMarketplace = () => (
     <>
       <div style={styles.pageHeader}>
@@ -662,7 +564,6 @@ const CustomerDashboard = () => {
       </div>
     </>
   );
-
   const renderBilling = () => (
     <>
       <div style={styles.pageHeader}>
@@ -719,8 +620,6 @@ const CustomerDashboard = () => {
       </div>
     </>
   );
-
-  // --- PROFILE RENDER FUNCTION (Replace the existing renderProfile function with this) ---
   const renderProfile = () => (
     <>
       <div style={styles.pageHeader}>
@@ -732,7 +631,6 @@ const CustomerDashboard = () => {
       <div style={styles.card}>
         <h2 style={styles.cardHeader}>Personal Information</h2>
         <form>
-          {/* --- START: AVATAR UPLOAD SECTION --- */}
           <div style={styles.formGroup}>
             <label style={styles.formLabel}>Profile Picture</label>
             <div
@@ -774,8 +672,6 @@ const CustomerDashboard = () => {
               </label>
             </div>
           </div>
-          {/* --- END: AVATAR UPLOAD SECTION --- */}
-
           <div style={styles.formGroup}>
             <label htmlFor="name" style={styles.formLabel}>
               Full Name
@@ -841,7 +737,6 @@ const CustomerDashboard = () => {
     </>
   );
 
-  // --- MAIN RENDER LOGIC ---
   const renderContent = () => {
     switch (activeSection) {
       case "dashboard":
@@ -858,6 +753,30 @@ const CustomerDashboard = () => {
         return renderDashboard();
     }
   };
+
+  if (!isLoggedIn) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          fontFamily: styles.pageContainer.fontFamily,
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <h1 style={styles.pageTitle}>You have been logged out.</h1>
+          <p style={{ ...styles.pageSubtitle, margin: "1rem 0 2rem 0" }}>
+            Click below to log back into your account.
+          </p>
+          <button style={styles.button} onClick={() => setIsLoggedIn(true)}>
+            Log In Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={styles.pageContainer}>
@@ -876,14 +795,6 @@ const CustomerDashboard = () => {
                   : styles.menuItem
               }
               onClick={() => setActiveSection(item.id)}
-              onMouseEnter={(e) => {
-                if (activeSection !== item.id)
-                  e.currentTarget.style.backgroundColor = "#f1f3f5";
-              }}
-              onMouseLeave={(e) => {
-                if (activeSection !== item.id)
-                  e.currentTarget.style.backgroundColor = "transparent";
-              }}
             >
               <span>{item.icon}</span>
               <span>{item.label}</span>
@@ -907,15 +818,29 @@ const CustomerDashboard = () => {
                 {user.email}
               </div>
             </div>
+            <button
+              title="Log Out"
+              style={styles.logoutButton}
+              onClick={handleLogout}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
+                />
+                <path
+                  fillRule="evenodd"
+                  d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+                />
+              </svg>
+            </button>
           </div>
-          {/* --- ADD THIS BUTTON --- */}
-          <button
-            style={{ ...styles.button, ...styles.logoutButton }}
-            onClick={handleLogout}
-          >
-            <span style={{ marginRight: "0.5rem" }}>🚪</span>
-            Log Out
-          </button>
         </div>
       </aside>
       <main style={styles.mainContent}>{renderContent()}</main>
