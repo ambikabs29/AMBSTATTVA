@@ -4,360 +4,703 @@ import { Link } from "react-router-dom";
 const SaaS = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [userCurrency, setUserCurrency] = useState({
-    code: "USD",
-    symbol: "$",
-    rate: 1,
-  });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 960);
 
-  // Sliding banner content
+  // --- Data Arrays ---
+  // [+] FIX: Replaced shorthand 'background' with specific 'backgroundImage' property
   const bannerSlides = [
     {
       title: "Host, Sell & Subscribe to SaaS",
       subtitle: "in One Platform",
       description:
         "SaaSibly lets you launch your software or subscribe to powerful tools - all in one place.",
-      background:
+      backgroundImage:
         "linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
     },
     {
       title: "Unlimited Possibilities",
       subtitle: "One Marketplace",
       description:
         "Explore a diverse range of applications, from productivity tools to enterprise-level software.",
-      background:
+      backgroundImage:
         "linear-gradient(rgba(240, 147, 251, 0.8), rgba(245, 87, 108, 0.8)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
     },
     {
       title: "Join the SaaS Revolution",
       subtitle: "Start Today",
       description:
         "Whether you're a vendor or customer, SaaSibly is your gateway to the future of software.",
-      background:
+      backgroundImage:
         "linear-gradient(rgba(79, 172, 254, 0.8), rgba(0, 242, 254, 0.8)), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
     },
   ];
+  const menuItems = [
+    { id: "home", label: "Home" },
+    { id: "features", label: "Features" },
+    { id: "marketplace", label: "Marketplace" },
+    { id: "pricing", label: "Pricing" },
+    { id: "faqs", label: "FAQs" },
+  ];
+  const marketplaceSoftware = [
+    {
+      id: "sw1",
+      name: "CMS Pro",
+      author: "AmbaApps",
+      icon: "📝",
+      price: 20.0,
+      rating: 4.8,
+      description:
+        "Advanced content management system with drag-and-drop editor and powerful SEO tools.",
+      tags: ["Featured", "Content"],
+    },
+    {
+      id: "sw2",
+      name: "TaskMaster Pro",
+      author: "TechCorp",
+      icon: "✅",
+      price: 29.99,
+      rating: 4.6,
+      description:
+        "AI-powered task management with team collaboration and comprehensive analytics.",
+      tags: ["Productivity", "AI"],
+    },
+    {
+      id: "sw3",
+      name: "Analytics Pro",
+      author: "DataCorp",
+      icon: "📊",
+      price: 45.0,
+      rating: 4.9,
+      description:
+        "Business intelligence platform with real-time dashboards and predictive analytics.",
+      tags: ["Analytics", "Real-time"],
+    },
+  ];
+  const userCurrency = { code: "USD", symbol: "$", rate: 1 };
 
-  // Currency detection and conversion
+  // --- Effects ---
   useEffect(() => {
-    const detectUserCurrency = async () => {
-      try {
-        // Get user's location
-        const response = await fetch("https://ipapi.co/json/");
-        const locationData = await response.json();
-
-        // Currency mapping based on country
-        const currencyMap = {
-          US: { code: "USD", symbol: "$", rate: 1 },
-          GB: { code: "GBP", symbol: "£", rate: 0.79 },
-          CA: { code: "CAD", symbol: "C$", rate: 1.35 },
-          AU: { code: "AUD", symbol: "A$", rate: 1.45 },
-          DE: { code: "EUR", symbol: "€", rate: 0.85 },
-          FR: { code: "EUR", symbol: "€", rate: 0.85 },
-          ES: { code: "EUR", symbol: "€", rate: 0.85 },
-          IT: { code: "EUR", symbol: "€", rate: 0.85 },
-          NL: { code: "EUR", symbol: "€", rate: 0.85 },
-          IN: { code: "INR", symbol: "₹", rate: 83 },
-          JP: { code: "JPY", symbol: "¥", rate: 110 },
-          CN: { code: "CNY", symbol: "¥", rate: 7.2 },
-          BR: { code: "BRL", symbol: "R$", rate: 5.2 },
-          MX: { code: "MXN", symbol: "$", rate: 18 },
-          KR: { code: "KRW", symbol: "₩", rate: 1200 },
-          SG: { code: "SGD", symbol: "S$", rate: 1.35 },
-          CH: { code: "CHF", symbol: "CHF", rate: 0.92 },
-          SE: { code: "SEK", symbol: "kr", rate: 10.5 },
-          NO: { code: "NOK", symbol: "kr", rate: 10.8 },
-          DK: { code: "DKK", symbol: "kr", rate: 6.8 },
-          RU: { code: "RUB", symbol: "₽", rate: 75 },
-          ZA: { code: "ZAR", symbol: "R", rate: 15 },
-          AE: { code: "AED", symbol: "د.إ", rate: 3.67 },
-          SA: { code: "SAR", symbol: "﷼", rate: 3.75 },
-          TR: { code: "TRY", symbol: "₺", rate: 27 },
-          PL: { code: "PLN", symbol: "zł", rate: 4.3 },
-          CZ: { code: "CZK", symbol: "Kč", rate: 23 },
-          HU: { code: "HUF", symbol: "Ft", rate: 360 },
-          IL: { code: "ILS", symbol: "₪", rate: 3.6 },
-          TH: { code: "THB", symbol: "฿", rate: 34 },
-          MY: { code: "MYR", symbol: "RM", rate: 4.7 },
-          ID: { code: "IDR", symbol: "Rp", rate: 15000 },
-          PH: { code: "PHP", symbol: "₱", rate: 56 },
-          VN: { code: "VND", symbol: "₫", rate: 24000 },
-          AR: { code: "ARS", symbol: "$", rate: 350 },
-          CL: { code: "CLP", symbol: "$", rate: 900 },
-          CO: { code: "COP", symbol: "$", rate: 4000 },
-          PE: { code: "PEN", symbol: "S/", rate: 3.7 },
-          EG: { code: "EGP", symbol: "£", rate: 31 },
-          NG: { code: "NGN", symbol: "₦", rate: 800 },
-          KE: { code: "KES", symbol: "KSh", rate: 150 },
-          GH: { code: "GHS", symbol: "₵", rate: 12 },
-          MA: { code: "MAD", symbol: "د.م.", rate: 10 },
-          BD: { code: "BDT", symbol: "৳", rate: 110 },
-          PK: { code: "PKR", symbol: "₨", rate: 280 },
-          LK: { code: "LKR", symbol: "₨", rate: 320 },
-          NP: { code: "NPR", symbol: "₨", rate: 133 },
-          MM: { code: "MMK", symbol: "K", rate: 2100 },
-          KH: { code: "KHR", symbol: "៛", rate: 4100 },
-          LA: { code: "LAK", symbol: "₭", rate: 20000 },
-          UZ: { code: "UZS", symbol: "лв", rate: 12000 },
-          KZ: { code: "KZT", symbol: "₸", rate: 450 },
-          GE: { code: "GEL", symbol: "₾", rate: 2.7 },
-          AM: { code: "AMD", symbol: "֏", rate: 400 },
-          AZ: { code: "AZN", symbol: "₼", rate: 1.7 },
-          BY: { code: "BYN", symbol: "Br", rate: 3.3 },
-          UA: { code: "UAH", symbol: "₴", rate: 37 },
-          MD: { code: "MDL", symbol: "L", rate: 18 },
-          RO: { code: "RON", symbol: "lei", rate: 4.7 },
-          BG: { code: "BGN", symbol: "лв", rate: 1.8 },
-          RS: { code: "RSD", symbol: "Дин.", rate: 107 },
-          HR: { code: "HRK", symbol: "kn", rate: 6.8 },
-          SI: { code: "EUR", symbol: "€", rate: 0.85 },
-          SK: { code: "EUR", symbol: "€", rate: 0.85 },
-          LT: { code: "EUR", symbol: "€", rate: 0.85 },
-          LV: { code: "EUR", symbol: "€", rate: 0.85 },
-          EE: { code: "EUR", symbol: "€", rate: 0.85 },
-        };
-
-        const currency = currencyMap[locationData.country_code] || {
-          code: "USD",
-          symbol: "$",
-          rate: 1,
-        };
-        setUserCurrency(currency);
-      } catch (error) {
-        console.log("Could not detect location, using USD as default");
-        setUserCurrency({ code: "USD", symbol: "$", rate: 1 });
-      }
-    };
-
-    detectUserCurrency();
+    const handleResize = () => setIsMobile(window.innerWidth < 960);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto-slide functionality
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
-    }, 5000);
+    const interval = setInterval(
+      () => setCurrentSlide((prev) => (prev + 1) % bannerSlides.length),
+      5000,
+    );
     return () => clearInterval(interval);
-  }, []);
+  }, [bannerSlides.length]);
 
-  // Currency conversion function
-  const convertPrice = (usdPrice) => {
-    const convertedPrice = usdPrice * userCurrency.rate;
-
-    // Format based on currency
-    if (
-      userCurrency.code === "JPY" ||
-      userCurrency.code === "KRW" ||
-      userCurrency.code === "VND" ||
-      userCurrency.code === "IDR"
-    ) {
-      return Math.round(convertedPrice);
-    } else {
-      return convertedPrice.toFixed(2);
-    }
+  // --- Handlers & Helpers ---
+  const handleNavClick = (sectionId) => {
+    setActiveSection(sectionId);
+    setIsMenuOpen(false);
   };
+  const formatCurrency = (usdPrice) =>
+    `${userCurrency.symbol}${usdPrice.toFixed(2)}`;
 
-  // Format currency display
-  const formatCurrency = (usdPrice) => {
-    const convertedPrice = convertPrice(usdPrice);
-    return `${userCurrency.symbol}${convertedPrice}`;
+  // --- Reusable UI Components ---
+  const HamburgerIcon = () => (
+    <button
+      onClick={() => setIsMenuOpen(true)}
+      style={{
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        fontSize: "1.75rem",
+        zIndex: 1002,
+      }}
+    >
+      ☰
+    </button>
+  );
+
+  const MobileMenu = () => (
+    <>
+      <div
+        onClick={() => setIsMenuOpen(false)}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          zIndex: 1000,
+          opacity: isMenuOpen ? 1 : 0,
+          transition: "opacity 0.3s ease",
+          pointerEvents: isMenuOpen ? "auto" : "none",
+        }}
+      />
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "280px",
+          height: "100%",
+          backgroundColor: "#1e293b",
+          zIndex: 1001,
+          transform: isMenuOpen ? "translateX(0)" : "translateX(-100%)",
+          transition: "transform 0.3s ease",
+          padding: "1.5rem",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "2rem",
+          }}
+        >
+          <div
+            style={{
+              background: "#3b82f6",
+              color: "white",
+              padding: "6px 12px",
+              borderRadius: "6px",
+              fontWeight: "bold",
+            }}
+          >
+            📦 SaaSibly
+          </div>
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "white",
+              fontSize: "1.75rem",
+              cursor: "pointer",
+            }}
+          >
+            ×
+          </button>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: activeSection === item.id ? "#3b82f6" : "#cbd5e1",
+                fontWeight: activeSection === item.id ? "bold" : "normal",
+                fontSize: "1.1rem",
+                textAlign: "left",
+                padding: "0.5rem 0",
+              }}
+            >
+              {item.label}
+            </button>
+          ))}
+          <div style={{ borderTop: "1px solid #334155", margin: "1rem 0" }} />
+          <Link
+            to="/services/saas/login"
+            onClick={() => setIsMenuOpen(false)}
+            style={{
+              color: "#cbd5e1",
+              textDecoration: "none",
+              padding: "0.5rem 0",
+              fontSize: "1.1rem",
+            }}
+          >
+            Login
+          </Link>
+          <Link
+            to="/services/saas/signup"
+            onClick={() => setIsMenuOpen(false)}
+            style={{
+              background: "#3b82f6",
+              color: "white",
+              padding: "10px 16px",
+              borderRadius: "8px",
+              textDecoration: "none",
+              textAlign: "center",
+              marginTop: "1rem",
+            }}
+          >
+            Get Started
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+
+  const SoftwareCard = ({ software }) => (
+    <div
+      style={{
+        background: "white",
+        borderRadius: "12px",
+        border: "1px solid #e5e7eb",
+        boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+        padding: "1.5rem",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        transition: "transform 0.2s, box-shadow 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-5px)";
+        e.currentTarget.style.boxShadow = "0 8px 16px rgba(0,0,0,0.1)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.05)";
+      }}
+    >
+      <div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            marginBottom: "1rem",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "2.5rem",
+              background: "#f8f9fa",
+              width: "60px",
+              height: "60px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "12px",
+            }}
+          >
+            {software.icon}
+          </div>
+          <div>
+            <h3
+              style={{
+                margin: 0,
+                fontSize: "1.1rem",
+                fontWeight: 600,
+                color: "#212529",
+              }}
+            >
+              {software.name}
+            </h3>
+            <p
+              style={{
+                margin: "0.25rem 0 0 0",
+                fontSize: "0.8rem",
+                color: "#6c757d",
+              }}
+            >
+              by {software.author}
+            </p>
+          </div>
+        </div>
+        <p
+          style={{
+            fontSize: "0.875rem",
+            color: "#495057",
+            lineHeight: 1.6,
+            minHeight: "65px",
+          }}
+        >
+          {software.description}
+        </p>
+        <div
+          style={{
+            display: "flex",
+            gap: "0.5rem",
+            marginBottom: "1rem",
+            flexWrap: "wrap",
+          }}
+        >
+          {software.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                fontSize: "0.7rem",
+                fontWeight: 600,
+                color: "#6c757d",
+                backgroundColor: "#e9ecef",
+                padding: "0.25rem 0.5rem",
+                borderRadius: "4px",
+                textTransform: "uppercase",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "1rem",
+          }}
+        >
+          <div>
+            <span
+              style={{ fontSize: "1.5rem", fontWeight: 700, color: "#212529" }}
+            >
+              {formatCurrency(software.price)}
+            </span>
+            <span style={{ color: "#6c757d" }}>/mo</span>
+          </div>
+          <span style={{ color: "#fbbf24", fontWeight: "bold" }}>
+            ★ {software.rating}
+          </span>
+        </div>
+        <button
+          style={{
+            backgroundColor: "#0d6efd",
+            color: "white",
+            border: "none",
+            padding: "0.6rem 1.2rem",
+            borderRadius: "8px",
+            fontWeight: "500",
+            cursor: "pointer",
+            fontSize: "0.9rem",
+            width: "100%",
+          }}
+        >
+          View Details
+        </button>
+      </div>
+    </div>
+  );
+  const Section = ({ title, subtitle, children }) => (
+    <div style={{ padding: "2rem 0" }}>
+      <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <h3
+          style={{
+            fontSize: isMobile ? "2rem" : "2.5rem",
+            marginBottom: "1rem",
+            color: "#1f2937",
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          style={{
+            fontSize: "1.1rem",
+            color: "#6b7280",
+            maxWidth: "700px",
+            margin: "0 auto",
+          }}
+        >
+          {subtitle}
+        </p>
+      </div>
+      {children}
+    </div>
+  );
+  const FaqItem = ({ q, a }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div
+        style={{
+          marginBottom: "1rem",
+          border: "1px solid #e5e7eb",
+          borderRadius: "8px",
+          background: "white",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+        }}
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            width: "100%",
+            textAlign: "left",
+            padding: "1.5rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "1.1rem",
+            fontWeight: 600,
+          }}
+        >
+          <h4 style={{ margin: 0, fontSize: "1rem", paddingRight: "1rem" }}>
+            {q}
+          </h4>
+          <span
+            style={{
+              transition: "transform 0.2s",
+              transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+              fontSize: "1.5rem",
+              color: "#3b82f6",
+            }}
+          >
+            +
+          </span>
+        </button>
+        {isOpen && (
+          <div
+            style={{
+              padding: "0 1.5rem 1.5rem 1.5rem",
+              color: "#6b7280",
+              lineHeight: "1.6",
+            }}
+          >
+            {a}
+          </div>
+        )}
+      </div>
+    );
   };
+  const FeatureCard = ({ icon, title, text, color }) => (
+    <div
+      style={{
+        padding: "1.5rem",
+        background: "white",
+        borderRadius: "12px",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
+        border: "1px solid #e5e7eb",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "1rem",
+          marginBottom: "0.8rem",
+        }}
+      >
+        <div
+          style={{
+            fontSize: "2rem",
+            background: `${color}20`,
+            padding: "0.5rem",
+            borderRadius: "8px",
+            color,
+          }}
+        >
+          {icon}
+        </div>
+        <div>
+          <h5
+            style={{
+              fontSize: "1.1rem",
+              color: "#1f2937",
+              fontWeight: "600",
+              margin: "0 0 0.5rem 0",
+            }}
+          >
+            {title}
+          </h5>
+          <p
+            style={{
+              color: "#6b7280",
+              lineHeight: "1.5",
+              fontSize: "0.95rem",
+              margin: 0,
+            }}
+          >
+            {text}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+  const PricingCard = ({
+    plan,
+    description,
+    price,
+    features,
+    popular,
+    primaryColor,
+  }) => (
+    <div
+      style={{
+        padding: "2rem",
+        border: `2px solid ${popular ? primaryColor : "#e5e7eb"}`,
+        borderRadius: "12px",
+        background: "white",
+        boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+        position: "relative",
+      }}
+    >
+      {popular && (
+        <div
+          style={{
+            position: "absolute",
+            top: "-15px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: primaryColor,
+            color: "white",
+            padding: "4px 12px",
+            borderRadius: "12px",
+            fontSize: "0.8rem",
+            fontWeight: "bold",
+          }}
+        >
+          POPULAR
+        </div>
+      )}
+      <h4
+        style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#1f2937" }}
+      >
+        {plan}
+      </h4>
+      <p style={{ color: "#6b7280", marginBottom: "1.5rem" }}>{description}</p>
+      <div
+        style={{
+          fontSize: "2.5rem",
+          fontWeight: "bold",
+          color: primaryColor,
+          marginBottom: "1.5rem",
+        }}
+      >
+        {price}
+        <span style={{ fontSize: "1rem", color: "#6b7280" }}>/month</span>
+      </div>
+      <ul
+        style={{
+          listStyle: "none",
+          padding: 0,
+          marginBottom: "2rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.75rem",
+        }}
+      >
+        {features.map((feat, i) => (
+          <li
+            key={i}
+            style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <span style={{ color: "#059669" }}>✓</span> {feat}
+          </li>
+        ))}
+      </ul>
+      <button
+        style={{
+          background: primaryColor,
+          color: "white",
+          padding: "12px 24px",
+          border: "none",
+          borderRadius: "8px",
+          width: "100%",
+          fontSize: "1rem",
+          cursor: "pointer",
+          fontWeight: "bold",
+        }}
+      >
+        Choose Plan
+      </button>
+    </div>
+  );
 
+  // --- Main Render Functions for Each Section ---
   const renderContent = () => {
     switch (activeSection) {
       case "home":
         return (
           <div>
-            {/* Sliding Hero Banner */}
             <div
               style={{
+                // [+] FIX: Inline style object for the banner
+                height: "auto",
+                padding: isMobile ? "4rem 1.5rem" : "6rem 2rem",
                 position: "relative",
-                height: "500px",
                 borderRadius: "12px",
-                marginBottom: "3rem",
+                marginBottom: "4rem",
                 overflow: "hidden",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                color: "white",
+                backgroundImage: bannerSlides[currentSlide].backgroundImage,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                transition: "background-image 1s ease-in-out",
               }}
             >
-              {bannerSlides.map((slide, index) => (
-                <div
-                  key={index}
+              <div>
+                <h1
                   style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    background: slide.background,
-                    backgroundSize: slide.backgroundSize,
-                    backgroundPosition: slide.backgroundPosition,
-                    color: "white",
-                    padding: "4rem 2rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textAlign: "center",
-                    opacity: currentSlide === index ? 1 : 0,
-                    transition: "opacity 1s ease-in-out",
+                    fontSize: isMobile ? "2.25rem" : "3.5rem",
+                    marginBottom: "1rem",
+                    fontWeight: "bold",
                   }}
                 >
-                  <h1
+                  {bannerSlides[currentSlide].title}
+                </h1>
+                <p
+                  style={{
+                    fontSize: isMobile ? "1rem" : "1.2rem",
+                    marginBottom: "2rem",
+                    opacity: 0.9,
+                    maxWidth: "600px",
+                    margin: "0 auto 2rem auto",
+                  }}
+                >
+                  {bannerSlides[currentSlide].description}
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <Link
+                    to="/services/saas/signup"
                     style={{
-                      fontSize: "3rem",
-                      marginBottom: "1rem",
-                      fontWeight: "bold",
+                      background: "#3b82f6",
+                      color: "white",
+                      padding: "12px 24px",
+                      borderRadius: "8px",
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      fontWeight: "500",
                     }}
                   >
-                    {slide.title}
-                  </h1>
-                  <h2 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
-                    {slide.subtitle.includes("One Platform") ? (
-                      <>
-                        in{" "}
-                        <span style={{ color: "#4ade80" }}>One Platform</span>
-                      </>
-                    ) : (
-                      slide.subtitle
-                    )}
-                  </h2>
-                  <p
-                    style={{
-                      fontSize: "1.2rem",
-                      marginBottom: "2rem",
-                      opacity: 0.9,
-                    }}
-                  >
-                    {slide.description}
-                  </p>
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "1rem",
-                      justifyContent: "center",
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    {/* <button
-                      style={{
-                        background: "#3b82f6",
-                        color: "white",
-                        padding: "12px 24px",
-                        border: "none",
-                        borderRadius: "8px",
-                        fontSize: "1rem",
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Get Started
-                    </button> */}
-                    <Link
-                      to="/services/saas/signup"
-                      style={{
-                        background: "#3b82f6",
-                        color: "white",
-                        padding: "12px 24px",
-                        borderRadius: "8px",
-                        textDecoration: "none",
-                        fontSize: "1rem",
-                      }}
-                    >
-                      Get Started
-                    </Link>
-                    <button
-                      style={{
-                        background: "transparent",
-                        color: "white",
-                        padding: "12px 24px",
-                        border: "2px solid white",
-                        borderRadius: "8px",
-                        fontSize: "1rem",
-                        cursor: "pointer",
-                      }}
-                    >
-                      🤖 Get AI Software Idea
-                    </button>
-                  </div>
-                </div>
-              ))}
-
-              {/* Slide indicators */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "20px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  display: "flex",
-                  gap: "10px",
-                }}
-              >
-                {bannerSlides.map((_, index) => (
+                    Get Started
+                  </Link>
                   <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
                     style={{
-                      width: "12px",
-                      height: "12px",
-                      borderRadius: "50%",
-                      border: "none",
-                      background:
-                        currentSlide === index
-                          ? "#fff"
-                          : "rgba(255,255,255,0.5)",
+                      background: "rgba(255,255,255,0.2)",
+                      color: "white",
+                      padding: "12px 24px",
+                      border: "1px solid white",
+                      borderRadius: "8px",
                       cursor: "pointer",
-                      transition: "background 0.3s",
+                      fontSize: "1rem",
+                      fontWeight: "500",
                     }}
-                  />
-                ))}
+                  >
+                    🤖 Get AI Software Idea
+                  </button>
+                </div>
               </div>
             </div>
-
-            {/* How SaaSibly Works Section */}
-            <div
-              style={{
-                marginBottom: "4rem",
-                background: "#f8fafc",
-                padding: "4rem 2rem",
-                borderRadius: "12px",
-              }}
+            <Section
+              title="How SaaSibly Works"
+              subtitle="A simple, streamlined process for software vendors and customers."
             >
-              <h3
-                style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  textAlign: "center",
-                  color: "#1f2937",
-                }}
-              >
-                How SaaSibly Works
-              </h3>
-              <p
-                style={{
-                  textAlign: "center",
-                  fontSize: "1.1rem",
-                  marginBottom: "3rem",
-                  color: "#6b7280",
-                }}
-              >
-                A simple, streamlined process for software vendors and
-                customers.
-              </p>
-
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                  gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? "100%" : "250px"}, 1fr))`,
                   gap: "2rem",
                 }}
               >
-                <div style={{ textAlign: "center", padding: "2rem" }}>
+                <div style={{ textAlign: "center", padding: "1rem" }}>
                   <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>
                     🏠
                   </div>
@@ -373,11 +716,9 @@ const SaaS = () => {
                   <p style={{ color: "#6b7280", lineHeight: "1.6" }}>
                     Easily choose a SaaSible vendor plan, upload your software,
                     and create custom subscription tiers for your customers.
-                    Manage everything from one dashboard.
                   </p>
                 </div>
-
-                <div style={{ textAlign: "center", padding: "2rem" }}>
+                <div style={{ textAlign: "center", padding: "1rem" }}>
                   <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>
                     🛒
                   </div>
@@ -392,12 +733,10 @@ const SaaS = () => {
                   </h4>
                   <p style={{ color: "#6b7280", lineHeight: "1.6" }}>
                     Register for free to explore a marketplace of innovative
-                    SaaS solutions. Subscribe to the tools you need with
-                    straightforward vendor plans.
+                    SaaS solutions and subscribe to the tools you need.
                   </p>
                 </div>
-
-                <div style={{ textAlign: "center", padding: "2rem" }}>
+                <div style={{ textAlign: "center", padding: "1rem" }}>
                   <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>
                     👥
                   </div>
@@ -411,35 +750,16 @@ const SaaS = () => {
                     Seamless Ecosystem
                   </h4>
                   <p style={{ color: "#6b7280", lineHeight: "1.6" }}>
-                    SaaSible connects software creators with users, providing a
-                    robust platform for distribution, subscription management,
-                    and growth for everyone.
+                    SaaSibly connects software creators with users, providing a
+                    robust platform for distribution and growth.
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Video Section */}
-            <div style={{ marginBottom: "4rem", textAlign: "center" }}>
-              <h3
-                style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                See SaaSibly in Action
-              </h3>
-              <p
-                style={{
-                  fontSize: "1.1rem",
-                  marginBottom: "2rem",
-                  color: "#6b7280",
-                }}
-              >
-                Watch this short video to get a quick overview of our platform
-                and its capabilities.
-              </p>
+            </Section>
+            <Section
+              title="See SaaSibly in Action"
+              subtitle="Watch this short video to get a quick overview of our platform and its capabilities."
+            >
               <div
                 style={{
                   maxWidth: "800px",
@@ -447,11 +767,12 @@ const SaaS = () => {
                   borderRadius: "12px",
                   overflow: "hidden",
                   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                  aspectRatio: "16 / 9",
                 }}
               >
                 <iframe
                   width="100%"
-                  height="450"
+                  height="100%"
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                   title="SaaSibly Platform Overview"
                   frameBorder="0"
@@ -460,30 +781,15 @@ const SaaS = () => {
                   style={{ display: "block" }}
                 />
               </div>
-            </div>
-
-            {/* Testimonials Section on Home Page */}
-            <div style={{ marginBottom: "4rem" }}>
-              <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-                <h3
-                  style={{
-                    fontSize: "2.5rem",
-                    marginBottom: "1rem",
-                    color: "#1f2937",
-                  }}
-                >
-                  Loved by Vendors & Customers
-                </h3>
-                <p style={{ fontSize: "1.1rem", color: "#6b7280" }}>
-                  Hear what our users are saying about their SaaSible
-                  experience.
-                </p>
-              </div>
-
+            </Section>
+            <Section
+              title="Loved by Vendors & Customers"
+              subtitle="Hear what our users are saying about their SaaSible experience."
+            >
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                  gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? "100%" : "300px"}, 1fr))`,
                   gap: "2rem",
                 }}
               >
@@ -548,7 +854,6 @@ const SaaS = () => {
                     </div>
                   </div>
                 </div>
-
                 <div
                   style={{
                     padding: "2rem",
@@ -610,7 +915,6 @@ const SaaS = () => {
                     </div>
                   </div>
                 </div>
-
                 <div
                   style={{
                     padding: "2rem",
@@ -670,62 +974,28 @@ const SaaS = () => {
                         Alex Green
                       </div>
                       <div style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-                        Vendor, Solo Developer of TaskMaster Pro
+                        Vendor, Solo Developer
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Section>
           </div>
         );
-
       case "features":
         return (
-          <div style={{ padding: "2rem 0", minHeight: "100vh" }}>
-            {/* Header Section */}
-            <div
-              style={{
-                marginBottom: "3rem",
-                textAlign: "center",
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                color: "white",
-                padding: "4rem 2rem",
-                borderRadius: "12px",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  fontWeight: "bold",
-                }}
-              >
-                Powerful Features for Everyone
-              </h3>
-              <p
-                style={{
-                  fontSize: "1.2rem",
-                  opacity: 0.9,
-                  maxWidth: "600px",
-                  margin: "0 auto",
-                }}
-              >
-                SaaSible is packed with tools to help vendors succeed and
-                customers thrive.
-              </p>
-            </div>
-
-            {/* Two Column Layout */}
+          <Section
+            title="Powerful Features for Everyone"
+            subtitle="SaaSibly is packed with tools to help vendors succeed and customers thrive."
+          >
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr",
+                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                 gap: "3rem",
-                marginBottom: "3rem",
               }}
             >
-              {/* For Software Vendors */}
               <div>
                 <h4
                   style={{
@@ -740,222 +1010,26 @@ const SaaS = () => {
                   For Software Vendors
                 </h4>
                 <div style={{ display: "grid", gap: "1.2rem" }}>
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                      transition: "transform 0.2s, box-shadow 0.2s",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#eff6ff",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#3b82f6",
-                        }}
-                      >
-                        📤
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Easy Software Upload & Plan Creation
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Quickly upload your software packages and define
-                          flexible subscription plans for your end-users.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#eff6ff",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#3b82f6",
-                        }}
-                      >
-                        🎛️
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Vendor Dashboard
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Monitor your subscribers, track earnings, and manage
-                          your software listings efficiently.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#eff6ff",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#3b82f6",
-                        }}
-                      >
-                        📊
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Analytics & Insights
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Gain valuable insights into your software performance
-                          and customer engagement.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#eff6ff",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#3b82f6",
-                        }}
-                      >
-                        🔐
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Secure Hosting & Distribution
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Reliable infrastructure to host your software and
-                          deliver it securely to customers.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <FeatureCard
+                    icon="📤"
+                    title="Easy Software Upload"
+                    text="Quickly upload your software packages and define flexible subscription plans."
+                    color="#3b82f6"
+                  />
+                  <FeatureCard
+                    icon="🎛️"
+                    title="Vendor Dashboard"
+                    text="Monitor your subscribers, track earnings, and manage your software listings efficiently."
+                    color="#3b82f6"
+                  />
+                  <FeatureCard
+                    icon="📊"
+                    title="Analytics & Insights"
+                    text="Gain valuable insights into your software performance and customer engagement."
+                    color="#3b82f6"
+                  />
                 </div>
               </div>
-
-              {/* For SaaS Customers */}
               <div>
                 <h4
                   style={{
@@ -970,981 +1044,183 @@ const SaaS = () => {
                   For SaaS Customers
                 </h4>
                 <div style={{ display: "grid", gap: "1.2rem" }}>
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#ecfdf5",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#059669",
-                        }}
-                      >
-                        🌐
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Browse Diverse Software
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Discover a wide range of SaaS applications tailored to
-                          various needs and industries.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#ecfdf5",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#059669",
-                        }}
-                      >
-                        📋
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Flexible Subscription Plans
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Choose from multiple subscription options offered by
-                          vendors to fit your budget and requirements.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#ecfdf5",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#059669",
-                        }}
-                      >
-                        🎛️
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Unified Customer Dashboard
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Manage all your software subscriptions, billing, and
-                          access in one centralized place.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      padding: "1.5rem",
-                      background: "white",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                      border: "1px solid #e5e7eb",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "1rem",
-                        marginBottom: "0.8rem",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "2rem",
-                          background: "#ecfdf5",
-                          padding: "0.5rem",
-                          borderRadius: "8px",
-                          color: "#059669",
-                        }}
-                      >
-                        ⬇️
-                      </div>
-                      <div>
-                        <h5
-                          style={{
-                            fontSize: "1.1rem",
-                            color: "#1f2937",
-                            fontWeight: "600",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Instant Access & Download
-                        </h5>
-                        <p
-                          style={{
-                            color: "#6b7280",
-                            lineHeight: "1.5",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          Get immediate access to subscribed software or
-                          download project files effortlessly.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <FeatureCard
+                    icon="🌐"
+                    title="Browse Diverse Software"
+                    text="Discover a wide range of SaaS applications tailored to various needs and industries."
+                    color="#059669"
+                  />
+                  <FeatureCard
+                    icon="📋"
+                    title="Flexible Subscriptions"
+                    text="Choose from multiple subscription options offered by vendors to fit your budget."
+                    color="#059669"
+                  />
+                  <FeatureCard
+                    icon="⬇️"
+                    title="Instant Access & Download"
+                    text="Get immediate access to subscribed software or download project files effortlessly."
+                    color="#059669"
+                  />
                 </div>
               </div>
             </div>
-          </div>
+          </Section>
         );
-
       case "marketplace":
         return (
-          <div style={{ padding: "2rem 0" }}>
+          <Section
+            title="Marketplace Showcase"
+            subtitle="Discover powerful tools and applications to boost your productivity."
+          >
             <div
               style={{
-                textAlign: "center",
-                background: "#f1f5f9",
-                padding: "4rem 2rem",
+                padding: "1rem",
+                background: "white",
                 borderRadius: "12px",
-                marginBottom: "3rem",
+                border: "1px solid #e5e7eb",
+                marginBottom: "2.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                flexDirection: isMobile ? "column" : "row",
               }}
             >
-              <h3
+              <input
+                type="text"
+                placeholder="🔍 Search for software, categories, or features..."
                 style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
+                  width: "100%",
+                  border: "none",
+                  fontSize: "1rem",
+                  outline: "none",
+                  padding: isMobile ? "0.5rem 0" : "0",
+                }}
+              />
+              <button
+                style={{
+                  background: "#3b82f6",
+                  color: "white",
+                  padding: "10px 20px",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  width: isMobile ? "100%" : "auto",
                 }}
               >
-                Marketplace Showcase: Discover Top Software
-              </h3>
-              <p
-                style={{
-                  fontSize: "1.1rem",
-                  color: "#6b7280",
-                  marginBottom: "2rem",
-                }}
-              >
-                The marketplace is growing! Check back soon for new software
-                listings or visit our full marketplace.
-              </p>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "2rem",
-                  padding: "3rem 2rem",
-                }}
-              >
-                <div style={{ fontSize: "4rem", color: "#6b7280" }}>🛒</div>
-                <h4 style={{ fontSize: "1.5rem", color: "#6b7280" }}>
-                  Marketplace Preview Unavailable
-                </h4>
-                <p
-                  style={{
-                    color: "#6b7280",
-                    textAlign: "center",
-                    maxWidth: "500px",
-                  }}
-                >
-                  Our software listings are currently being updated.
-                </p>
-
-                <button
-                  style={{
-                    background: "#3b82f6",
-                    color: "white",
-                    padding: "12px 24px",
-                    border: "none",
-                    borderRadius: "8px",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Explore Full Marketplace →
-                </button>
-              </div>
+                Search
+              </button>
             </div>
-          </div>
-        );
-
-      case "pricing":
-        return (
-          <div style={{ padding: "2rem 0" }}>
-            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <h3
-                style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                Simple Plans for SaaS Vendors
-              </h3>
-              <p style={{ fontSize: "1.1rem", color: "#6b7280" }}>
-                Customers register and subscribe to vendor-offered plans for
-                free. Choose the right SaaSible vendor plan to start selling
-                your software.
-              </p>
-              {userCurrency.code !== "USD" && (
-                <div
-                  style={{
-                    background: "#eff6ff",
-                    border: "1px solid #3b82f6",
-                    borderRadius: "8px",
-                    padding: "0.75rem 1rem",
-                    margin: "1rem auto",
-                    maxWidth: "400px",
-                    fontSize: "0.9rem",
-                    color: "#1e40af",
-                  }}
-                >
-                  💰 Prices shown in {userCurrency.code} based on your location
-                </div>
-              )}
-            </div>
-
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-                gap: "2rem",
-                marginBottom: "3rem",
-              }}
-            >
-              {/* Basic Vendor */}
-              <div
-                style={{
-                  padding: "2rem",
-                  border: "2px solid #e5e7eb",
-                  borderRadius: "12px",
-                  background: "white",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                }}
-              >
-                <h4
-                  style={{
-                    fontSize: "1.5rem",
-                    marginBottom: "0.5rem",
-                    color: "#1f2937",
-                  }}
-                >
-                  Basic Vendor
-                </h4>
-                <p style={{ color: "#6b7280", marginBottom: "1rem" }}>
-                  Perfect for getting started and listing your first software.
-                </p>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "bold",
-                    color: "#059669",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {formatCurrency(19)}
-                  <span style={{ fontSize: "1rem", color: "#6b7280" }}>
-                    /month
-                  </span>
-                </div>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    marginBottom: "2rem",
-                  }}
-                >
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Upload 1
-                    software
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Basic dashboard
-                    access
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Community
-                    support
-                  </li>
-                </ul>
-                <button
-                  style={{
-                    background: "#059669",
-                    color: "white",
-                    padding: "12px 24px",
-                    border: "none",
-                    borderRadius: "8px",
-                    width: "100%",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Choose Basic Plan
-                </button>
-              </div>
-
-              {/* Pro Vendor */}
-              <div
-                style={{
-                  padding: "2rem",
-                  border: "2px solid #3b82f6",
-                  borderRadius: "12px",
-                  background: "white",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                  position: "relative",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-10px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    background: "#3b82f6",
-                    color: "white",
-                    padding: "4px 12px",
-                    borderRadius: "12px",
-                    fontSize: "0.8rem",
-                    fontWeight: "bold",
-                  }}
-                >
-                  POPULAR
-                </div>
-                <h4
-                  style={{
-                    fontSize: "1.5rem",
-                    marginBottom: "0.5rem",
-                    color: "#1f2937",
-                  }}
-                >
-                  Pro Vendor
-                </h4>
-                <p style={{ color: "#6b7280", marginBottom: "1rem" }}>
-                  For growing vendors needing more capacity and features.
-                </p>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "bold",
-                    color: "#3b82f6",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {formatCurrency(49)}
-                  <span style={{ fontSize: "1rem", color: "#6b7280" }}>
-                    /month
-                  </span>
-                </div>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    marginBottom: "2rem",
-                  }}
-                >
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Upload up to 5
-                    software
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Full dashboard &
-                    analytics
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Email & chat
-                    support
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Subscriber
-                    tracking
-                  </li>
-                </ul>
-                <button
-                  style={{
-                    background: "#3b82f6",
-                    color: "white",
-                    padding: "12px 24px",
-                    border: "none",
-                    borderRadius: "8px",
-                    width: "100%",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Choose Pro Plan
-                </button>
-              </div>
-
-              {/* Enterprise Vendor */}
-              <div
-                style={{
-                  padding: "2rem",
-                  border: "2px solid #e5e7eb",
-                  borderRadius: "12px",
-                  background: "white",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                }}
-              >
-                <h4
-                  style={{
-                    fontSize: "1.5rem",
-                    marginBottom: "0.5rem",
-                    color: "#1f2937",
-                  }}
-                >
-                  Enterprise Vendor
-                </h4>
-                <p style={{ color: "#6b7280", marginBottom: "1rem" }}>
-                  Tailored solutions for large-scale software providers.
-                </p>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "bold",
-                    color: "#3b82f6",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  Custom
-                </div>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    marginBottom: "2rem",
-                  }}
-                >
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Unlimited
-                    software uploads
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Priority support
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> White-labeled
-                    features
-                  </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#059669" }}>✓</span> Custom
-                    integrations
-                  </li>
-                </ul>
-                <button
-                  style={{
-                    background: "#059669",
-                    color: "white",
-                    padding: "12px 24px",
-                    border: "none",
-                    borderRadius: "8px",
-                    width: "100%",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Contact Sales
-                </button>
-              </div>
-            </div>
-
-            <div
-              style={{
-                textAlign: "center",
-                padding: "2rem",
-                background: "#f8fafc",
-                borderRadius: "8px",
-              }}
-            >
-              <p style={{ color: "#6b7280", marginBottom: "1rem" }}>
-                Looking for customer subscriptions?
-                <button
-                  onClick={() => setActiveSection("marketplace")}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "#3b82f6",
-                    cursor: "pointer",
-                    textDecoration: "underline",
-                    marginLeft: "0.5rem",
-                  }}
-                >
-                  Explore the Software Marketplace.
-                </button>
-              </p>
-            </div>
-          </div>
-        );
-
-      case "testimonials":
-        return (
-          <div style={{ padding: "2rem 0" }}>
-            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <h3
-                style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                Loved by Vendors & Customers
-              </h3>
-              <p style={{ fontSize: "1.1rem", color: "#6b7280" }}>
-                Hear what our users are saying about their SaaSible experience.
-              </p>
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? "100%" : "300px"}, 1fr))`,
                 gap: "2rem",
               }}
             >
-              <div
-                style={{
-                  padding: "2rem",
-                  background: "white",
-                  borderRadius: "12px",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                }}
-              >
-                <div style={{ display: "flex", marginBottom: "1rem" }}>
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      style={{ color: "#fbbf24", fontSize: "1.2rem" }}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <p
-                  style={{
-                    fontStyle: "italic",
-                    color: "#6b7280",
-                    marginBottom: "1.5rem",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  "SaaSible made it incredibly easy to get my software in front
-                  of a wider audience. The platform is intuitive and the support
-                  is top-notch!"
-                </p>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-                >
-                  <div
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                      background: "#e5e7eb",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.5rem",
-                    }}
-                  >
-                    JD
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: "bold", color: "#1f2937" }}>
-                      Jane Doe
-                    </div>
-                    <div style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-                      Vendor, CEO of InnovativeApp
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  padding: "2rem",
-                  background: "white",
-                  borderRadius: "12px",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                }}
-              >
-                <div style={{ display: "flex", marginBottom: "1rem" }}>
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      style={{ color: "#fbbf24", fontSize: "1.2rem" }}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <p
-                  style={{
-                    fontStyle: "italic",
-                    color: "#6b7280",
-                    marginBottom: "1.5rem",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  "Finding and subscribing to the tools I need for my business
-                  has never been simpler. SaaSible's marketplace is a
-                  game-changer."
-                </p>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-                >
-                  <div
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                      background: "#e5e7eb",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.5rem",
-                    }}
-                  >
-                    JS
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: "bold", color: "#1f2937" }}>
-                      John Smith
-                    </div>
-                    <div style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-                      Customer, Founder of QuickStart Ltd.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  padding: "2rem",
-                  background: "white",
-                  borderRadius: "12px",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                }}
-              >
-                <div style={{ display: "flex", marginBottom: "1rem" }}>
-                  {[...Array(4)].map((_, i) => (
-                    <span
-                      key={i}
-                      style={{ color: "#fbbf24", fontSize: "1.2rem" }}
-                    >
-                      ★
-                    </span>
-                  ))}
-                  <span style={{ color: "#d1d5db", fontSize: "1.2rem" }}>
-                    ★
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontStyle: "italic",
-                    color: "#6b7280",
-                    marginBottom: "1.5rem",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  "The vendor dashboard provides all the analytics I need to
-                  understand my customer base and grow my SaaS business. Highly
-                  recommended!"
-                </p>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-                >
-                  <div
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                      background: "#e5e7eb",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.5rem",
-                    }}
-                  >
-                    AG
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: "bold", color: "#1f2937" }}>
-                      Alex Green
-                    </div>
-                    <div style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-                      Vendor, Solo Developer of TaskMaster Pro
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case "faqs":
-        return (
-          <div style={{ padding: "2rem 0" }}>
-            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <h3
-                style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                Frequently Asked Questions
-              </h3>
-              <p style={{ fontSize: "1.1rem", color: "#6b7280" }}>
-                Find quick answers to common questions about SaaSible.
-              </p>
-            </div>
-
-            <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-              {[
-                {
-                  question: "Can anyone sell software on SaaSible?",
-                  answer:
-                    "Yes! Any software creator can join SaaSible as a vendor. Simply choose a vendor plan, upload your software, and start selling to customers worldwide.",
-                },
-                {
-                  question:
-                    "Do I need to pay to explore or subscribe to software as a customer?",
-                  answer:
-                    "No, registration and browsing are completely free for customers. You only pay when you subscribe to specific software through vendor-offered plans.",
-                },
-                {
-                  question: "What types of apps can I list or subscribe to?",
-                  answer:
-                    "SaaSible supports a wide variety of software applications including business tools, productivity apps, creative software, and specialized industry solutions.",
-                },
-                {
-                  question: "How does billing work for vendors and customers?",
-                  answer:
-                    "Vendors pay SaaSible platform fees based on their chosen plan. Customers pay vendors directly for software subscriptions through our secure payment system.",
-                },
-                {
-                  question: "Is there support available if I have issues?",
-                  answer:
-                    "Yes! We offer multiple support channels including community forums, email support, and priority support for Pro and Enterprise vendors.",
-                },
-              ].map((faq, index) => (
-                <div
-                  key={index}
-                  style={{
-                    marginBottom: "1.5rem",
-                    padding: "2rem",
-                    background: "white",
-                    borderRadius: "8px",
-                    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                  }}
-                >
-                  <h4
-                    style={{
-                      fontSize: "1.2rem",
-                      marginBottom: "1rem",
-                      color: "#1f2937",
-                    }}
-                  >
-                    {faq.question}
-                  </h4>
-                  <p style={{ color: "#6b7280", lineHeight: "1.6" }}>
-                    {faq.answer}
-                  </p>
-                </div>
+              {marketplaceSoftware.map((software) => (
+                <SoftwareCard key={software.id} software={software} />
               ))}
             </div>
-          </div>
+          </Section>
         );
-
+      case "pricing":
+        return (
+          <Section
+            title="Simple Plans for SaaS Vendors"
+            subtitle="Customers register for free. Choose the right vendor plan to start selling your software."
+          >
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? "100%" : "300px"}, 1fr))`,
+                gap: "2rem",
+              }}
+            >
+              <PricingCard
+                plan="Basic Vendor"
+                description="Perfect for getting started."
+                price={formatCurrency(19)}
+                features={[
+                  "Upload 1 software",
+                  "Basic dashboard access",
+                  "Community support",
+                ]}
+                primaryColor="#059669"
+              />
+              <PricingCard
+                plan="Pro Vendor"
+                description="For growing vendors needing more features."
+                price={formatCurrency(49)}
+                features={[
+                  "Upload up to 5 software",
+                  "Full dashboard & analytics",
+                  "Email & chat support",
+                  "Subscriber tracking",
+                ]}
+                popular={true}
+                primaryColor="#3b82f6"
+              />
+              <PricingCard
+                plan="Enterprise"
+                description="Tailored solutions for large-scale providers."
+                price="Custom"
+                features={[
+                  "Unlimited software uploads",
+                  "Priority support",
+                  "White-labeled features",
+                  "Custom integrations",
+                ]}
+                primaryColor="#1f2937"
+              />
+            </div>
+          </Section>
+        );
+      case "faqs":
+        return (
+          <Section
+            title="Frequently Asked Questions"
+            subtitle="Find quick answers to common questions about SaaSibly."
+          >
+            <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+              <FaqItem
+                q="Can anyone sell software on SaaSible?"
+                a="Yes! Any software creator can join SaaSibly as a vendor. Simply choose a vendor plan, upload your software, and start selling."
+              />
+              <FaqItem
+                q="Do I need to pay to explore or subscribe to software as a customer?"
+                a="No, registration and browsing are completely free for customers. You only pay when you subscribe to specific software through vendor-offered plans."
+              />
+              <FaqItem
+                q="What types of apps can I list or subscribe to?"
+                a="SaaSible supports a wide variety of software applications including business tools, productivity apps, creative software, and specialized industry solutions."
+              />
+            </div>
+          </Section>
+        );
       default:
-        return <div>Select a section from the navigation.</div>;
+        return <h1>Page Not Found</h1>;
     }
   };
 
   return (
-    <div>
-      {/* Top Navigation Bar */}
+    <div
+      style={{
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        overflowX: "hidden",
+      }}
+    >
+      <MobileMenu />
       <nav
         style={{
           background: "white",
           borderBottom: "1px solid #e5e7eb",
-          padding: "1rem 2rem",
+          padding: `1rem ${isMobile ? "1rem" : "2rem"}`,
           position: "sticky",
           top: 0,
-          zIndex: 100,
-          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+          zIndex: 999,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
         }}
       >
         <div
@@ -1956,7 +1232,11 @@ const SaaS = () => {
             margin: "0 auto",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <Link
+            to="/"
+            onClick={() => handleNavClick("home")}
+            style={{ textDecoration: "none" }}
+          >
             <div
               style={{
                 background: "#3b82f6",
@@ -1968,119 +1248,75 @@ const SaaS = () => {
             >
               📦 SaaSibly
             </div>
-          </div>
-
-          <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-            <button
-              onClick={() => setActiveSection("home")}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: activeSection === "home" ? "#3b82f6" : "#6b7280",
-                fontWeight: activeSection === "home" ? "bold" : "normal",
-              }}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => setActiveSection("features")}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: activeSection === "features" ? "#3b82f6" : "#6b7280",
-                fontWeight: activeSection === "features" ? "bold" : "normal",
-              }}
-            >
-              Features
-            </button>
-            <button
-              onClick={() => setActiveSection("marketplace")}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: activeSection === "marketplace" ? "#3b82f6" : "#6b7280",
-                fontWeight: activeSection === "marketplace" ? "bold" : "normal",
-              }}
-            >
-              Marketplace
-            </button>
-            <button
-              onClick={() => setActiveSection("pricing")}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: activeSection === "pricing" ? "#3b82f6" : "#6b7280",
-                fontWeight: activeSection === "pricing" ? "bold" : "normal",
-              }}
-            >
-              Pricing
-            </button>
-            <button
-              onClick={() => setActiveSection("faqs")}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: activeSection === "faqs" ? "#3b82f6" : "#6b7280",
-                fontWeight: activeSection === "faqs" ? "bold" : "normal",
-              }}
-            >
-              FAQs
-            </button>
-          </div>
-
-          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-            {/* <link 
-              to="/services/saas/login"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: "#6b7280",
-              }}
-            >
-              Login
-            </link> */}
-            <Link
-              to="/services/saas/login"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: "#6b7280",
-                textDecoration: "none",
-                fontSize: "1rem",
-              }}
-            >
-              Login
-            </Link>
-            <Link
-              to="/services/saas/signup"
-              style={{
-                background: "#3b82f6",
-                color: "white",
-                padding: "8px 16px",
-                borderRadius: "6px",
-                textDecoration: "none",
-                fontSize: "0.9rem",
-              }}
-            >
-              Get Started
-            </Link>
-          </div>
+          </Link>
+          {isMobile ? (
+            <HamburgerIcon />
+          ) : (
+            <>
+              <div
+                style={{ display: "flex", gap: "2rem", alignItems: "center" }}
+              >
+                {menuItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      color: activeSection === item.id ? "#3b82f6" : "#6b7280",
+                      fontWeight: activeSection === item.id ? "bold" : "normal",
+                      textTransform: "capitalize",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+              <div
+                style={{ display: "flex", gap: "1rem", alignItems: "center" }}
+              >
+                <Link
+                  to="/services/saas/login"
+                  style={{
+                    color: "#6b7280",
+                    textDecoration: "none",
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/services/saas/signup"
+                  style={{
+                    background: "#3b82f6",
+                    color: "white",
+                    padding: "8px 16px",
+                    borderRadius: "8px",
+                    textDecoration: "none",
+                    fontWeight: 500,
+                  }}
+                >
+                  Get Started
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem" }}>
+      <main
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: isMobile ? "1.5rem" : "2rem",
+        }}
+      >
         {renderContent()}
-      </div>
+      </main>
 
-      {/* Call to Action Section */}
       <div
         style={{
           background: "linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)",
@@ -2092,31 +1328,25 @@ const SaaS = () => {
       >
         <h3
           style={{
-            fontSize: "2.5rem",
+            fontSize: isMobile ? "2rem" : "2.5rem",
             marginBottom: "1rem",
             fontWeight: "bold",
           }}
         >
           Join the SaaS Revolution
         </h3>
-        <p style={{ fontSize: "1.2rem", marginBottom: "2rem", opacity: 0.9 }}>
+        <p
+          style={{
+            fontSize: "1.2rem",
+            marginBottom: "2rem",
+            opacity: 0.9,
+            maxWidth: "600px",
+            margin: "0 auto",
+          }}
+        >
           Whether you're a vendor looking to sell or a customer seeking
           solutions, SaaSibly is your gateway to the future of software.
         </p>
-        {/* <button
-          style={{
-            background: "white",
-            color: "#1e40af",
-            padding: "12px 24px",
-            border: "none",
-            borderRadius: "8px",
-            fontSize: "1.1rem",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
-          Get Started Now →
-        </button> */}
         <Link
           to="/services/saas/signup"
           style={{
@@ -2126,13 +1356,13 @@ const SaaS = () => {
             borderRadius: "8px",
             textDecoration: "none",
             fontSize: "1.1rem",
+            fontWeight: "bold",
           }}
         >
           Get Started Now →
         </Link>
       </div>
 
-      {/* Footer Section */}
       <footer
         style={{
           background: "#f9fafb",
@@ -2145,7 +1375,7 @@ const SaaS = () => {
             maxWidth: "1200px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? "100%" : "200px"}, 1fr))`,
             gap: "2rem",
           }}
         >
@@ -2175,47 +1405,32 @@ const SaaS = () => {
               SaaS applications.
             </p>
           </div>
-
           <div>
             <h4 style={{ marginBottom: "1rem", color: "#1f2937" }}>
               Quick Links
             </h4>
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              <li style={{ marginBottom: "0.5rem" }}>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+              }}
+            >
+              <li>
                 <button
-                  onClick={() => setActiveSection("home")}
+                  onClick={() => handleNavClick("home")}
                   style={{
                     background: "none",
                     border: "none",
                     color: "#6b7280",
                     cursor: "pointer",
+                    padding: 0,
+                    textAlign: "left",
                   }}
                 >
                   About Us
-                </button>
-              </li>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <button
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "#6b7280",
-                    cursor: "pointer",
-                  }}
-                >
-                  Terms of Service
-                </button>
-              </li>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <button
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "#6b7280",
-                    cursor: "pointer",
-                  }}
-                >
-                  Privacy Policy
                 </button>
               </li>
               <li>
@@ -2225,14 +1440,15 @@ const SaaS = () => {
                     border: "none",
                     color: "#6b7280",
                     cursor: "pointer",
+                    padding: 0,
+                    textAlign: "left",
                   }}
                 >
-                  Contact Us
+                  Terms of Service
                 </button>
               </li>
             </ul>
           </div>
-
           <div>
             <h4 style={{ marginBottom: "1rem", color: "#1f2937" }}>
               Connect With Us
@@ -2271,17 +1487,6 @@ const SaaS = () => {
               >
                 💼
               </button>
-              <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "#6b7280",
-                  cursor: "pointer",
-                  fontSize: "1.5rem",
-                }}
-              >
-                📷
-              </button>
             </div>
             <p
               style={{
@@ -2294,18 +1499,17 @@ const SaaS = () => {
             </p>
           </div>
         </div>
-
         <div
           style={{
             textAlign: "center",
+            borderTop: "1px solid #e5e7eb",
             marginTop: "2rem",
             paddingTop: "2rem",
-            borderTop: "1px solid #e5e7eb",
+            color: "#6b7280",
+            fontSize: "0.9rem",
           }}
         >
-          <p style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-            © 2025 SaaSibly. All rights reserved.
-          </p>
+          © 2025 SaaSibly. All rights reserved.
         </div>
       </footer>
     </div>
